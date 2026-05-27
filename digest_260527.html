@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chile Morning Digest — May 27, 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #ddd9d1;
+      color: #1a1a1a;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 32px auto;
+      background: #fffefb;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.12);
+    }
+
+    /* ── Masthead ── */
+    .masthead {
+      background: #111;
+      color: #f5f2ed;
+      text-align: center;
+      padding: 34px 28px 26px;
+      border-bottom: 3px solid #b5802a;
+    }
+    .masthead .kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 10px;
+    }
+    .masthead h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: #fffefb;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .masthead .date {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #888;
+    }
+
+    /* ── Weather ── */
+    .weather-wrap { padding: 22px 22px 0; }
+    .weather-card {
+      background: linear-gradient(135deg, #2c4a7c 0%, #4a6fa5 100%);
+      border-radius: 10px;
+      padding: 18px 26px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .weather-icon { font-size: 48px; flex-shrink: 0; }
+    .weather-info h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 4px;
+    }
+    .weather-info .temp {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .weather-info .conditions {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      opacity: 0.88;
+      line-height: 1.5;
+    }
+
+    /* ── Section Labels ── */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #b5802a;
+      padding: 24px 22px 0;
+      margin-bottom: 0;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: #e0dbd2;
+      margin: 8px 22px 0;
+    }
+
+    /* ── Grid layouts ── */
+    .grid-wrap {
+      padding: 0 22px;
+    }
+
+    /* Lead story — full width */
+    .lead-story {
+      padding: 18px 0 18px;
+      border-bottom: 1px solid #e0dbd2;
+    }
+    .lead-story img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .lead-story h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      color: #111;
+    }
+    .lead-story h3 a { color: inherit; text-decoration: none; }
+    .lead-story h3 a:hover { text-decoration: underline; text-decoration-color: #b5802a; }
+    .lead-story p {
+      font-size: 15.5px;
+      line-height: 1.72;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    /* Two-column story grid */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .col-story {
+      padding: 18px 16px 18px 0;
+      border-bottom: 1px solid #e0dbd2;
+    }
+    .col-story:nth-child(even) {
+      padding-left: 16px;
+      padding-right: 0;
+      border-left: 1px solid #e0dbd2;
+    }
+
+    .col-story img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .col-story h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.28;
+      margin-bottom: 9px;
+      color: #111;
+    }
+    .col-story h3 a { color: inherit; text-decoration: none; }
+    .col-story h3 a:hover { text-decoration: underline; text-decoration-color: #b5802a; }
+    .col-story p {
+      font-size: 14.5px;
+      line-height: 1.68;
+      color: #3a3a3a;
+      margin-bottom: 9px;
+    }
+
+    /* shared story elements */
+    .context-link {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #8a6010;
+      text-decoration: none;
+      background: #fdf6e8;
+      border: 1px solid #e4cfa0;
+      border-radius: 4px;
+      padding: 3px 9px;
+      margin-top: 6px;
+    }
+    .context-link:hover { background: #f5e7bf; }
+
+    .source-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #aaa;
+      font-weight: 500;
+      margin-top: 8px;
+      display: block;
+    }
+
+    .clinic-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #fffefb;
+      background: #c0392b;
+      border-radius: 3px;
+      padding: 2px 7px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: #111;
+      color: #555;
+      text-align: center;
+      padding: 18px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      margin-top: 4px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .container { margin: 0; border-radius: 0; }
+      .two-col { grid-template-columns: 1fr; }
+      .col-story:nth-child(even) {
+        padding-left: 0;
+        border-left: none;
+      }
+      .lead-story h3 { font-size: 22px; }
+      .weather-card { flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ── Masthead ── -->
+  <div class="masthead">
+    <div class="kicker">Santiago · Chile</div>
+    <h1>Chile Morning Digest</h1>
+    <div class="date">Wednesday, May 27, 2026</div>
+  </div>
+
+  <!-- ── Weather ── -->
+  <div class="weather-wrap">
+    <div class="weather-card">
+      <div class="weather-icon">🌥️</div>
+      <div class="weather-info">
+        <h2>Santiago Today</h2>
+        <div class="temp">~17°C / 63°F</div>
+        <div class="conditions">Overcast and noticeably cooler — 10°C colder than yesterday's 27°. No rain in the city, but drizzle and fog are hitting the coast (Valparaíso, O'Higgins). Bring a jacket.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOP HEADLINES ── -->
+  <div class="section-label">Top Headlines</div>
+  <div class="section-divider"></div>
+
+  <div class="grid-wrap">
+
+    <!-- Lead story -->
+    <div class="lead-story">
+      <img src="https://www.latercera.com/resizer/v2/VMATP4A2BJHXXEFNRIYX4JANUY.jpg?auth=5ce1dad2c1d2986ce3b40ee643e6112331280edcb53ec16252529007d6284ebf&smart=true&width=900&height=400&quality=75" alt="La Moneda vs. Boric ex-officials debt showdown" />
+      <h3><a href="https://www.latercera.com/politica/noticia/el-duelo-entre-la-moneda-y-exautoridades-de-boric-tras-ofensiva-por-deuda-publica/" target="_blank">New government vs. old: the debt war escalates as Kast's State of the Union approaches</a></h3>
+      <p>President Kast's administration has launched its biggest offensive yet against the previous Boric government, accusing former officials of misrepresenting Chile's public debt figures to Congress. Two far-right parties — the Libertarios and Republicans — filed a constitutional accusation against former Economy Minister Nicolás Grau. The move is backfiring politically: Kast's mainstream center-right coalition (Chile Vamos) is refusing to join, worried it will blow up negotiations on the government's major economic reform bill right before its first Senate vote. Former Finance Minister Briones called it "going too far" while acknowledging there may have been a real accounting error. Grau, for his part, proposed that the Boric and Kast finance teams simply sit down together.</p>
+      <a class="context-link" href="context_260527_acusacion-constitucional.html">→ Background: What is a constitutional accusation?</a>
+      <a class="context-link" href="context_260527_megarreforma.html" style="margin-left:6px;">→ Background: What is the megarreforma?</a>
+      <span class="source-tag">La Tercera · Emol</span>
+    </div>
+
+    <!-- Two-col row 1 -->
+    <div class="two-col">
+
+      <div class="col-story">
+        <img src="https://www.latercera.com/resizer/v2/KQQGMRLI5JBT7D4P3SRAF3PYJA.jpg?auth=4207fc351c1f25e5666aa43d53137076a0a07c96e4209bb87cf2217fa70d0637&smart=true&width=400&height=226&quality=75" alt="Junaeb building" />
+        <h3><a href="https://www.latercera.com/nacional/noticia/junaeb-sera-la-primera-institucion-que-el-gobierno-denunciara-en-fiscalia-tras-auditar-a-la-administracion-anterior/" target="_blank">Kast government to file first criminal complaint against Boric-era agency</a></h3>
+        <p>After auditing the outgoing administration, the Kast government says Junaeb — a public agency that runs school lunch programs and student scholarships — will be the first institution formally referred to prosecutors. More agencies are expected to follow. It signals the new right-wing government intends to pursue actual legal proceedings, not just political scoring.</p>
+        <span class="source-tag">La Tercera</span>
+      </div>
+
+      <div class="col-story">
+        <h3><a href="https://www.emol.com/noticias/Nacional/2026/05/26/1201057/toha-seguridad-arrau.html" target="_blank">Security Minister Arrau is already under fire — and a bus was torched yesterday</a></h3>
+        <p>New Security Minister Martín Arrau is facing growing pressure to produce a credible public safety plan. Former Interior Minister Tohá stepped in to argue that a national security framework already exists and isn't something each government builds from scratch. Meanwhile a city bus was forced to empty and set on fire at Estación Central — Arrau arrived at the scene. Crime is Chile's top domestic issue and pressure on Arrau is building fast.</p>
+        <span class="source-tag">Emol · La Tercera</span>
+      </div>
+
+    </div>
+
+    <!-- Two-col row 2 -->
+    <div class="two-col">
+
+      <div class="col-story">
+        <img src="https://static.emol.cl/emol50/Fotos/Pandora/2026/05/26/file_20260526152524.jpg" alt="San Antonio Megaport" />
+        <h3><a href="https://www.emol.com/noticias/Economia/2026/05/26/1201033/puerto-exterior-san-antonio-aprobacion.html" target="_blank">San Antonio megaport finally clears environmental review after 6 years</a></h3>
+        <p>Chile's planned major port expansion at San Antonio — the country's primary container port, roughly equivalent to Long Beach on the US West Coast — received environmental approval after six years of regulatory review. A significant win for Chile's export capacity, which is critical for a country whose economy runs on copper, lithium, and agricultural exports.</p>
+        <span class="source-tag">Emol</span>
+      </div>
+
+      <div class="col-story">
+        <h3><a href="https://www.df.cl/empresas/mineria/sqm-dispara-sus-ganancias-un-191-en-el-primer-trimestre-de-2026-impulsada" target="_blank">SQM profits up 191% — Chile's lithium boom is back</a></h3>
+        <p>SQM, one of the world's largest lithium producers, reported Q1 2026 profits up 191% on a rebounding lithium price. Chile holds the world's largest lithium reserves in the Atacama desert, and the revival comes as global EV demand climbs again. Copper prices are also strong — Brent oil hit $94/barrel — making Chile's export economy look notably healthier than it did a year ago.</p>
+        <span class="source-tag">Diario Financiero</span>
+      </div>
+
+    </div>
+
+  </div><!-- /grid-wrap -->
+
+  <!-- ── INTERESTING & OFFBEAT ── -->
+  <div class="section-label" style="margin-top:8px;">Interesting &amp; Offbeat</div>
+  <div class="section-divider"></div>
+
+  <div class="grid-wrap">
+    <div class="two-col">
+
+      <div class="col-story">
+        <h3><a href="https://www.emol.com/noticias/Nacional/2026/05/26/1201014/musk-cobra-uso-x-sismologia.html" target="_blank">Elon Musk's API fees silenced Chile's earthquake alerts</a></h3>
+        <p>Chile's national seismology service has been unable to post earthquake alerts on X since April 1 — because the platform's new API fees are too steep for a government science agency. Chile averages several significant quakes a week, making this a genuine public safety gap. They're looking for alternatives. One more story about the real-world cost of building public infrastructure on private platforms.</p>
+        <span class="source-tag">Emol</span>
+      </div>
+
+      <div class="col-story">
+        <h3><a href="https://www.latercera.com/tendencias/noticia/mas-de-400-sismos-en-el-volcan-longavi-que-significa-y-que-riesgos-tiene-segun-un-geofisico/" target="_blank">400+ earthquakes at Volcano Longaví — scientists watching closely</a></h3>
+        <p>The Longaví volcano in central-south Chile has recorded over 400 earthquakes in recent days — enough for headlines. A geophysicist says it's a seismic swarm, unusual but not necessarily a sign of eruption. Scientists are monitoring. Chile sits on the Pacific Ring of Fire and has some of the world's most active volcanoes.</p>
+        <span class="source-tag">La Tercera</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── OPINION & EDITORIAL ── -->
+  <div class="section-label" style="margin-top:8px;">Opinion &amp; Editorial</div>
+  <div class="section-divider"></div>
+
+  <div class="grid-wrap">
+    <div class="two-col">
+
+      <div class="col-story">
+        <h3><a href="https://www.latercera.com/editorial/noticia/controversia-por-expulsion-de-migrantes/" target="_blank">"The deportation controversy" — La Tercera Editorial Board</a></h3>
+        <p>La Tercera's center-right editorial board takes on the Kast government's deportation policies. Chile has seen a sharp spike in irregular migration through the northern Atacama desert from Bolivia, and Kast has moved aggressively on expulsions. The editorial engages with the tension between enforcement and due process — a signal that even sympathetic voices on the right have concerns about execution.</p>
+        <span class="source-tag">La Tercera · center-right · Editorial board</span>
+      </div>
+
+      <div class="col-story">
+        <div class="clinic-tag">The Clinic</div>
+        <h3><a href="https://www.theclinic.cl/2026/05/17/diputada-iraci-hassler-pc-el-gobierno-habla-del-partido-comunista-para-desviar-la-atencion-de-una-reforma-que-no-cuenta-con-apoyo-ciudadano/" target="_blank">"The government talks about Communists to distract from a reform nobody wants"</a></h3>
+        <p>Communist Party congresswoman Irací Hassler argues that Kast's team is using the left as a bogeyman — repeatedly invoking the "Communist Party threat" — to avoid scrutiny of a megarreforma that lacks genuine popular support. A sharp, unvarnished left perspective on the same political fights dominating today's headlines.</p>
+        <span class="source-tag">The Clinic · left-leaning · Irací Hassler, PC</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <div class="footer">
+    Chile Morning Digest &nbsp;·&nbsp; Wednesday, May 27, 2026<br>
+    Sources: Emol · La Tercera · BioBioChile · The Clinic · Diario Financiero
+  </div>
+
+</div>
+</body>
+</html>
