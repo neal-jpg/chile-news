@@ -21,7 +21,6 @@
     .masthead {
       background: #111;
       color: #fffefb;
-      padding: 0;
     }
     .masthead-inner {
       max-width: 980px;
@@ -40,9 +39,7 @@
       letter-spacing: -0.02em;
       color: #fffefb;
     }
-    .masthead-title span {
-      color: #b5802a;
-    }
+    .masthead-title span { color: #b5802a; }
     .masthead-meta {
       font-family: 'Inter', sans-serif;
       font-size: 11px;
@@ -81,10 +78,7 @@
       align-items: center;
       gap: 16px;
     }
-    .weather-icon {
-      font-size: 40px;
-      line-height: 1;
-    }
+    .weather-icon { font-size: 40px; line-height: 1; }
     .weather-city {
       font-family: 'Inter', sans-serif;
       font-size: 11px;
@@ -149,9 +143,7 @@
       object-fit: cover;
       display: block;
     }
-    .lead-story-body {
-      padding: 24px 28px 28px;
-    }
+    .lead-story-body { padding: 24px 28px 28px; }
     .lead-story-label {
       font-family: 'Inter', sans-serif;
       font-size: 10px;
@@ -174,15 +166,30 @@
       line-height: 1.65;
       color: #333;
     }
+    .story-links {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .source-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      text-decoration: none;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .source-link:hover { color: #111; border-color: #111; }
     .context-link {
-      display: inline-block;
-      margin-top: 10px;
       font-family: 'Inter', sans-serif;
       font-size: 12px;
       font-weight: 600;
       color: #b5802a;
       text-decoration: none;
-      letter-spacing: 0.02em;
     }
     .context-link:hover { text-decoration: underline; }
 
@@ -191,7 +198,6 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
-      margin-bottom: 0;
     }
     @media (max-width: 640px) {
       .story-grid { grid-template-columns: 1fr; }
@@ -215,6 +221,8 @@
     .story-card-body {
       padding: 18px 20px 22px;
       flex: 1;
+      display: flex;
+      flex-direction: column;
     }
     .story-card-label {
       font-family: 'Inter', sans-serif;
@@ -237,9 +245,11 @@
       font-size: 14px;
       line-height: 1.6;
       color: #444;
+      flex: 1;
     }
+    .story-card .story-links { margin-top: 14px; }
 
-    /* ── OFFBEAT SECTION ── */
+    /* ── OFFBEAT ── */
     .offbeat-card {
       background: #f5f2ed;
       border-left: 4px solid #b5802a;
@@ -259,8 +269,9 @@
       line-height: 1.6;
       color: #444;
     }
+    .offbeat-card .story-links { margin-top: 12px; }
 
-    /* ── OPINION SECTION ── */
+    /* ── OPINION ── */
     .opinion-card {
       background: #fff;
       border-radius: 6px;
@@ -306,6 +317,7 @@
       line-height: 1.6;
       color: #444;
     }
+    .opinion-card .story-links { margin-top: 12px; }
 
     /* ── FOOTER ── */
     .digest-footer {
@@ -352,29 +364,33 @@
       </div>
     </div>
     <div class="weather-note">
-      Jacket weather. The overcast is here through the weekend — possible light rain finally arrives around June 3–4 next week, but forecasters aren't certain yet.
+      Jacket weather. Overcast through the weekend. Possible light rain arrives around June 3–4 — forecasters aren't certain yet but it's looking more likely.
     </div>
   </div>
 
   <!-- TOP HEADLINES -->
   <div class="section-header">Top Headlines</div>
 
-  <!-- LEAD STORY: Constitutional Accusation -->
+  <!-- LEAD: Constitutional Accusation -->
   <div class="lead-story">
     <img class="lead-story-img"
       src="https://www.latercera.com/resizer/v2/ASUMFDZ62ZHIJFEBLKGOVZ6XUM.jpg?auth=5e68adfe00d11a4d76ef9bf3a80db82ffb96b8b3712bbad38277aa63de372a7a&smart=true&width=980&height=350&quality=80"
-      alt="Acusación constitucional contra Grau" loading="lazy">
+      alt="Acusación constitucional contra ministro Grau" loading="lazy">
     <div class="lead-story-body">
       <div class="lead-story-label">Politics</div>
       <h2>Opposition Moves to Impeach Economy Minister — and the Right Is Eating Itself Over It</h2>
       <p>
-        The Republican Party and its libertarian allies filed a <em>acusación constitucional</em> (Chile's version of congressional impeachment) against Economy Minister Nicolás Grau, targeting his handling of the government's flagship mega tax-and-investment reform. But the move is fracturing the opposition: Chile Vamos — the center-right coalition that's supposed to be aligned with the Republicans — is visibly uncomfortable. Senator Squella tried to put out the fire, saying "there's no appetite to pick a fight" and urging focus on what unites them. Members of the ruling coalition, meanwhile, are alleging that the whole operation is secretly coordinated with the government, making it political theater. The accusation threatens to poison ongoing negotiations over the megarreforma at exactly the wrong moment.
+        The Republican Party and its libertarian allies filed a <em>acusación constitucional</em> — Chile's version of congressional impeachment — against Economy Minister Nicolás Grau, targeting his handling of the government's flagship mega tax-and-investment reform. But the move is fracturing the opposition: Chile Vamos, the center-right coalition supposed to be aligned with the Republicans, is visibly uncomfortable. Senator Squella tried to put out the fire, saying "there's no appetite to pick a fight" and urging focus on what unites them. Ruling coalition figures, meanwhile, allege the whole operation is secretly coordinated with the government — making it political theater. The accusation threatens to poison ongoing negotiations over the megarreforma at exactly the wrong moment.
       </p>
-      <a class="context-link" href="context_260527_acusacion-constitucional.html">→ Background: What is a Constitutional Accusation?</a>
+      <div class="story-links">
+        <a class="context-link" href="context_260527_acusacion-constitucional.html">→ Background: What is a Constitutional Accusation?</a>
+        <a class="source-link" href="https://www.latercera.com/politica/noticia/acusacion-a-grau-enrarece-dialogo-por-megaproyecto-y-crecen-reparos-a-la-arremetida-republicana-libertaria/" target="_blank" rel="noopener">Read more → La Tercera</a>
+        <a class="source-link" href="https://www.emol.com/noticias/Nacional/2026/05/28/1201197/squella-pugna-republicanos-ac.html" target="_blank" rel="noopener">Read more → Emol</a>
+      </div>
     </div>
   </div>
 
-  <!-- STORY GRID: remaining top stories -->
+  <!-- STORY GRID -->
   <div class="story-grid">
 
     <!-- Story 2: Megarreforma -->
@@ -386,9 +402,12 @@
         <div class="story-card-label">Economy</div>
         <h3>Government Admits Its Mega Reform Needs Surgery</h3>
         <p>
-          After Chile's top finance watchdog (the Financial Secretary Quiroz) published a report flagging problems with the public finances assumptions baked into the <em>megarreforma</em>, the government's legislative affairs minister said changes are coming. The biggest concession so far: cutting the guaranteed tax-stability window for businesses from 25 to 20 years. The administration is targeting July to get something through Congress.
+          After Chile's Financial Secretary Quiroz published a report flagging problems with the public finances assumptions in the <em>megarreforma</em>, the government's legislative affairs minister said changes are coming. Biggest concession: cutting the guaranteed tax-stability window for businesses from 25 to 20 years. Target to pass something through Congress: July.
         </p>
-        <a class="context-link" href="context_260527_megarreforma.html">→ Background: What is the Megarreforma?</a>
+        <div class="story-links">
+          <a class="context-link" href="context_260527_megarreforma.html">→ Background: What is the Megarreforma?</a>
+          <a class="source-link" href="https://www.latercera.com/politica/noticia/gobierno-asegura-que-tras-informe-de-finanzas-publicas-de-quiroz-deberan-hacer-ajustes-a-la-megarreforma/" target="_blank" rel="noopener">Read more → La Tercera</a>
+        </div>
       </div>
     </div>
 
@@ -401,19 +420,27 @@
         <div class="story-card-label">Security</div>
         <h3>Chile Hosts Crime Summit; Peru Extradites Tren de Aragua Member</h3>
         <p>
-          Chile is hosting representatives from four countries today for a summit focused on coordinating responses to transnational organized crime — the kind of cross-border gang activity that groups like the Tren de Aragua represent. In a concrete win on the same day, Peru extradited a former Tren de Aragua member accused of the kidnapping of a father and daughter. The group has been classified in the U.S. as a terrorist organization.
+          Chile is hosting representatives from four countries for a summit coordinating responses to transnational organized crime. On the same day, Peru extradited a former Tren de Aragua member accused of kidnapping a father and daughter. The Venezuelan gang has been classified as a terrorist organization by the U.S.
         </p>
+        <div class="story-links">
+          <a class="source-link" href="https://www.emol.com/noticias/Nacional/2026/05/28/1201160/cumbre-seguridad-cancilleria-chile.html" target="_blank" rel="noopener">Read more → Emol (summit)</a>
+          <a class="source-link" href="https://www.emol.com/noticias/Nacional/2026/05/28/1201195/extraditan-ex-miembro-tren-aragua.html" target="_blank" rel="noopener">Read more → Emol (extradition)</a>
+        </div>
       </div>
     </div>
 
-    <!-- Story 4: Collusion case -->
+    <!-- Story 4: Collusion -->
     <div class="story-card">
       <div class="story-card-body">
         <div class="story-card-label">Business / Courts</div>
         <h3>"Cousin Collusion" — Meal Voucher Execs Face Prison Time</h3>
         <p>
-          Chile's antitrust authority (FNE — think the FTC) pushed criminal charges against executives at Pluxee and Edenred, the two dominant meal-voucher companies, for allegedly coordinating to fix prices and divide up the market. The case has been nicknamed <em>"la colusión de los primos"</em> (the cousin collusion) because the heads of the two companies are apparently cousins. Some execs now face the prospect of actual jail time beyond civil fines — a relatively rare outcome in Chilean competition law.
+          Chile's antitrust authority (FNE — think the FTC) pushed criminal charges against executives at Pluxee and Edenred for allegedly fixing prices and dividing the meal-voucher market. The case is nicknamed <em>la colusión de los primos</em> because the companies' top executives are cousins. Some now face actual jail time, not just civil fines — relatively rare in Chilean competition law.
         </p>
+        <div class="story-links">
+          <a class="source-link" href="https://www.emol.com/noticias/Economia/2026/05/28/1201167/carcel-fne-colusion-ejecutivos.html" target="_blank" rel="noopener">Read more → Emol</a>
+          <a class="source-link" href="https://www.df.cl/empresas/industria/las-claves-del-caso-por-colusion-entre-pluxee-y-edenred-que-destapo-la" target="_blank" rel="noopener">Read more → Diario Financiero</a>
+        </div>
       </div>
     </div>
 
@@ -421,13 +448,17 @@
     <div class="story-card">
       <img class="story-card-img"
         src="https://www.latercera.com/resizer/v2/A2QQRCSZG5A2DEAUDGVRAR2ATQ.jpg?auth=cbe05bf6f08f01b57da299172cb410baa5c9a5088d347a530590db512e823ea6&smart=true&width=500&height=280&quality=75"
-        alt="Michelle Bachelet ONU" loading="lazy">
+        alt="Bachelet ONU candidatura" loading="lazy">
       <div class="story-card-body">
         <div class="story-card-label">International</div>
         <h3>Bachelet Lobbies Europe for UN Secretary-General Bid</h3>
         <p>
-          Former Chilean president Michelle Bachelet is in Europe building support for her candidacy to lead the United Nations. She met with the UK's foreign minister and is seeking a meeting with French President Macron. Her first formal debate among candidates is coming up. Chile's ruling coalition says her bid "transcends ideologies" — though the opposition is noticeably quiet on enthusiasm. This would be a historic moment for Latin America if she succeeds.
+          Former Chilean president Michelle Bachelet is in Europe building support for her candidacy to lead the United Nations. She met with the UK's foreign minister and is seeking a meeting with Macron. Her first formal debate among candidates is upcoming. Chile's ruling coalition says her bid "transcends ideologies."
         </p>
+        <div class="story-links">
+          <a class="source-link" href="https://www.latercera.com/politica/noticia/postulacion-a-la-onu-bachelet-se-reune-con-canciller-britanica-espera-cita-con-macron-y-prepara-su-primer-debate/" target="_blank" rel="noopener">Read more → La Tercera</a>
+          <a class="source-link" href="https://www.biobiochile.cl/noticias/nacional/chile/2026/05/27/bachelet-viaja-a-inglaterra-en-plena-carrera-para-liderar-la-onu-trasciende-ideologias-destaca-fa.shtml" target="_blank" rel="noopener">Read more → BioBio</a>
+        </div>
       </div>
     </div>
 
@@ -439,15 +470,22 @@
   <div class="offbeat-card">
     <h3>🏥 Air Force Hospital Closes Its Maternity Ward — Birth Rate Is to Blame</h3>
     <p>
-      Santiago's Hospital FACh, the Air Force's flagship medical center serving the city's eastern sector, is shutting down its historic maternity ward. The reason isn't budget cuts — it's Chile's birth rate crisis. There simply aren't enough babies being born to justify keeping it running. Chile's fertility rate has dropped sharply over the past decade, and this closure is one of the first concrete institutional casualties. Think of it like a small-town hospital closing its maternity floor because the town stopped having kids.
+      Santiago's Hospital FACh, the Air Force's flagship hospital serving the city's eastern sector, is shutting down its historic maternity ward. The reason isn't budget cuts — it's Chile's birth rate crisis. There simply aren't enough babies being born to justify keeping it open. Chile's fertility rate has dropped sharply over the past decade, and this closure is one of the first concrete institutional casualties. Think of it like a small-town hospital closing its maternity floor because the town stopped having kids.
     </p>
+    <div class="story-links">
+      <a class="source-link" href="https://www.emol.com/noticias/Nacional/2026/05/28/1201161/hospital-fach-cierre-unidad-maternidad.html" target="_blank" rel="noopener">Read more → Emol</a>
+    </div>
   </div>
 
   <div class="offbeat-card">
     <h3>📱 "Burn La Moneda" Posts Prompt Police Alert Near Plaza Dignidad</h3>
     <p>
-      Social media accounts — some linked to Mapuche activist networks — have been posting nostalgic content about the 2019 social uprising ("Las tardes en plaza Dignidad eran hermosas") alongside calls to gather at Plaza Dignidad (formerly Plaza Italia, the symbolic center of the 2019 protests). Some posts include phrases like "burn La Moneda," Chile's presidential palace. Police are on alert. Authorities are also calling for an investigation into platforms spreading information about potential attacks. Nothing has materialized yet, but the language has Chilean security services watching closely.
+      Social media accounts — some linked to Mapuche activist networks — have been posting nostalgic content about the 2019 social uprising alongside calls to gather at Plaza Dignidad (formerly Plaza Italia, the symbolic center of those protests). Some posts include phrases like "burn La Moneda," Chile's presidential palace. Police are on alert and officials are calling for investigations into platforms spreading information about potential attacks. Nothing has materialized, but the language has security services watching closely.
     </p>
+    <div class="story-links">
+      <a class="source-link" href="https://www.emol.com/noticias/Nacional/2026/05/28/1201189/dignidad-convocatorias-estallido-alerta-policial.html" target="_blank" rel="noopener">Read more → Emol</a>
+      <a class="source-link" href="https://www.emol.com/noticias/Nacional/2026/05/28/1201190/plataformas-activismo-mapuche-radicalizado-investigar.html" target="_blank" rel="noopener">Read more → Emol (platforms)</a>
+    </div>
   </div>
 
   <!-- OPINION & EDITORIAL -->
@@ -462,8 +500,11 @@
       <div class="opinion-byline">Leonidas Montes</div>
     </div>
     <p>
-      Economist Leonidas Montes takes stock of the current state of Chile's economy — what went wrong, what the structural challenges are, and what a realistic path forward looks like. Writing in El Mercurio, he argues that acknowledging past errors is a precondition for fixing them. A measured, market-leaning take that lands as a quiet rebuke of the government's economic management without going full attack-dog.
+      Economist Leonidas Montes takes stock of the state of Chile's economy — what went wrong, what the structural challenges are, and what a realistic path forward looks like. A measured, market-leaning take that lands as a quiet rebuke of the government's economic management without going full attack-dog.
     </p>
+    <div class="story-links">
+      <a class="source-link" href="https://www.elmercurio.com/blogs/2026/05/28/133236/de-errores-y-desafios.aspx" target="_blank" rel="noopener">Read more → El Mercurio</a>
+    </div>
   </div>
 
   <div class="opinion-card">
@@ -475,12 +516,15 @@
       <div class="opinion-byline">Carlos Peña</div>
     </div>
     <p>
-      Philosopher and University Diego Portales rector Carlos Peña writes about the risks of artificial intelligence — not just the technical ones, but the philosophical and social dimensions. His column comes in the same week that the new Pope León XIV released an encyclical on AI and humanity's relationship with technology, giving the topic unusual topicality in Chile's op-ed pages.
+      Philosopher and Universidad Diego Portales rector Carlos Peña writes about the risks of AI — not just technical risks, but the philosophical and social dimensions. His column lands in the same week the new Pope León XIV released an encyclical on AI, giving the topic unusual topicality in Chile's op-ed pages.
     </p>
+    <div class="story-links">
+      <a class="source-link" href="https://www.elmercurio.com/blogs/2026/05/28/133237/el-peligro-de-la-ia.aspx" target="_blank" rel="noopener">Read more → El Mercurio</a>
+    </div>
   </div>
 
   <div class="digest-footer">
-    Chile Morning Digest &nbsp;·&nbsp; Generated Thursday, May 28, 2026 &nbsp;·&nbsp; Sources: Emol, La Tercera, BioBioChile, Diario Financiero
+    Chile Morning Digest &nbsp;·&nbsp; Thursday, May 28, 2026 &nbsp;·&nbsp; Sources: Emol, La Tercera, BioBioChile, Diario Financiero
   </div>
 
 </div><!-- /wrapper -->

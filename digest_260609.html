@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chile Morning Digest — Tuesday, June 9, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: #ddd9d1;
+      color: #1a1a1a;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ── MASTHEAD ── */
+    header {
+      background: #111;
+      padding: 22px 24px 18px;
+      text-align: center;
+    }
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 6px;
+    }
+    .masthead-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      color: #fffefb;
+      letter-spacing: 0.01em;
+    }
+    .masthead-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #888;
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+    .masthead-rule {
+      width: 40px;
+      height: 2px;
+      background: #b5802a;
+      margin: 12px auto 0;
+    }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 18px 60px;
+    }
+
+    /* ── WEATHER CARD ── */
+    .weather-card {
+      background: linear-gradient(135deg, #1c3a5e 0%, #2a5080 60%, #1e6fa0 100%);
+      color: #fff;
+      border-radius: 8px;
+      padding: 22px 28px;
+      margin: 24px 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .weather-icon {
+      font-size: 48px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .weather-body { flex: 1; min-width: 200px; }
+    .weather-location {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 4px;
+    }
+    .weather-temps {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .weather-condition {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 4px;
+    }
+    .weather-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+      margin-top: 6px;
+    }
+    .weather-detail {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      align-self: flex-end;
+      text-align: right;
+      min-width: 160px;
+    }
+    .weather-detail div { margin-bottom: 4px; }
+    .weather-detail strong { color: rgba(255,255,255,0.9); }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b5802a;
+      padding: 6px 0 6px;
+      border-top: 2px solid #111;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    /* ── LEAD STORY ── */
+    .lead-story {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .lead-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+    }
+    .lead-body {
+      padding: 24px 28px 20px;
+    }
+    .story-kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 8px;
+    }
+    .lead-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #111;
+      margin-bottom: 12px;
+    }
+    .story-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #2a2a2a;
+      margin-bottom: 14px;
+    }
+    .story-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .story-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #b5802a;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .story-links a:hover { text-decoration: underline; }
+
+    /* ── 2-COLUMN GRID ── */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 6px;
+    }
+    @media (max-width: 640px) {
+      .stories-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── STORY CARD ── */
+    .story-card {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body {
+      padding: 18px 20px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .card-body .story-body { font-size: 15px; flex: 1; }
+    .card-body .story-links { margin-top: auto; padding-top: 10px; }
+
+    /* ── OPINION / OFFBEAT ── */
+    .opinion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 640px) {
+      .opinion-grid { grid-template-columns: 1fr; }
+    }
+    .opinion-card {
+      background: #f0ece4;
+      border-radius: 6px;
+      padding: 20px 22px;
+      border-left: 3px solid #b5802a;
+    }
+    .opinion-outlet {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .opinion-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .opinion-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 12px; }
+    .opinion-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    /* Offbeat cards */
+    .offbeat-card {
+      background: #e8e4dc;
+      border-radius: 6px;
+      padding: 20px 22px;
+    }
+    .offbeat-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .offbeat-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 10px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #999;
+      border-top: 1px solid #c8c4bc;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="eyebrow">Chile Morning Digest</div>
+    <div class="masthead-title">The Morning Briefing</div>
+    <div class="masthead-date">Tuesday, June 9, 2026 &nbsp;·&nbsp; Santiago, Chile</div>
+    <div class="masthead-rule"></div>
+  </header>
+
+  <div class="wrapper">
+
+    <!-- WEATHER -->
+    <div class="weather-card">
+      <div class="weather-icon">🌤️</div>
+      <div class="weather-body">
+        <div class="weather-location">Santiago · Early Winter</div>
+        <div class="weather-temps">15° / 7°C &nbsp; (60° / 45°F)</div>
+        <div class="weather-condition">Cold, clear morning giving way to mild sun — little to no rain expected</div>
+        <div class="weather-note">Classic Santiago winter day: frosty start, pleasant afternoon. Bring a jacket for the morning and shed it by midday. Humidity is high overnight, so expect a damp chill before the sun burns off.</div>
+      </div>
+      <div class="weather-detail">
+        <div><strong>Rain:</strong> Under 5% chance</div>
+        <div><strong>Wind:</strong> Light, gusts to ~11 mph</div>
+        <div><strong>Mornings:</strong> Near-freezing, frost possible</div>
+      </div>
+    </div>
+
+    <!-- TOP HEADLINES -->
+    <div class="section-label">Top Headlines</div>
+
+    <!-- LEAD STORY: Constitutional accusation vs Grau -->
+    <div class="lead-story">
+      <img class="lead-img"
+        src="https://static.emol.cl/emol50/Fotos/2026/06/08/file_20260608180840.jpg"
+        alt="Chile's Congress, where a constitutional accusation against former finance minister Nicolás Grau will be filed">
+      <div class="lead-body">
+        <div class="story-kicker">Politics · Congress vs. the Old Guard</div>
+        <h2 class="lead-headline">Congress Moves to Impeach the Former Finance Minister — and Kast's Own Team Is Nervous About It</h2>
+        <p class="story-body">
+          The right-wing majority that now controls Congress is filing a <em>constitutional accusation</em> against Nicolás Grau, who was finance minister under the previous left-wing Boric government. A constitutional accusation is Chile's closest equivalent to impeachment, and it can be aimed at former ministers for actions taken in office. With President Kast's coalition holding the votes, it has a real chance of passing.
+        </p>
+        <p class="story-body">
+          The twist: Kast's own government is wary of it. Claudio Alvarado, the senior "bi-minister" running Interior and the government's communications, pointedly declined to cheer it on — saying Congress is "sovereign" to investigate but warning it "could affect the climate" of legislative debate and risk a "spiral of accusations" that "discredits politics." His real worry is practical: the government wants the opposition's votes for its big reconstruction reform, and a partisan impeachment fight could blow up those negotiations. Think of a US administration quietly wishing its own congressional allies would drop an impeachment so it can keep a bipartisan bill alive.
+        </p>
+        <div class="story-links">
+          <a href="context_260527_acusacion-constitucional.html">→ Background: What is a Constitutional Accusation?</a>
+          <a href="https://www.emol.com/noticias/Nacional/2026/06/08/1202259/alvarado-ac-grau-afectar-reconstruccion.html" target="_blank">Read more → Emol</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-COLUMN GRID -->
+    <div class="stories-grid">
+
+      <!-- Story 2: CAE account seizures -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://static.emol.cl/emol50/Fotos/2026/06/08/file_20260608152128.jpg"
+          alt="Finance Minister Jorge Quiroz speaking about CAE student-loan debt collection">
+        <div class="card-body">
+          <div class="story-kicker">Economy</div>
+          <h3 class="card-headline">The Government Is Draining the Bank Accounts of Student-Loan Defaulters — and Won't Stop</h3>
+          <p class="story-body">
+            Finance Minister Jorge Quiroz is defending the Treasury's move to seize the bank accounts of people who defaulted on the CAE, Chile's state-backed student loan program (a rough cousin of US federal student loans). Borrowers say accounts were "emptied" overnight. Quiroz's response: most of the roughly 1,500 people seized so far earn over 3 million pesos a month, the unpaid loans cost taxpayers US$500 million a year, and "debts get paid — we'll keep collecting." He did promise a softer option for those earning under 3.5 million pesos. The left is furious; one bloc called it "a tremendous immorality."
+          </p>
+          <div class="story-links">
+            <a href="https://www.emol.com/noticias/Economia/2026/06/08/1202237/quiroz-embargo-cae.html" target="_blank">Read more → Emol</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 3: Tren de Aragua / BancoEstado -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://static.emol.cl/emol50/Fotos/Pandora/2026/06/08/file_20260608173530.jpg"
+          alt="BancoEstado branch tied to a Tren de Aragua extortion investigation">
+        <div class="card-body">
+          <div class="story-kicker">Crime &amp; Security</div>
+          <h3 class="card-headline">A State-Bank Employee Was Feeding Account Data to the Tren de Aragua</h3>
+          <p class="story-body">
+            New details from "Operation Tokio": a BancoEstado employee allegedly collaborated with the Venezuelan crime syndicate Tren de Aragua, and her partner took part in the extortion scheme directly. BancoEstado — Chile's only state-owned bank — is distancing itself, calling her an "external" contractor. Fourteen people are now in preventive detention, and a congressman is pushing for an investigative commission into how deep the gang's reach into the banking system goes.
+          </p>
+          <div class="story-links">
+            <a href="context_260603_tren-de-aragua.html">→ Background: What is the Tren de Aragua?</a>
+            <a href="https://www.emol.com/noticias/Nacional/2026/06/08/1202253/funcionaria-bancoestado-vinculada-tren-aragua.html" target="_blank">Read more → Emol</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 4: Kast migration bills -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://static.theclinic.cl/media/2026/06/07-224655_tkib_A_UNO_1745217-1-886x600.jpg"
+          alt="President Kast announcing migration bills at the Chacalluta border crossing">
+        <div class="card-body">
+          <div class="story-kicker">Immigration</div>
+          <h3 class="card-headline">From the Northern Border, Kast Rolls Out Two New Immigration Bills</h3>
+          <p class="story-body">
+            Speaking from the Chacalluta border crossing near Arica, President Kast announced two bills delivering on his core campaign promise: one would extend how long the state can detain foreigners who already have deportation orders, and the other would stiffen penalties for human smuggling. It's a familiar US-style pairing — get tougher on the people being moved illegally and on the networks moving them. Expect a fight in Congress over the detention provision in particular.
+          </p>
+          <div class="story-links">
+            <a href="https://www.theclinic.cl/2026/06/07/kast-anuncia-dos-proyectos-en-materia-migratoria-ampliar-el-plazo-de-retencion-de-extranjeros-con-orden-de-expulsion-y-castigar-el-trafico-de-personas/" target="_blank">Read more → The Clinic</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 5: US tariff threat -->
+      <div class="story-card">
+        <div class="card-body">
+          <div class="story-kicker">Trade · Chile &amp; the US</div>
+          <h3 class="card-headline">Chile's Government and Business Leaders Team Up Against a US Tariff Threat</h3>
+          <p class="story-body">
+            Chile's Foreign Ministry and the country's main business guilds agreed to present a united front against the threat of new US tariffs, after Minister Pérez Mackenna met with industry leaders. "We're confident," the ministry said. For a country whose economy runs on copper, lithium, fruit, and wine sold into the US market, even the possibility of tariffs is enough to get the public and private sectors rowing in the same direction — a notable show of cross-sector unity under a government that usually leans hands-off on the economy.
+          </p>
+          <div class="story-links">
+            <a href="https://www.emol.com/noticias/Economia/2026/06/08/1202250/cancilleria-amenazas-arancelarias-eeuu.html" target="_blank">Read more → Emol</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /stories-grid -->
+
+    <!-- INTERESTING / OFFBEAT -->
+    <div class="section-label" style="margin-top:30px;">Interesting &amp; Offbeat</div>
+    <div class="opinion-grid">
+
+      <div class="offbeat-card">
+        <div class="story-kicker" style="margin-bottom:8px;">Oops · Public Safety</div>
+        <h3 class="offbeat-headline">Police Lost a Submachine Gun in the Middle of a Drug Raid</h3>
+        <p class="offbeat-body">During an anti-drug operation in Puerto Montt, an UZI submachine gun went missing from the procedure — as in, the police misplaced a fully automatic weapon while raiding people for illegal goods. An internal investigation is underway. It's the kind of story that's darkly funny right up until you remember where that gun probably ended up.</p>
+        <div class="story-links">
+          <a href="https://www.emol.com/noticias/Nacional/2026/06/08/1202240/subametralladora-uzi-extraviada-allanamiento-puertomontt.html" target="_blank">Read more → Emol</a>
+        </div>
+      </div>
+
+      <div class="offbeat-card">
+        <img src="https://static.emol.cl/emol50/Fotos/Pandora/2026/06/08/file_20260608132821.jpg"
+          alt="Tourist wading into the waters at Iguazú Falls to recover a phone"
+          style="width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:14px;display:block;">
+        <div class="story-kicker" style="margin-bottom:8px;">Don't Try This</div>
+        <h3 class="offbeat-headline">A Tourist Climbed Into Iguazú Falls to Get His Phone Back</h3>
+        <p class="offbeat-body">A visitor to the Iguazú Falls — the massive waterfall system on the Argentina–Brazil border — climbed down into the rushing water to retrieve a dropped cellphone, got it on video, and was promptly expelled from the park. A reminder that no phone is worth becoming a cautionary headline, no matter how good the reels would have been.</p>
+        <div class="story-links">
+          <a href="https://www.emol.com/noticias/Tendencias/2026/06/08/1202219/videos-turista-entra-cataratas-iguazu.html" target="_blank">Read more → Emol</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- OPINION / EDITORIAL -->
+    <div class="section-label" style="margin-top:30px;">Opinion &amp; Editorial</div>
+    <div class="opinion-grid">
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">El Mercurio · Column · Center-Right</div>
+        <h3 class="opinion-headline">"Political Intransigence"</h3>
+        <p class="opinion-body">Columnist Álvaro Góngora reflects on how Chile's political class actually conducts itself in dialogue — arguing that rigid, all-or-nothing posturing is corroding the country's ability to govern. It lands squarely on today's news: an impeachment fight launched while the government is begging for cross-aisle votes is exactly the kind of intransigence he has in mind.</p>
+        <div class="story-links">
+          <a href="https://www.elmercurio.com/blogs/2026/06/08/133479/intran-sigencia-politica.aspx" target="_blank">Read more → El Mercurio</a>
+        </div>
+      </div>
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">The Clinic · Politics · Left-Leaning</div>
+        <h3 class="opinion-headline">The Socialists Self-Sabotage Over an Anti-Kast Poster</h3>
+        <p class="opinion-body">The Clinic charts the friendly fire inside the Socialist Party after it ran a controversial poster attacking Kast's ministry-slashing "mega-reform." Party president Paulina Vodanovic ended up publicly apologizing — "I didn't authorize the image" — while allies told them to "apologize." The episode captures an opposition still struggling to land a clean punch on a president it badly wants to wound.</p>
+        <div class="story-links">
+          <a href="context_260527_megarreforma.html">→ Background: What is the Megarreforma?</a>
+          <a href="https://www.theclinic.cl/2026/06/07/vodanovic-reconoce-error-por-el-controvertido-afiche-del-ps-y-asegura-no-autorice-la-imagen-y-respetamos-la-institucionalidad-de-nuestro-pais/" target="_blank">Read more → The Clinic</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /wrapper -->
+
+  <footer>
+    Chile Morning Digest · Tuesday, June 9, 2026 · Sources: Emol, The Clinic, El Mercurio · Weather via wttr.in / public forecasts
+  </footer>
+
+</body>
+</html>

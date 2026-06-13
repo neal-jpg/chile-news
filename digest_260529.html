@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chile Morning Digest — Friday, May 29, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #ddd9d1;
+      font-family: 'Source Serif 4', Georgia, serif;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background: #111;
+      color: #fffefb;
+    }
+    .masthead-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 24px 16px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .masthead-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #fffefb;
+    }
+    .masthead-title span { color: #b5802a; }
+    .masthead-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+    }
+    .masthead-rule {
+      height: 3px;
+      background: linear-gradient(90deg, #b5802a 0%, #d4a44c 40%, #111 100%);
+    }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 24px 48px;
+    }
+
+    /* ── WEATHER CARD ── */
+    .weather-card {
+      background: linear-gradient(135deg, #1a3a5c 0%, #2a5a8c 50%, #1e4878 100%);
+      color: #fff;
+      border-radius: 8px;
+      padding: 20px 28px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .weather-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .weather-icon { font-size: 40px; line-height: 1; }
+    .weather-city {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 2px;
+    }
+    .weather-temp {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+    .weather-temp span {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      margin-left: 4px;
+    }
+    .weather-condition {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      margin-top: 4px;
+    }
+    .weather-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      max-width: 380px;
+      font-style: italic;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b5802a;
+      border-bottom: 1px solid #b5802a;
+      padding-bottom: 6px;
+      margin-bottom: 20px;
+      margin-top: 32px;
+    }
+
+    /* ── LEAD STORY (full width) ── */
+    .lead-story {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .lead-story-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+    .lead-story-body { padding: 24px 28px 28px; }
+    .lead-story-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 8px;
+    }
+    .lead-story h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #111;
+      margin-bottom: 12px;
+    }
+    .lead-story p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #333;
+    }
+    .story-links {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .source-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      text-decoration: none;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .source-link:hover { color: #111; border-color: #111; }
+    .context-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #b5802a;
+      text-decoration: none;
+    }
+    .context-link:hover { text-decoration: underline; }
+
+    /* ── 2-COLUMN GRID ── */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .story-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── STORY CARD ── */
+    .story-card {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      display: flex;
+      flex-direction: column;
+    }
+    .story-card-img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      display: block;
+    }
+    .story-card-body {
+      padding: 18px 20px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .story-card-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 6px;
+    }
+    .story-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .story-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #444;
+      flex: 1;
+    }
+    .story-card .story-links { margin-top: 14px; }
+
+    /* ── OFFBEAT ── */
+    .offbeat-card {
+      background: #f5f2ed;
+      border-left: 4px solid #b5802a;
+      border-radius: 0 6px 6px 0;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+    }
+    .offbeat-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 8px;
+    }
+    .offbeat-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #444;
+    }
+    .offbeat-card .story-links { margin-top: 12px; }
+
+    /* ── OPINION ── */
+    .opinion-card {
+      background: #fff;
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .opinion-card .outlet-badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 4px;
+    }
+    .opinion-card .lean {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      color: #aaa;
+      margin-left: 6px;
+    }
+    .opinion-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+    .opinion-card .byline {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+    .opinion-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #444;
+    }
+    .opinion-card .story-links { margin-top: 12px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #111;
+      color: #666;
+      text-align: center;
+      padding: 20px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      margin-top: 16px;
+    }
+    .footer span { color: #b5802a; }
+  </style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-title"><span>Chile</span> Morning Digest</div>
+    <div class="masthead-meta">Friday, May 29, 2026 &nbsp;·&nbsp; Santiago</div>
+  </div>
+  <div class="masthead-rule"></div>
+</header>
+
+<div class="wrapper">
+
+  <!-- WEATHER -->
+  <div class="weather-card">
+    <div class="weather-left">
+      <div class="weather-icon">☁️</div>
+      <div>
+        <div class="weather-city">Santiago</div>
+        <div class="weather-temp">18°<span>C</span></div>
+        <div class="weather-condition">Overcast · High 22° · Low 9°</div>
+      </div>
+    </div>
+    <div class="weather-note">Thick grey skies through the weekend — no rain yet. First showers possible June 3–4 as high pressure finally weakens. Enjoy the overcast; jackets recommended.</div>
+  </div>
+
+  <!-- TOP HEADLINES -->
+  <div class="section-header">Top Headlines</div>
+
+  <!-- LEAD STORY -->
+  <div class="lead-story">
+    <img class="lead-story-img"
+         src="https://www.latercera.com/resizer/v2/XM6MDCWSKBCWRGRLK3YTSYVAK4.jpg?auth=9c4ed4d2106a05a3c9f8c10ba1e46151955c13e8fe0915ae24f7704eb91f2a86&smart=true&width=980&height=420&quality=80"
+         alt="Constitutional accusation against former Finance Minister Grau" loading="lazy">
+    <div class="lead-story-body">
+      <div class="lead-story-label">Politics · Economy</div>
+      <h2>The "Mega-Reform" Is Cracking — From Every Direction</h2>
+      <p>Chile's biggest legislative fight of the year took several punches at once. The right-wing Republican Party filed a constitutional accusation — think impeachment proceedings in the Senate — against ex-Finance Minister Mario Grau, the former chief architect of the so-called "Megarreforma," a sweeping mining investment package. Separately, the Kast government admitted the reform needs significant changes after the Finance Ministry's public finances report flagged inconsistencies. The most notable concession: cutting the proposed tax stability guarantee from 25 years down to 20. The government set July as the target to advance the bill, and the center-left Socialist Party, the opposition's largest Senate bloc, will be the deciding vote. One rival faction — the Libertarians — has already accused the government and Republicans of coordinating the impeachment move to derail the reform rather than strengthen it.</p>
+      <div class="story-links">
+        <a class="source-link" href="https://www.latercera.com/politica/noticia/acusacion-a-grau-enrarece-dialogo-por-megaproyecto-y-crecen-reparos-a-la-arremetida-republicana-libertaria/" target="_blank">Read more → La Tercera</a>
+        <a class="source-link" href="https://www.latercera.com/politica/noticia/gobierno-asegura-que-tras-informe-de-finanzas-publicas-de-quiroz-deberan-hacer-ajustes-a-la-megarreforma/" target="_blank">More → La Tercera</a>
+        <a class="context-link" href="context_260527_acusacion-constitucional.html">→ Background: What is a constitutional accusation?</a>
+        <a class="context-link" href="context_260527_megarreforma.html">→ Background: What is the Megarreforma?</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2-COLUMN GRID -->
+  <div class="story-grid">
+
+    <!-- STORY 2: Bachelet / UN -->
+    <div class="story-card">
+      <img class="story-card-img"
+           src="https://www.latercera.com/resizer/v2/A2QQRCSZG5A2DEAUDGVRAR2ATQ.jpg?auth=cbe05bf6f08f01b57da299172cb410baa5c9a5088d347a530590db512e823ea6&smart=true&width=588&height=331&quality=70"
+           alt="Michelle Bachelet" loading="lazy">
+      <div class="story-card-body">
+        <div class="story-card-label">International</div>
+        <h3>Bachelet Courts World Leaders in Her UN Secretary-General Bid</h3>
+        <p>Former President Michelle Bachelet met with Britain's Foreign Secretary in London and is awaiting a meeting with French President Macron as part of her campaign to lead the United Nations. She is one of the frontrunners to replace current Secretary-General António Guterres, whose term ends at the end of 2026. If elected, she would be the first Latin American and one of the very few women ever to hold the role. Back home, her candidacy has drawn praise across the political spectrum — even Kast's government allies have said her run "transcends ideology."</p>
+        <div class="story-links">
+          <a class="source-link" href="https://www.latercera.com/politica/noticia/postulacion-a-la-onu-bachelet-se-reune-con-canciller-britanica-espera-cita-con-macron-y-prepara-su-primer-debate/" target="_blank">Read more → La Tercera</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 3: Generic Semaglutide -->
+    <div class="story-card">
+      <img class="story-card-img"
+           src="https://static.emol.cl/emol50/Fotos/Pandora/2026/05/28/file_20260528172734.jpg"
+           alt="Generic semaglutide approval" loading="lazy">
+      <div class="story-card-body">
+        <div class="story-card-label">Health</div>
+        <h3>Generic Ozempic Is Almost Here for Chilean Patients</h3>
+        <p>Chile's drug regulator (ISP — similar to the FDA) is on the verge of approving the first generic version of semaglutide for treating diabetes and obesity. Brand-name semaglutide (sold as Ozempic and Wegovy) is widely used but expensive. A generic version would dramatically lower costs for the hundreds of thousands of Chileans managing these conditions. No approval date has been announced, but officials say it is imminent.</p>
+        <div class="story-links">
+          <a class="source-link" href="https://www.emol.com/noticias/Tendencias/2026/05/28/1201269/isp-proxima-aprobacion-semaglutida-generica.html" target="_blank">Read more → Emol</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 4: Carabineros shoot taxi driver -->
+    <div class="story-card">
+      <div class="story-card-body">
+        <div class="story-card-label">National Security</div>
+        <h3>Carabineros Shoot and Kill Taxi Driver After He Rammed an Officer</h3>
+        <p>Police shot and killed a taxi driver in the Recoleta district of Santiago early Thursday after he evaded a checkpoint and then accelerated his vehicle toward an officer. The incident is the latest in a series of high-profile police force incidents that have reignited debate about Carabineros' protocols for lethal force. In a separate incident in Chiguayante (near Concepción), a driver dragged an officer for over a kilometer before being arrested.</p>
+        <div class="story-links">
+          <a class="source-link" href="https://www.latercera.com/nacional/noticia/carabineros-abate-a-tiros-a-conductor-de-taxi-que-evadio-fiscalizacion-e-intento-atropellar-a-policia-en-recoleta/" target="_blank">Read more → La Tercera</a>
+          <a class="source-link" href="https://www.emol.com/noticias/Nacional/2026/05/28/1201264/carabinero-arrastrado-conductor-chiguayante.html" target="_blank">More → Emol</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 5: Migrant crackdown -->
+    <div class="story-card">
+      <div class="story-card-body">
+        <div class="story-card-label">Immigration · Economy</div>
+        <h3>Business Groups Push Back on Crackdown Targeting Companies With Undocumented Workers</h3>
+        <p>Chile's immigration authority has begun inspecting businesses suspected of employing undocumented migrants and signaled it will intensify controls. Business associations are pushing back, warning about labor shortages and potential disruption to sectors — particularly agriculture and construction — that depend heavily on migrant labor. The government argues enforcement is consistent with the law. La Tercera's editorial board weighed in on the broader controversy around deportations this week.</p>
+        <div class="story-links">
+          <a class="source-link" href="https://www.emol.com/noticias/Economia/2026/05/28/1201238/migrantes-irregulares-gremios.html" target="_blank">Read more → Emol</a>
+          <a class="source-link" href="https://www.latercera.com/editorial/noticia/controversia-por-expulsion-de-migrantes/" target="_blank">Editorial → La Tercera</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .story-grid -->
+
+  <!-- INTERESTING & OFFBEAT -->
+  <div class="section-header">Interesting &amp; Offbeat</div>
+
+  <div class="offbeat-card">
+    <h3>🌋 Volcano Longaví Has Recorded 400+ Earthquakes. Should You Worry?</h3>
+    <p>Chile's Longaví volcano, located in the Andes about 400 km south of Santiago, has registered over 400 seismic events in recent days. Geophysicists say this level of activity — while worth watching — is consistent with the normal "breathing" of an active volcanic system and does not indicate an imminent eruption. Still, Chilean authorities have monitoring systems in place, and this kind of cluster always gets attention in a country that sits squarely on the Pacific Ring of Fire.</p>
+    <div class="story-links">
+      <a class="source-link" href="https://www.latercera.com/tendencias/noticia/mas-de-400-sismos-en-el-volcan-longavi-que-significa-y-que-riesgos-tiene-segun-un-geofisico/" target="_blank">Read more → La Tercera</a>
+    </div>
+  </div>
+
+  <div class="offbeat-card">
+    <h3>🗿 India Is Taking Down Its 20-Meter Messi Statue — It Sways Too Much in the Wind</h3>
+    <p>A 20-meter-tall statue of Lionel Messi erected in Kolkata ahead of the upcoming World Cup has become a structural liability: it wobbles dangerously in strong winds. Authorities are planning to dismantle it. The statue was meant as a tribute to the Argentine legend and reigning world champion, but engineers apparently didn't account for how the breeze would feel about it.</p>
+    <div class="story-links">
+      <a class="source-link" href="https://www.emol.com/noticias/Tendencias/2026/05/28/1201271/india-retira-estatua-messi.html" target="_blank">Read more → Emol</a>
+    </div>
+  </div>
+
+  <!-- OPINION & EDITORIAL -->
+  <div class="section-header">Opinion &amp; Editorial</div>
+
+  <div class="opinion-card">
+    <div class="outlet-badge">La Tercera <span class="lean">· center-right</span></div>
+    <h3>"Controversia por expulsión de migrantes"</h3>
+    <div class="byline">Editorial Board</div>
+    <p>La Tercera's editorial board weighs in on the heated debate around Chile's migrant deportation policy. The piece acknowledges both the legal right of the state to enforce immigration laws and the humanitarian concerns raised by mass deportation operations. It calls for a policy that is firm but orderly, warning that heavy-handed enforcement risks damaging Chile's international standing and creating social flashpoints.</p>
+    <div class="story-links">
+      <a class="source-link" href="https://www.latercera.com/editorial/noticia/controversia-por-expulsion-de-migrantes/" target="_blank">Read more → La Tercera</a>
+    </div>
+  </div>
+
+  <div class="opinion-card">
+    <div class="outlet-badge">El Mercurio <span class="lean">· center-right</span></div>
+    <h3>"De errores y desafíos"</h3>
+    <div class="byline">By Leonidas Montes</div>
+    <p>Economist Leonidas Montes takes stock of Chile's economic challenges heading into mid-year. He argues the government inherited a difficult macroeconomic landscape but has compounded problems with policy inconsistencies — particularly around investment certainty. The column reads as a polite but pointed critique of how the Kast administration has handled key economic signals since taking office.</p>
+    <div class="story-links">
+      <a class="source-link" href="https://www.elmercurio.com/blogs/2026/05/28/133236/de-errores-y-desafios.aspx" target="_blank">Read more → El Mercurio</a>
+    </div>
+  </div>
+
+</div><!-- end .wrapper -->
+
+<footer class="footer">
+  <span>Chile Morning Digest</span> &nbsp;·&nbsp; Friday, May 29, 2026 &nbsp;·&nbsp; Santiago, Chile<br>
+  Sources: La Tercera · Emol · BioBioChile · Diario Financiero · El Mercurio
+</footer>
+
+</body>
+</html>

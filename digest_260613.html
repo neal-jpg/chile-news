@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chile Morning Digest — Saturday, June 13, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: #ddd9d1;
+      color: #1a1a1a;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ── MASTHEAD ── */
+    header {
+      background: #111;
+      padding: 22px 24px 18px;
+      text-align: center;
+    }
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 6px;
+    }
+    .masthead-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      color: #fffefb;
+      letter-spacing: 0.01em;
+    }
+    .masthead-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #888;
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+    .masthead-rule {
+      width: 40px;
+      height: 2px;
+      background: #b5802a;
+      margin: 12px auto 0;
+    }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 18px 60px;
+    }
+
+    /* ── WEATHER CARD ── */
+    .weather-card {
+      background: linear-gradient(135deg, #1c3a5e 0%, #2a5080 60%, #1e6fa0 100%);
+      color: #fff;
+      border-radius: 8px;
+      padding: 22px 28px;
+      margin: 24px 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .weather-icon {
+      font-size: 48px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .weather-body { flex: 1; min-width: 200px; }
+    .weather-location {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 4px;
+    }
+    .weather-temps {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .weather-condition {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 4px;
+    }
+    .weather-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+      margin-top: 6px;
+    }
+    .weather-detail {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      align-self: flex-end;
+      text-align: right;
+      min-width: 160px;
+    }
+    .weather-detail div { margin-bottom: 4px; }
+    .weather-detail strong { color: rgba(255,255,255,0.9); }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b5802a;
+      padding: 6px 0 6px;
+      border-top: 2px solid #111;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    /* ── LEAD STORY ── */
+    .lead-story {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .lead-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+    }
+    .lead-body { padding: 24px 28px 20px; }
+    .story-kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 8px;
+    }
+    .lead-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #111;
+      margin-bottom: 12px;
+    }
+    .story-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #2a2a2a;
+      margin-bottom: 14px;
+    }
+    .story-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .story-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #b5802a;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .story-links a:hover { text-decoration: underline; }
+
+    /* ── 2-COLUMN GRID ── */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 6px;
+    }
+    @media (max-width: 640px) {
+      .stories-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── STORY CARD ── */
+    .story-card {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body {
+      padding: 18px 20px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .card-body .story-body { font-size: 15px; flex: 1; }
+    .card-body .story-links { margin-top: auto; padding-top: 10px; }
+
+    /* ── OPINION / OFFBEAT ── */
+    .opinion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 640px) {
+      .opinion-grid { grid-template-columns: 1fr; }
+    }
+    .opinion-card {
+      background: #f0ece4;
+      border-radius: 6px;
+      padding: 20px 22px;
+      border-left: 3px solid #b5802a;
+    }
+    .opinion-outlet {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .opinion-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .opinion-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 12px; }
+    .opinion-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    /* Offbeat cards */
+    .offbeat-card {
+      background: #e8e4dc;
+      border-radius: 6px;
+      padding: 20px 22px;
+    }
+    .offbeat-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .offbeat-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 10px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #999;
+      border-top: 1px solid #c8c4bc;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="eyebrow">Chile Morning Digest</div>
+    <div class="masthead-title">The Morning Briefing</div>
+    <div class="masthead-date">Saturday, June 13, 2026 &nbsp;·&nbsp; Santiago, Chile</div>
+    <div class="masthead-rule"></div>
+  </header>
+
+  <div class="wrapper">
+
+    <!-- WEATHER -->
+    <div class="weather-card">
+      <div class="weather-icon">🌤️</div>
+      <div class="weather-body">
+        <div class="weather-location">Santiago · Winter</div>
+        <div class="weather-temps">13° / 7°C &nbsp; (55° / 45°F)</div>
+        <div class="weather-condition">Partly cloudy, cool all day — less than 5% chance of rain</div>
+        <div class="weather-note">A typical mid-winter Saturday: chilly and damp in the morning, never really warming past sweater weather. Layer up if you're out early; the cloud cover keeps the afternoon from getting any real heat.</div>
+      </div>
+      <div class="weather-detail">
+        <div><strong>Rain:</strong> Under 5% chance</div>
+        <div><strong>Humidity:</strong> ~70%</div>
+        <div><strong>Feel:</strong> Cold morning, mild gray afternoon</div>
+      </div>
+    </div>
+
+    <!-- TOP HEADLINES -->
+    <div class="section-label">Top Headlines</div>
+
+    <!-- LEAD STORY: Constitutional accusation vs Grau gains votes -->
+    <div class="lead-story">
+      <img class="lead-img"
+        src="https://static.theclinic.cl/media/2026/06/11-162648_js3v_Gabriel-Boric-y-Nicolas-Grau-600x324.jpg"
+        alt="Former president Gabriel Boric alongside his former finance minister Nicolás Grau, the target of a constitutional accusation in Congress">
+      <div class="lead-body">
+        <div class="story-kicker">Politics · The Impeachment Math</div>
+        <h2 class="lead-headline">The Move to Impeach Boric's Old Finance Minister Now Has the Votes — and It's Splitting the Right</h2>
+        <p class="story-body">
+          The <em>constitutional accusation</em> (Chile's version of impeachment) against Nicolás Grau, finance minister under the previous left-wing Boric government, is no longer a long shot. Vote-counting in the Chamber of Deputies suggests it could draw up to 90 votes — comfortably past the majority needed to send it to the Senate. The charge centers on how public-debt figures were calculated and disclosed to Congress.
+        </p>
+        <p class="story-body">
+          The interesting fault line is on the right itself. The mainstream center-right bench (RN) is openly divided — "in favor, undecided, and against," as one outlet put it — even though the right broadly controls Congress under President Kast. Some see a clean shot at the old guard; others worry a partisan impeachment will sour the climate just as the government needs opposition votes for its own agenda. On the left, even Pamela Jiles is asking the awkward question out loud: why go after Grau and not Boric himself? Picture a US House where the majority has the votes to impeach a former cabinet secretary but can't agree among themselves whether it's worth the blowback.
+        </p>
+        <div class="story-links">
+          <a href="context_260527_acusacion-constitucional.html">→ Background: What is a Constitutional Accusation?</a>
+          <a href="https://www.emol.com/noticias/Nacional/2026/06/12/1202630/acusacion-constitucional-grau-votos-diputados.html" target="_blank">Read more → Emol</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-COLUMN GRID -->
+    <div class="stories-grid">
+
+      <!-- Story 2: Boric offensive vs Kast -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://static.theclinic.cl/media/2026/06/11-152417_0mwh_Diseno-sin-titulo-2026-06-11T112356.204-600x324.png"
+          alt="Former president Gabriel Boric speaking publicly as he attacks the Kast government's economic record">
+        <div class="card-body">
+          <div class="story-kicker">Politics · Opposition</div>
+          <h3 class="card-headline">Boric Reappears Swinging — Hammering Kast on the Public Debt</h3>
+          <p class="story-body">
+            Three months into Kast's presidency, former president Boric has popped back into the spotlight to attack the new government's economic numbers, throwing the rising public-debt figures back in its face. La Moneda (Chile's White House) is playing it down, reading the opposition's sudden noise as a sign of disorganized messaging rather than a coordinated offensive — several left-wing factions talking over each other rather than landing a unified hit. It's the familiar spectacle of a just-departed president refusing to fade quietly while his side figures out who actually speaks for it.
+          </p>
+          <div class="story-links">
+            <a href="https://www.emol.com/noticias/Nacional/2026/06/12/1202622/dispersion-oficialista-moneda-boric-kast.html" target="_blank">Read more → Emol</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 3: CAE court rulings -->
+      <div class="story-card">
+        <div class="card-body">
+          <div class="story-kicker">Economy · Student Debt</div>
+          <h3 class="card-headline">The Courts Are Now Deciding the Student-Loan Fight, One Contradictory Ruling at a Time</h3>
+          <p class="story-body">
+            Chile's appeals courts are issuing scattered, inconsistent verdicts on the CAE — the state-backed student loan that's been a political wound for over a decade. Dozens of borrowers have filed legal challenges over debt collection, and judges are landing all over the map, some for the borrowers, some for the state. At the same time, former Boric ministers are publicly admitting they over-promised on the forgiveness they couldn't deliver, while Boric defends the record. A signature left-wing pledge, still unresolved and now being settled courtroom by courtroom.
+          </p>
+          <div class="story-links">
+            <a href="context_260613_cae.html">→ Background: What is the CAE?</a>
+            <a href="https://www.emol.com/noticias/Nacional/2026/06/12/1202602/fallo-corte-cae-argumentos.html" target="_blank">Read more → Emol</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 4: Carabineros detained -->
+      <div class="story-card">
+        <div class="card-body">
+          <div class="story-kicker">Crime &amp; Security</div>
+          <h3 class="card-headline">16 Police Officers Arrested in Weeks — and the General Wants Them Gone</h3>
+          <p class="story-body">
+            Sixteen Carabineros (Chile's national police force) have been detained over the past few weeks on suspicion of crimes ranging from theft to ties with organized crime. General Araya didn't mince words: those arrested "don't deserve to be in the institution." For a force that Chileans have historically trusted more than most of their government, the steady drip of officer arrests is a real reputational problem — roughly the equivalent of a wave of federal agents being cuffed by the very system they're supposed to uphold.
+          </p>
+          <div class="story-links">
+            <a href="https://www.emol.com/noticias/Nacional/2026/06/12/1202626/general-araya-detencion-carabineros-delitos.html" target="_blank">Read more → Emol</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 5: Zaliasnik embassy -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://static.theclinic.cl/media/2026/06/11-153512_0kmx_Diseno-sin-titulo-40-2-600x324.jpg"
+          alt="Lawyer Gabriel Zaliasnik, named by the Kast government as ambassador to Israel despite an ongoing prosecutorial investigation">
+        <div class="card-body">
+          <div class="story-kicker">Government · Diplomacy</div>
+          <h3 class="card-headline">Kast's Pick for Ambassador to Israel Is Under Investigation — and the Government Is Standing Firm</h3>
+          <p class="story-body">
+            The Kast government named prominent lawyer Gabriel Zaliasnik as ambassador to Israel, but the appointment opened a flank: he's the subject of a prosecutorial investigation. The foreign minister is refusing to reverse course, saying the probe is no reason to pull the nomination. It's the kind of confirmation-fight optics Americans know well — a controversial appointee, an inconvenient legal cloud, and an administration betting it can ride out the criticism rather than start over.
+          </p>
+          <div class="story-links">
+            <a href="https://www.theclinic.cl/2026/06/11/nombramiento-de-gabriel-zaliasnik-en-embajada-de-israel-abre-flanco-al-gobierno-y-canciller-descarta-cambios-pese-a-investigacion-de-fiscalia/" target="_blank">Read more → The Clinic</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /stories-grid -->
+
+    <!-- INTERESTING / OFFBEAT -->
+    <div class="section-label" style="margin-top:30px;">Interesting &amp; Offbeat</div>
+    <div class="opinion-grid">
+
+      <div class="offbeat-card">
+        <img src="https://static.emol.cl/emol50/Fotos/Pandora/2026/06/12/file_20260612150559.jpg"
+          alt="NASA scientists studying high-altitude agriculture in the Arica region of northern Chile"
+          style="width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:14px;display:block;">
+        <div class="story-kicker" style="margin-bottom:8px;">Science · Chile in Space</div>
+        <h3 class="offbeat-headline">NASA Is Studying Farms in Northern Chile to Figure Out How to Grow Food on the Moon and Mars</h3>
+        <p class="offbeat-body">NASA scientists are out in the high desert near Arica examining how crops survive the brutal altiplano — thin air, intense radiation, punishing dryness — as a model for growing food on the Moon and Mars. Chile's far north already doubles as a stand-in for other planets (its skies host the world's great observatories); now its dirt is auditioning for the role too.</p>
+        <div class="story-links">
+          <a href="https://www.emol.com/noticias/Nacional/2026/06/12/1202629/nasa-analiza-agricultura-altiplano.html" target="_blank">Read more → Emol</a>
+        </div>
+      </div>
+
+      <div class="offbeat-card">
+        <div class="story-kicker" style="margin-bottom:8px;">Tech · The Day the Apps Died</div>
+        <h3 class="offbeat-headline">Instagram, Facebook and WhatsApp Went Dark for Hours in a Global Meta Outage</h3>
+        <p class="offbeat-body">For a chunk of Friday, Chileans — like everyone else — found Instagram, Facebook and WhatsApp refusing to load, part of a worldwide Meta outage before service crept back to normal. In a country where WhatsApp is basically the national nervous system (it's how families, plumbers, and government offices all talk), a few hours of silence felt less like a tech glitch and more like the phone lines going down.</p>
+        <div class="story-links">
+          <a href="https://www.emol.com/noticias/Tecnologia/2026/06/12/1202659/caida-mundial-meta-instagram-whatsapp.html" target="_blank">Read more → Emol</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- OPINION / EDITORIAL -->
+    <div class="section-label" style="margin-top:30px;">Opinion &amp; Editorial</div>
+    <div class="opinion-grid">
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">The Clinic · Politics · Left-Leaning</div>
+        <h3 class="opinion-headline">"Why Grau and Not Boric?"</h3>
+        <p class="opinion-body">The Clinic seizes on a question raised by veteran left-wing deputy Pamela Jiles: if the right wants to punish the last government's economic record, why aim the impeachment at finance minister Grau rather than at Boric himself? The piece reads the move as opposition theater — going after the technician because the former president is the harder, riskier target. A useful left-side counterweight to today's lead story.</p>
+        <div class="story-links">
+          <a href="context_260527_acusacion-constitucional.html">→ Background: What is a Constitutional Accusation?</a>
+          <a href="https://www.theclinic.cl/2026/06/11/por-que-grau-y-no-boric-el-debate-que-abrio-pamela-jiles-ante-la-arremetida-contra-el-exministro-de-hacienda-en-la-camara/" target="_blank">Read more → The Clinic</a>
+        </div>
+      </div>
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">El Mercurio · Column · Center-Right</div>
+        <h3 class="opinion-headline">"Our Shared Humanity"</h3>
+        <p class="opinion-body">Historian Lucía Santa Cruz argues for lowering the temperature — making the case that Chile badly needs a climate of mutual understanding rather than the reflexive hostility that dominates its politics. Coming the same week as an impeachment fight and a reappearing ex-president throwing punches, it reads as a quiet plea against the very brawling that fills the rest of today's digest.</p>
+        <div class="story-links">
+          <a href="https://www.elmercurio.com/blogs/2026/06/12/133547/la-humanidad-compartida.aspx" target="_blank">Read more → El Mercurio</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /wrapper -->
+
+  <footer>
+    Chile Morning Digest · Saturday, June 13, 2026 · Sources: Emol, The Clinic, El Mercurio · Weather via public forecasts
+  </footer>
+
+</body>
+</html>

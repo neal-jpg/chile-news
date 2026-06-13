@@ -98,6 +98,10 @@ When a story needs background that would take more than two sentences to explain
 - The "→ Background" link in the digest should point to this local context file (e.g. `context_260527_acusacion-constitucional.html`), not to Wikipedia directly.
 - **Reuse:** If a context page was created on a previous day for the same topic (e.g. "What is a constitutional accusation"), link to that existing file rather than creating a duplicate.
 
+## Source links
+
+Every story — Top Headlines, Interesting/Offbeat, and Opinion/Editorial — must include a "Read more →" link to the original article URL. Link text should be the outlet name (e.g. "Read more → La Tercera" or "Read more → Emol"). Style it as a small, understated inline link below the summary, similar to the context link style. This applies even when a "→ Background" context link is also present.
+
 ## Notes
 
 - Do not include a market/financial ticker in the digest
