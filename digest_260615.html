@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chile Morning Digest — Monday, June 15, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: #ddd9d1;
+      color: #1a1a1a;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ── MASTHEAD ── */
+    header {
+      background: #111;
+      padding: 22px 24px 18px;
+      text-align: center;
+    }
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 6px;
+    }
+    .masthead-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      color: #fffefb;
+      letter-spacing: 0.01em;
+    }
+    .masthead-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #888;
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+    .masthead-rule {
+      width: 40px;
+      height: 2px;
+      background: #b5802a;
+      margin: 12px auto 0;
+    }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 18px 60px;
+    }
+
+    /* ── WEATHER CARD ── */
+    .weather-card {
+      background: linear-gradient(135deg, #1c3a5e 0%, #2a5080 60%, #1e6fa0 100%);
+      color: #fff;
+      border-radius: 8px;
+      padding: 22px 28px;
+      margin: 24px 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .weather-icon {
+      font-size: 48px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .weather-body { flex: 1; min-width: 200px; }
+    .weather-location {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 4px;
+    }
+    .weather-temps {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .weather-condition {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 4px;
+    }
+    .weather-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+      margin-top: 6px;
+    }
+    .weather-detail {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      align-self: flex-end;
+      text-align: right;
+      min-width: 160px;
+    }
+    .weather-detail div { margin-bottom: 4px; }
+    .weather-detail strong { color: rgba(255,255,255,0.9); }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b5802a;
+      padding: 6px 0 6px;
+      border-top: 2px solid #111;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    /* ── LEAD STORY ── */
+    .lead-story {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .lead-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+    }
+    .lead-body { padding: 24px 28px 20px; }
+    .story-kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 8px;
+    }
+    .lead-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #111;
+      margin-bottom: 12px;
+    }
+    .story-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #2a2a2a;
+      margin-bottom: 14px;
+    }
+    .story-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .story-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #b5802a;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .story-links a:hover { text-decoration: underline; }
+
+    /* ── 2-COLUMN GRID ── */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 6px;
+    }
+    @media (max-width: 640px) {
+      .stories-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── STORY CARD ── */
+    .story-card {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body {
+      padding: 18px 20px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .card-body .story-body { font-size: 15px; flex: 1; }
+    .card-body .story-links { margin-top: auto; padding-top: 10px; }
+
+    /* ── OPINION / OFFBEAT ── */
+    .opinion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 640px) {
+      .opinion-grid { grid-template-columns: 1fr; }
+    }
+    .opinion-card {
+      background: #f0ece4;
+      border-radius: 6px;
+      padding: 20px 22px;
+      border-left: 3px solid #b5802a;
+    }
+    .opinion-outlet {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .opinion-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .opinion-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 12px; }
+    .opinion-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    /* Offbeat cards */
+    .offbeat-card {
+      background: #e8e4dc;
+      border-radius: 6px;
+      padding: 20px 22px;
+    }
+    .offbeat-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .offbeat-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 10px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #999;
+      border-top: 1px solid #c8c4bc;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="eyebrow">Chile Morning Digest</div>
+    <div class="masthead-title">The Morning Briefing</div>
+    <div class="masthead-date">Monday, June 15, 2026 &nbsp;·&nbsp; Santiago, Chile</div>
+    <div class="masthead-rule"></div>
+  </header>
+
+  <div class="wrapper">
+
+    <!-- WEATHER -->
+    <div class="weather-card">
+      <div class="weather-icon">🌫️</div>
+      <div class="weather-body">
+        <div class="weather-location">Santiago · Winter</div>
+        <div class="weather-temps">15° / 4°C &nbsp; (59° / 39°F)</div>
+        <div class="weather-condition">Cold, hazy winter Monday — dry, but the air is the story, not the sky</div>
+        <div class="weather-note">A frosty start near 4°C climbing to a mild 15°C by afternoon, with almost no chance of rain. The catch: Santiago is on its third straight day of an environmental "pre-emergency" (see Top Headlines), so the cold, stagnant valley air is trapping pollution. There's a driving restriction in effect today — check your license-plate digit before you take the car out.</div>
+      </div>
+      <div class="weather-detail">
+        <div><strong>Rain:</strong> Under 5% chance</div>
+        <div><strong>Air quality:</strong> Poor — pre-emergency</div>
+        <div><strong>Feel:</strong> Cold morning, hazy mild afternoon</div>
+      </div>
+    </div>
+
+    <!-- TOP HEADLINES -->
+    <div class="section-label">Top Headlines</div>
+
+    <!-- LEAD STORY: Government legislative offensive -->
+    <div class="lead-story">
+      <img class="lead-img"
+        src="https://static.theclinic.cl/media/2026/06/14-191812_5k9h_the-clinic-tamano-17-600x324.jpg"
+        alt="Chile's La Moneda government palace, where President Kast's administration is preparing a new package of bills to retake the legislative agenda">
+      <div class="lead-body">
+        <div class="story-kicker">Politics · The 100-Day Reset</div>
+        <h2 class="lead-headline">Past Its First 100 Days, the Government Floods the Zone With New Bills to Retake the Agenda</h2>
+        <p class="story-body">
+          Having cleared the symbolic 100-day mark, the Kast administration is opening the week with a burst of legislation aimed at controlling the narrative: a "Vandals Registry" (a database to track people convicted in violent protests), a long-debated <em>Sala Cuna Universal</em> (universal employer-funded daycare, with a per-child cost reported above 300,000 pesos a month), and a new child bonus. It's the classic move of an executive that wants the conversation to be about its own priorities rather than the opposition's attacks.
+        </p>
+        <p class="story-body">
+          Think of it as a White House dropping a stack of signature bills the same week it's taking fire — flooding the zone so the headlines are about what you're proposing, not what your critics are saying. The daycare bill is the politically loaded one: business groups and municipalities are already warning they can't absorb the cost, a fight that cuts across the usual left-right lines.
+        </p>
+        <div class="story-links">
+          <a href="https://www.theclinic.cl/2026/06/14/registro-de-vandalos-sala-cuna-universal-y-bono-por-hijo-la-ofensiva-legislativa-con-que-el-gobierno-busca-retomar-la-agenda/" target="_blank">Read more → The Clinic</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-COLUMN GRID -->
+    <div class="stories-grid">
+
+      <!-- Story 2: Environmental pre-emergency -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://www.latercera.com/resizer/v2/NQ2TBZT2HZDQ5MG66XZZUXPEZE.jpg?auth=2fe70916bff5b6c1619ff3ccdc71661101108af6f63209a148a146820b016258&smart=true&width=600&height=338&quality=70"
+          alt="Smog blanketing Santiago during a winter environmental pre-emergency, with vehicle restrictions in force">
+        <div class="card-body">
+          <div class="story-kicker">Local · Air &amp; Daily Life</div>
+          <h3 class="card-headline">Third Straight Smog Alert in Santiago — and the Car You Can Drive Today Depends on Your Plate</h3>
+          <p class="story-body">
+            Santiago is under its third consecutive "environmental pre-emergency," the winter routine where cold, windless air settles over the valley and traps pollution against the Andes. Authorities respond with a driving restriction tied to the last digit of your license plate, plus limits on wood-burning heaters. Nearby Cerrillos even suspended classes Monday after a rubber-warehouse fire fouled the air further. It's the local equivalent of a US smog alert paired with odd-even gas rationing — a recurring fact of life that quietly reorganizes everyone's commute.
+          </p>
+          <div class="story-links">
+            <a href="https://www.latercera.com/servicios/noticia/tercera-preemergencia-ambiental-consecutiva-en-la-rm-revisa-la-restriccion-vehicular-para-este-lunes/" target="_blank">Read more → La Tercera</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 3: Grau constitutional accusation -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://static.theclinic.cl/media/2026/06/12-203003_is74_Nicolas-Grau-600x324.jpeg"
+          alt="Nicolás Grau, former finance minister, who faces a constitutional accusation in the Chamber of Deputies">
+        <div class="card-body">
+          <div class="story-kicker">Politics · The Impeachment Fight</div>
+          <h3 class="card-headline">Grau Braces for Impeachment as His Old Party Loads "Dynamite" in Return Fire</h3>
+          <p class="story-body">
+            The <em>constitutional accusation</em> (Chile's version of impeachment) against Nicolás Grau, finance minister in the previous left-wing Boric government, is heading for a real fight in the Chamber of Deputies — the push by libertarians and Republicans has picked up support from the mainstream right. Grau, meanwhile, is weighing life after government (including whether he can return to his university post), while his Frente Amplio party signals it's preparing political "dynamite" of its own if the accusation advances. A reminder that, as in the US, impeachment is as much a partisan weapon as a legal process.
+          </p>
+          <div class="story-links">
+            <a href="context_260527_acusacion-constitucional.html">→ Background: What is a Constitutional Accusation?</a>
+            <a href="https://www.theclinic.cl/2026/06/14/los-pasos-de-grau-despues-de-hacienda-sus-viajes-a-uruguay-el-temor-por-no-volver-a-la-u-de-chile-y-la-dinamita-que-prepara-el-fa-si-prospera-la-ac/" target="_blank">Read more → The Clinic</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 4: CAE -->
+      <div class="story-card">
+        <div class="card-body">
+          <div class="story-kicker">Economy · Student Debt</div>
+          <h3 class="card-headline">A Deputy Minister Defends the Student-Loan Collections — and Points the Finger Backward</h3>
+          <p class="story-body">
+            The CAE, Chile's state-backed student loan and a decade-long political sore, is back in the headlines. Deputy minister Pavez publicly defended the government's continued debt collection and turned blame on the previous administration over separate irregularities in the national Census. It's a notable posture: the current right-leaning government is enforcing repayment on a loan the prior left-wing government had promised to forgive but never fully did — letting today's officials cast themselves as the adults cleaning up an unkept promise.
+          </p>
+          <div class="story-links">
+            <a href="context_260613_cae.html">→ Background: What is the CAE?</a>
+            <a href="https://www.latercera.com/politica/noticia/subsecretario-pavez-defiende-cobros-del-cae-y-apunta-al-gobierno-anterior-por-irregularidades-en-el-censo/" target="_blank">Read more → La Tercera</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 5: Port workers strike -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://static.theclinic.cl/media/2026/06/14-155000_8y4u_the-clinic-tamano-15-600x324.jpg"
+          alt="Chilean port workers, who have announced a national strike for Thursday over unmet government commitments">
+        <div class="card-body">
+          <div class="story-kicker">Labor · Ports</div>
+          <h3 class="card-headline">Port Workers Call a National Strike for Thursday, Accusing the Government of Breaking Its Word</h3>
+          <p class="story-body">
+            Chile's port-workers confederation has announced a nationwide walkout for Thursday, charging that the government failed to deliver on agreed commitments — pensions, benefits for widows, and pending decrees. In a country whose economy runs on shipping copper, fruit, and salmon out through its Pacific ports, a coordinated port strike is a serious pressure point, closer in stakes to a US longshore or rail shutdown than a routine protest.
+          </p>
+          <div class="story-links">
+            <a href="https://www.theclinic.cl/2026/06/14/trabajadores-portuarios-acusan-incumplimiento-de-acuerdos-con-el-gobierno-y-anuncian-paro-nacional-para-el-jueves/" target="_blank">Read more → The Clinic</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /stories-grid -->
+
+    <!-- INTERESTING / OFFBEAT -->
+    <div class="section-label" style="margin-top:30px;">Interesting &amp; Offbeat</div>
+    <div class="opinion-grid">
+
+      <div class="offbeat-card">
+        <img src="https://static.theclinic.cl/media/2026/06/14-221601_fej0_SR_Edificio_3-600x324.png"
+          alt="Rendering of NIDO Lucía, a planned mixed-use development on the old Enel block in central Santiago"
+          style="width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:14px;display:block;">
+        <div class="story-kicker" style="margin-bottom:8px;">City · Remaking Downtown</div>
+        <h3 class="offbeat-headline">The Team Behind Santiago's Buzzy "MUT" Wants to Reinvent a Downtown Block Next</h3>
+        <p class="offbeat-body">The developers of MUT — a glossy mixed-use complex that became a hit in the well-heeled east side — are now eyeing the city center. Their planned "NIDO Lucía" would transform the block around the old Enel building on Santa Rosa into an urban market, restaurants, and innovation spaces. It's a real bet that downtown Santiago, long associated with grit and decline, can draw the same crowds as the shiny new developments uptown.</p>
+        <div class="story-links">
+          <a href="https://www.theclinic.cl/2026/06/14/nido-lucia-como-sera-el-nuevo-proyecto-de-los-desarrolladores-del-mut-que-busca-cambiarle-la-cara-al-centro-de-santiago/" target="_blank">Read more → The Clinic</a>
+        </div>
+      </div>
+
+      <div class="offbeat-card">
+        <img src="https://static.theclinic.cl/media/2026/06/10-181749_5ge9_Diseno-sin-titulo-59-600x324.jpg"
+          alt="Divertimento Chileno, a long-running Chilean restaurant at the foot of Cerro San Cristóbal in Santiago"
+          style="width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:14px;display:block;">
+        <div class="story-kicker" style="margin-bottom:8px;">Culture · Santiago Institutions</div>
+        <h3 class="offbeat-headline">The Chilean Restaurant Built Inside an Old Drive-In Cinema Turns 35</h3>
+        <p class="offbeat-body">Divertimento Chileno, perched at the foot of Cerro San Cristóbal, is marking 35 years as a family-run temple of Chilean cooking — pastel de choclo, empanadas, the works — in a building that started life as a drive-in movie theater. It's the kind of unpretentious local landmark that outlasts trends, the Santiago equivalent of a beloved decades-old diner everyone has a story about.</p>
+        <div class="story-links">
+          <a href="https://www.theclinic.cl/2026/06/14/divertimento-chileno-la-historia-del-restaurante-de-cocina-chilena-que-colonizo-hace-35-anos-el-cerro-san-cristobal/" target="_blank">Read more → The Clinic</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- OPINION / EDITORIAL -->
+    <div class="section-label" style="margin-top:30px;">Opinion &amp; Editorial</div>
+    <div class="opinion-grid">
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">The Clinic · Editorial · Left-Leaning</div>
+        <h3 class="opinion-headline">"Mental Health Matters"</h3>
+        <p class="opinion-body">The Clinic's editorial board argues that Chile keeps treating mental health as an afterthought — underfunded, stigmatized, and absent from the policy conversation even as demand surges. The piece presses for it to be treated as core public health rather than a private burden. Coming from a left-leaning outlet, it's framed as a call for the state to step in, the kind of "healthcare is a right" argument an American reader will recognize from the progressive side.</p>
+        <div class="story-links">
+          <a href="https://www.theclinic.cl/2026/06/14/editorial-la-salud-mental-importa/" target="_blank">Read more → The Clinic</a>
+        </div>
+      </div>
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">La Tercera · Column · Center-Right</div>
+        <h3 class="opinion-headline">"Peru and Its Three Halves"</h3>
+        <p class="opinion-body">Political scientist Carlos Meléndez dissects Peru's deadlocked runoff, arguing the country is split into thirds with no candidate commanding a real mandate — a recipe for another weak, contested presidency next door. For Chile, it's a nervous glance at a neighbor's chronic instability; for an American reader, picture a presidential race where the eventual winner takes office with neither side believing they truly lost.</p>
+        <div class="story-links">
+          <a href="https://www.latercera.com/opinion/noticia/peru-y-sus-tres-mitades/" target="_blank">Read more → La Tercera</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /wrapper -->
+
+  <footer>
+    Chile Morning Digest · Monday, June 15, 2026 · Sources: The Clinic, La Tercera, Emol · Weather via public forecasts
+  </footer>
+
+</body>
+</html>

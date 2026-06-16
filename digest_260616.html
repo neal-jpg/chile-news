@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chile Morning Digest — Tuesday, June 16, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: #ddd9d1;
+      color: #1a1a1a;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ── MASTHEAD ── */
+    header {
+      background: #111;
+      padding: 22px 24px 18px;
+      text-align: center;
+    }
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 6px;
+    }
+    .masthead-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      color: #fffefb;
+      letter-spacing: 0.01em;
+    }
+    .masthead-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #888;
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+    .masthead-rule {
+      width: 40px;
+      height: 2px;
+      background: #b5802a;
+      margin: 12px auto 0;
+    }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 18px 60px;
+    }
+
+    /* ── WEATHER CARD ── */
+    .weather-card {
+      background: linear-gradient(135deg, #1c3a5e 0%, #2a5080 60%, #1e6fa0 100%);
+      color: #fff;
+      border-radius: 8px;
+      padding: 22px 28px;
+      margin: 24px 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .weather-icon {
+      font-size: 48px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .weather-body { flex: 1; min-width: 200px; }
+    .weather-location {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 4px;
+    }
+    .weather-temps {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .weather-condition {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 4px;
+    }
+    .weather-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+      margin-top: 6px;
+    }
+    .weather-detail {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      align-self: flex-end;
+      text-align: right;
+      min-width: 160px;
+    }
+    .weather-detail div { margin-bottom: 4px; }
+    .weather-detail strong { color: rgba(255,255,255,0.9); }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b5802a;
+      padding: 6px 0 6px;
+      border-top: 2px solid #111;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    /* ── LEAD STORY ── */
+    .lead-story {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .lead-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+    }
+    .lead-body { padding: 24px 28px 20px; }
+    .story-kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 8px;
+    }
+    .lead-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #111;
+      margin-bottom: 12px;
+    }
+    .story-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #2a2a2a;
+      margin-bottom: 14px;
+    }
+    .story-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .story-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #b5802a;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .story-links a:hover { text-decoration: underline; }
+
+    /* ── 2-COLUMN GRID ── */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 6px;
+    }
+    @media (max-width: 640px) {
+      .stories-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── STORY CARD ── */
+    .story-card {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body {
+      padding: 18px 20px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .card-body .story-body { font-size: 15px; flex: 1; }
+    .card-body .story-links { margin-top: auto; padding-top: 10px; }
+
+    /* ── OPINION / OFFBEAT ── */
+    .opinion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 640px) {
+      .opinion-grid { grid-template-columns: 1fr; }
+    }
+    .opinion-card {
+      background: #f0ece4;
+      border-radius: 6px;
+      padding: 20px 22px;
+      border-left: 3px solid #b5802a;
+    }
+    .opinion-outlet {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .opinion-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .opinion-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 12px; }
+    .opinion-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    /* Offbeat cards */
+    .offbeat-card {
+      background: #e8e4dc;
+      border-radius: 6px;
+      padding: 20px 22px;
+    }
+    .offbeat-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .offbeat-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 10px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #999;
+      border-top: 1px solid #c8c4bc;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="eyebrow">Chile Morning Digest</div>
+    <div class="masthead-title">The Morning Briefing</div>
+    <div class="masthead-date">Tuesday, June 16, 2026 &nbsp;·&nbsp; Santiago, Chile</div>
+    <div class="masthead-rule"></div>
+  </header>
+
+  <div class="wrapper">
+
+    <!-- WEATHER -->
+    <div class="weather-card">
+      <div class="weather-icon">⛅</div>
+      <div class="weather-body">
+        <div class="weather-location">Santiago · Winter</div>
+        <div class="weather-temps">16° / 8°C &nbsp; (61° / 47°F)</div>
+        <div class="weather-condition">Partly cloudy, mild winter Tuesday — milder than yesterday's frost</div>
+        <div class="weather-note">A gentler morning than Monday's near-freezing start, climbing to a comfortable 16°C by afternoon under partly cloudy skies, with essentially no rain. The valley air is breathing a little easier today, but winter smog can still creep back in — worth a glance at the restriction notice before you take the car out. A light jacket covers you morning and evening.</div>
+      </div>
+      <div class="weather-detail">
+        <div><strong>Rain:</strong> Near 0% chance</div>
+        <div><strong>Humidity:</strong> ~26%, dry</div>
+        <div><strong>Feel:</strong> Cool morning, mild afternoon</div>
+      </div>
+    </div>
+
+    <!-- TOP HEADLINES -->
+    <div class="section-label">Top Headlines</div>
+
+    <!-- LEAD STORY: Grau constitutional accusation -->
+    <div class="lead-story">
+      <img class="lead-img"
+        src="https://static.theclinic.cl/media/2026/06/12-203003_is74_Nicolas-Grau-600x324.jpeg"
+        alt="Nicolás Grau, former finance minister, who faces a constitutional accusation now under review in the Chamber of Deputies">
+      <div class="lead-body">
+        <div class="story-kicker">Politics · The Impeachment Fight</div>
+        <h2 class="lead-headline">Grau's Impeachment Heads to Committee as His Defense Rushes Out Its Rebuttal</h2>
+        <p class="story-body">
+          The <em>constitutional accusation</em> (Chile's version of impeachment) against Nicolás Grau — finance minister under the previous left-wing Boric government — entered its decisive phase Monday, when the review committee in the Chamber of Deputies began its work. Grau's defense moved up the filing of its written rebuttal, trying to get ahead of the narrative, while the centrist Christian Democrats made a point of saying that, having sat in neither Boric's nor Kast's government, they'll judge the case "on the merits" — a swing bloc that could decide whether this advances.
+        </p>
+        <p class="story-body">
+          As in the US, impeachment here is as much a partisan weapon as a legal process: the push came from the libertarian and Republican right, mainstream conservatives are split, and the math now hinges on a handful of undecided centrists. Watch the Christian Democrats — they're playing the role of the wavering senators everyone courts before a high-stakes vote.
+        </p>
+        <div class="story-links">
+          <a href="context_260527_acusacion-constitucional.html">→ Background: What is a Constitutional Accusation?</a>
+          <a href="https://www.emol.com/noticias/Nacional/2026/06/15/1202876/dc-por-ac-contragrau.html" target="_blank">Read more → Emol</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-COLUMN GRID -->
+    <div class="stories-grid">
+
+      <!-- Story 2: Sala Cuna Universal -->
+      <div class="story-card">
+        <div class="card-body">
+          <div class="story-kicker">Policy · Childcare</div>
+          <h3 class="card-headline">Kast Unveils His Universal Daycare Plan — No New Tax, Funded by Tapping the Jobless Fund</h3>
+          <p class="story-body">
+            The government released the fine print of <em>Sala Cuna Universal</em>, its plan to guarantee free daycare for every working parent's child. The politically clever twist: instead of a new payroll tax (which earlier versions proposed and business hated), it phases the benefit in gradually and pays for part of it by redirecting a slice of Chile's unemployment-insurance fund. Big-business groups promptly endorsed it, since their labor costs don't rise — but critics warn that raiding the jobless fund weakens the safety net. It's a rare case of a conservative government delivering a long-standing wish of the left, but strictly on the right's terms.
+          </p>
+          <div class="story-links">
+            <a href="context_260616_sala-cuna-universal.html">→ Background: What is Sala Cuna Universal?</a>
+            <a href="https://www.emol.com/noticias/Economia/2026/06/15/1202872/claves-sala-cuna-universal.html" target="_blank">Read more → Emol</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 3: Registro de Vándalos -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://static.theclinic.cl/media/2026/06/15-202420_gwec_Diseno-sin-titulo-92-600x324.jpg"
+          alt="President José Antonio Kast, whose government is advancing a Registry of Vandalism with new restrictions for those convicted of violent protest">
+        <div class="card-body">
+          <div class="story-kicker">Politics · Law &amp; Order</div>
+          <h3 class="card-headline">The "Vandals Registry" Lands in Congress: 33 Offenses, 17 Penalties — Including Losing Free Tuition</h3>
+          <p class="story-body">
+            Kast's proposed Registro Nacional de Actos Vandálicos is now formally before Congress, and the details are striking: 33 types of conduct can land you on the list, triggering up to 17 penalties — being barred from public housing programs, blocked from registering property, banned from stadiums, and even having state-funded university tuition suspended. Supporters frame it as accountability for rioters; civil-liberties critics see a punitive blacklist that strips benefits without a clear path off the list. Think of a US "three-strikes" law fused with a no-fly list, aimed squarely at protest violence.
+          </p>
+          <div class="story-links">
+            <a href="https://www.theclinic.cl/2026/06/15/las-33-conductas-por-las-que-una-persona-podria-ingresar-al-registro-nacional-de-actos-vandalicos-y-las-17-sanciones-que-contiene-el-proyecto/" target="_blank">Read more → The Clinic</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 4: Iran ceasefire ripples to Chile -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://static.theclinic.cl/media/2026/06/15-210857_lrkv_petroleo-600x324.jpg"
+          alt="Oil infrastructure; a US–Iran ceasefire sent crude prices tumbling and rippled through Chile's markets and fuel prices">
+        <div class="card-body">
+          <div class="story-kicker">Economy · Global Spillover</div>
+          <h3 class="card-headline">A US–Iran Ceasefire Reaches Chilean Wallets: Cheaper Gas, a Stronger Peso, a Rising Market</h3>
+          <p class="story-body">
+            The newly announced ceasefire between the US and Iran — and the reopening of the Strait of Hormuz — sent a wave of relief through global markets, and Chile felt it fast. Oil tumbled, the local stock index climbed, and the dollar fell about 11 pesos to 890. The Finance Ministry said pump prices for gasoline and diesel should drop roughly 100 pesos a liter. For an economy that imports nearly all its fuel, a Middle East de-escalation is the kind of distant event that quietly shows up in everyone's grocery and gas bill.
+          </p>
+          <div class="story-links">
+            <a href="https://www.emol.com/noticias/Economia/2026/06/15/1202879/hacienda-baja-precios-bencina.html" target="_blank">Read more → Emol</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 5: Kast political capital -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://media.biobiochile.cl/wp-content/uploads/2026/06/expectativas-kast-750x400.jpg"
+          alt="President Kast; polling suggests expectations about his government's effectiveness are slipping three months in">
+        <div class="card-body">
+          <div class="story-kicker">Politics · The Honeymoon Check</div>
+          <h3 class="card-headline">Is Kast's Political Credit Running Out? Expectations Slide Three Months In</h3>
+          <p class="story-body">
+            Three months into the Kast presidency, analysts are flagging a drop in public expectations that the government can actually deliver — the early erosion of the honeymoon glow. It helps explain this week's burst of headline-grabbing bills (daycare, the vandals registry): an administration trying to look busy and in command before the "can they govern?" doubts harden. For an American reader, picture the familiar 100-day scorecard moment, when a new president's approval starts converting from hope into a verdict on results.
+          </p>
+          <div class="story-links">
+            <a href="https://www.biobiochile.cl/biobiotv/programas/expreso-bio-bio/2026/06/15/se-agota-el-credito-politico-de-kast-la-caida-de-las-expectativas-de-eficacia-en-torno-al-gobierno.shtml" target="_blank">Read more → BioBioChile</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /stories-grid -->
+
+    <!-- INTERESTING / OFFBEAT -->
+    <div class="section-label" style="margin-top:30px;">Interesting &amp; Offbeat</div>
+    <div class="opinion-grid">
+
+      <div class="offbeat-card">
+        <img src="https://static.theclinic.cl/media/2026/06/15-224224_z5su_Tone-Cluster-600x324.jpg"
+          alt="Tone Cluster, a board game created by Chilean composer and academic Daniela Medel to teach the hidden language of musical harmony"
+          style="width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:14px;display:block;">
+        <div class="story-kicker" style="margin-bottom:8px;">Culture · Music</div>
+        <h3 class="offbeat-headline">A Chilean Composer Turned Music Theory Into a Board Game</h3>
+        <p class="offbeat-body">After years of research, composer and academic Daniela Medel released "Tone Cluster," a board game designed to teach the hidden logic of musical harmony to students, teachers, and hobbyists — making chords and scales something you play with rather than memorize. A neat reminder that some of the best teaching tools come from people who got tired of explaining the same thing the hard way. (If you've ever fumbled through learning theory on the guitar, this one's for you.)</p>
+        <div class="story-links">
+          <a href="https://www.theclinic.cl/2026/06/15/tone-cluster-el-juego-de-mesa-creado-por-una-academica-chilena-para-aprender-el-lenguaje-oculto-de-la-musica/" target="_blank">Read more → The Clinic</a>
+        </div>
+      </div>
+
+      <div class="offbeat-card">
+        <img src="https://media.biobiochile.cl/wp-content/uploads/2026/06/chileactores-750x400.png"
+          alt="The exterior of Chile's Teatro Municipal alongside the Chileactores logo, amid a public debate over whether actors are well paid"
+          style="width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:14px;display:block;">
+        <div class="story-kicker" style="margin-bottom:8px;">Society · Who Pays the Artists</div>
+        <h3 class="offbeat-headline">Accused of Being "Lazy" and "Living Off the State," Chilean Actors Open Their Paychecks</h3>
+        <p class="offbeat-body">Stung by a wave of online jabs calling them freeloaders, the actors' rights group ChileActores pushed back with numbers: most members, they say, take home under 400,000 pesos a month (roughly US$430). The flare-up is a small window into a bigger Chilean culture-war argument — familiar from the US "should taxpayers fund the arts?" debate — over whether a creative career is a real job or a public handout.</p>
+        <div class="story-links">
+          <a href="https://www.biobiochile.cl/noticias/artes-y-cultura/actualidad-cultural/2026/06/15/chileactores-ante-criticas-de-ser-vagos-y-de-vivir-del-estado-dicen-ganar-menos-de-400-mil-pesos.shtml" target="_blank">Read more → BioBioChile</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- OPINION / EDITORIAL -->
+    <div class="section-label" style="margin-top:30px;">Opinion &amp; Editorial</div>
+    <div class="opinion-grid">
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">El Mercurio · Column · Center-Right</div>
+        <h3 class="opinion-headline">"El caso Grau"</h3>
+        <p class="opinion-body">Economist Sebastián Edwards weighs in on the impeachment of the former finance minister, using the case to question the previous government's handling of the public finances and debt. Coming from a prominent center-right voice, it's less about the legal mechanics than about assigning blame for the fiscal hole the new government inherited — the kind of "look at the mess they left" argument an American reader will recognize from any change of party in the White House.</p>
+        <div class="story-links">
+          <a href="https://www.elmercurio.com/blogs/2026/06/15/133612/el-caso-grau.aspx" target="_blank">Read more → El Mercurio</a>
+        </div>
+      </div>
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">BioBioChile · Column · Center</div>
+        <h3 class="opinion-headline">"A New Tax Break With a Small-Business Face"</h3>
+        <p class="opinion-body">In BioBio's reader-column section, the writer argues Chile's tax incentives are tilted toward big firms and pitches a redesigned break aimed at the small and mid-sized businesses (Mipymes) that employ most Chileans. The framing — help Main Street, not just the big players — maps neatly onto the perennial US debate over whether tax policy favors large corporations over small business.</p>
+        <div class="story-links">
+          <a href="https://www.biobiochile.cl/noticias/opinion/tu-voz/2026/06/15/una-nueva-franquicia-tributaria-con-rostro-mipyme.shtml" target="_blank">Read more → BioBioChile</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /wrapper -->
+
+  <footer>
+    Chile Morning Digest · Tuesday, June 16, 2026 · Sources: Emol, The Clinic, BioBioChile, El Mercurio, La Tercera · Weather via public forecasts
+  </footer>
+
+</body>
+</html>
