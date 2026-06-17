@@ -12,6 +12,10 @@ Every morning, crawl a set of Chilean news websites and produce a single-page HT
 - **Filename:** `digest_YYMMDD.html` (e.g. `digest_260527.html`)
 - **Save to:** this project folder
 
+## Landing page (index.html)
+
+The site is served via GitHub Pages, which loads `index.html` at the root URL — without it the bare site URL 404s. After creating each morning's digest, regenerate the landing page by running `python3 generate_index.py` in this folder. It scans all `digest_*.html` files, links the newest as the featured edition, and lists the rest as an archive. Do not hand-edit `index.html`; the script overwrites it.
+
 ## Design requirements
 
 The HTML should look like a real editorial product — not a wall of text. Use:
