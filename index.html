@@ -3,139 +3,481 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chile Morning Digest</title>
+  <title>Chile Morning Digest — Thursday, June 18, 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: 'Source Serif 4', Georgia, serif;
-      background: #ddd9d1; color: #1a1a1a;
-      font-size: 17px; line-height: 1.7;
+      background: #ddd9d1;
+      color: #1a1a1a;
+      font-size: 17px;
+      line-height: 1.7;
     }
-    header { background: #111; padding: 22px 24px 18px; text-align: center; }
+
+    /* ── MASTHEAD ── */
+    header {
+      background: #111;
+      padding: 22px 24px 18px;
+      text-align: center;
+    }
     .eyebrow {
-      font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase; color: #b5802a; margin-bottom: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 6px;
     }
     .masthead-title {
-      font-family: 'Playfair Display', Georgia, serif; font-size: clamp(28px, 5vw, 44px);
-      font-weight: 700; color: #fffefb; letter-spacing: 0.01em;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      color: #fffefb;
+      letter-spacing: 0.01em;
     }
-    .masthead-sub {
-      font-family: 'Inter', sans-serif; font-size: 12px; color: #888;
-      margin-top: 6px; letter-spacing: 0.05em;
+    .masthead-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #888;
+      margin-top: 6px;
+      letter-spacing: 0.05em;
     }
-    .masthead-rule { width: 40px; height: 2px; background: #b5802a; margin: 12px auto 0; }
-    .wrapper { max-width: 980px; margin: 0 auto; padding: 32px 24px 56px; }
+    .masthead-rule {
+      width: 40px;
+      height: 2px;
+      background: #b5802a;
+      margin: 12px auto 0;
+    }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 18px 60px;
+    }
+
+    /* ── WEATHER CARD ── */
+    .weather-card {
+      background: linear-gradient(135deg, #1c3a5e 0%, #2a5080 60%, #1e6fa0 100%);
+      color: #fff;
+      border-radius: 8px;
+      padding: 22px 28px;
+      margin: 24px 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .weather-icon {
+      font-size: 48px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .weather-body { flex: 1; min-width: 200px; }
+    .weather-location {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 4px;
+    }
+    .weather-temps {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .weather-condition {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 4px;
+    }
+    .weather-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+      margin-top: 6px;
+    }
+    .weather-detail {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      align-self: flex-end;
+      text-align: right;
+      min-width: 160px;
+    }
+    .weather-detail div { margin-bottom: 4px; }
+    .weather-detail strong { color: rgba(255,255,255,0.9); }
+
+    /* ── SECTION LABELS ── */
     .section-label {
-      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
-      letter-spacing: 0.15em; text-transform: uppercase; color: #b5802a;
-      margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #111;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b5802a;
+      padding: 6px 0 6px;
+      border-top: 2px solid #111;
+      margin-bottom: 20px;
+      margin-top: 10px;
     }
-    .latest {
-      display: block; background: #fffefb; border: 1px solid #c9c4ba;
-      border-radius: 3px; padding: 26px 28px; text-decoration: none; color: inherit;
-      transition: box-shadow .15s ease, transform .15s ease; margin-bottom: 40px;
+
+    /* ── LEAD STORY ── */
+    .lead-story {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     }
-    .latest:hover { box-shadow: 0 6px 20px rgba(0,0,0,.12); transform: translateY(-2px); }
-    .latest .l-date {
-      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
-      color: #6b6b6b; letter-spacing: 0.03em;
+    .lead-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
     }
-    .latest .l-head {
-      font-family: 'Playfair Display', Georgia, serif; font-size: clamp(22px, 3.4vw, 30px);
-      font-weight: 700; line-height: 1.25; margin: 10px 0 12px;
+    .lead-body { padding: 24px 28px 20px; }
+    .story-kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 8px;
     }
-    .latest .l-cta {
-      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #b5802a;
+    .lead-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #111;
+      margin-bottom: 12px;
     }
-    ul.archive { list-style: none; }
-    ul.archive li { border-bottom: 1px solid #c9c4ba; }
-    ul.archive a {
-      display: flex; flex-direction: column; gap: 3px; padding: 14px 4px;
-      text-decoration: none; color: inherit; transition: padding-left .15s ease, color .15s ease;
+    .story-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #2a2a2a;
+      margin-bottom: 14px;
     }
-    ul.archive a:hover { padding-left: 10px; }
-    ul.archive a:hover .arc-head { color: #b5802a; }
-    .arc-date { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #6b6b6b; }
-    .arc-head { font-size: 17px; line-height: 1.4; }
+    .story-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .story-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #b5802a;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .story-links a:hover { text-decoration: underline; }
+
+    /* ── 2-COLUMN GRID ── */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 6px;
+    }
+    @media (max-width: 640px) {
+      .stories-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── STORY CARD ── */
+    .story-card {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body {
+      padding: 18px 20px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .card-body .story-body { font-size: 15px; flex: 1; }
+    .card-body .story-links { margin-top: auto; padding-top: 10px; }
+
+    /* ── OPINION / OFFBEAT ── */
+    .opinion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 640px) {
+      .opinion-grid { grid-template-columns: 1fr; }
+    }
+    .opinion-card {
+      background: #f0ece4;
+      border-radius: 6px;
+      padding: 20px 22px;
+      border-left: 3px solid #b5802a;
+    }
+    .opinion-outlet {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .opinion-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .opinion-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 12px; }
+    .opinion-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    /* Offbeat cards */
+    .offbeat-card {
+      background: #e8e4dc;
+      border-radius: 6px;
+      padding: 20px 22px;
+    }
+    .offbeat-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .offbeat-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 10px; }
+
+    /* ── FOOTER ── */
     footer {
-      text-align: center; font-family: 'Inter', sans-serif; font-size: 11px;
-      color: #8a8579; padding: 24px; letter-spacing: 0.04em;
+      text-align: center;
+      padding: 24px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #999;
+      border-top: 1px solid #c8c4bc;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
+
   <header>
     <div class="eyebrow">Chile Morning Digest</div>
     <div class="masthead-title">The Morning Briefing</div>
-    <div class="masthead-sub">Santiago, Chile</div>
+    <div class="masthead-date">Thursday, June 18, 2026 &nbsp;·&nbsp; Santiago, Chile</div>
     <div class="masthead-rule"></div>
   </header>
+  <div style="max-width:980px;margin:0 auto;padding:14px 18px 0;text-align:right;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.03em;"><a href="archive.html" style="color:#b5802a;text-decoration:none;">↗ Browse the archive</a></div>
 
   <div class="wrapper">
-    <div class="section-label">Latest Edition</div>
-    <a class="latest" href="digest_260618.html">
-      <div class="l-date">Thursday, June 18, 2026</div>
-      <div class="l-head">486 Haitian Children on Irregular Charter Flights — 64 Still Missing, Three Airlines Named, Kast Convenes All Three Branches</div>
-      <div class="l-cta">Read today's briefing &rarr;</div>
-    </a>
 
-    <div class="section-label">Archive</div>
-    <ul class="archive">
-        <li>
-          <a href="digest_260616.html">
-            <span class="arc-date">Tuesday, June 16, 2026</span>
-            <span class="arc-head">Grau&#x27;s Impeachment Heads to Committee as His Defense Rushes Out Its Rebuttal</span>
-          </a>
-        </li>
-        <li>
-          <a href="digest_260615.html">
-            <span class="arc-date">Monday, June 15, 2026</span>
-            <span class="arc-head">Past Its First 100 Days, the Government Floods the Zone With New Bills to Retake the Agenda</span>
-          </a>
-        </li>
-        <li>
-          <a href="digest_260613.html">
-            <span class="arc-date">Saturday, June 13, 2026</span>
-            <span class="arc-head">The Move to Impeach Boric&#x27;s Old Finance Minister Now Has the Votes — and It&#x27;s Splitting the Right</span>
-          </a>
-        </li>
-        <li>
-          <a href="digest_260609.html">
-            <span class="arc-date">Tuesday, June 9, 2026</span>
-            <span class="arc-head">Congress Moves to Impeach the Former Finance Minister — and Kast&#x27;s Own Team Is Nervous About It</span>
-          </a>
-        </li>
-        <li>
-          <a href="digest_260603.html">
-            <span class="arc-date">Wednesday, June 3, 2026</span>
-            <span class="arc-head">Kast Delivers His First State of the Nation — and Gets Heckled at the Close</span>
-          </a>
-        </li>
-        <li>
-          <a href="digest_260529.html">
-            <span class="arc-date">Friday, May 29, 2026</span>
-            <span class="arc-head">Morning briefing</span>
-          </a>
-        </li>
-        <li>
-          <a href="digest_260528.html">
-            <span class="arc-date">Thursday, May 28, 2026</span>
-            <span class="arc-head">Morning briefing</span>
-          </a>
-        </li>
-        <li>
-          <a href="digest_260527.html">
-            <span class="arc-date">Wednesday, May 27, 2026</span>
-            <span class="arc-head">Morning briefing</span>
-          </a>
-        </li>
-    </ul>
-  </div>
+    <!-- WEATHER -->
+    <div class="weather-card">
+      <div class="weather-icon">🌤️</div>
+      <div class="weather-body">
+        <div class="weather-location">Santiago · Winter</div>
+        <div class="weather-temps">16° / 4°C &nbsp; (61° / 39°F)</div>
+        <div class="weather-condition">Cold winter morning clearing to a mild, dry afternoon</div>
+        <div class="weather-note">A sharp 4°C start softens to a comfortable 16°C by midday as clouds break up — no rain today. The real Santiago winter hazard is the air: thermal inversions trap exhaust and heating smoke over the Andes bowl, and daily smog alerts with vehicle restriction notices have been routine this week. Check the <em>restricción vehicular</em> notice before you drive; odd- or even-numbered plates may be restricted. Jacket for the morning, lighter layers by lunch.</div>
+      </div>
+      <div class="weather-detail">
+        <div><strong>Rain:</strong> Near 0% chance</div>
+        <div><strong>Air:</strong> Smog alert likely — check restricción</div>
+        <div><strong>Feel:</strong> Cold morning, mild afternoon</div>
+      </div>
+    </div>
 
-  <footer>Chile Morning Digest &middot; Updated daily</footer>
+    <!-- TOP HEADLINES -->
+    <div class="section-label">Top Headlines</div>
+
+    <!-- LEAD STORY: Haitian children -->
+    <div class="lead-story">
+      <img class="lead-img"
+        src="https://static.theclinic.cl/media/2026/06/18-003703_fvn8_A_UNO_1747156-1-600x324.jpg"
+        alt="President Kast with government officials after convening all three branches of the Chilean state to coordinate a response to the suspected trafficking of Haitian children">
+      <div class="lead-body">
+        <div class="story-kicker">Politics · The Trafficking Scandal</div>
+        <h2 class="lead-headline">486 Haitian Children on Irregular Charter Flights — 64 Still Missing, Three Airlines Named, Kast Convenes All Three Branches</h2>
+        <p class="story-body">
+          Chile's most alarming story is accelerating. An official pre-report by the <em>Contraloría General de la República</em> — Chile's independent government watchdog, the equivalent of the US GAO and a federal inspector general rolled into one — found that 486 Haitian minors were flown into Chile between 2024 and 2025 aboard irregular charter flights organized by just 12 accompanying adults. Today, video footage from one of those flights — filmed in October — surfaced publicly for the first time. Three airlines are under criminal investigation: Arajet, Aruba Airlines, and Galistair. Sixty-four children still cannot be located. UNICEF has called on Chile to clarify their whereabouts "as quickly as possible." A former official at Chile's national migration agency is suspected of involvement.
+        </p>
+        <p class="story-body">
+          President Kast responded by summoning the Supreme Court, both chambers of Congress, the national prosecutor's office, and the Contraloría to a single emergency coordination meeting. For a US reader: picture a president calling the Chief Justice, Senate leadership, the Attorney General, and the GAO to the same table over a child-trafficking case at the border — a deliberate "all hands, all branches" signal. For Kast, whose hard-line immigration message was central to his campaign, the case simultaneously validates his warnings and tests whether the state can actually act on them.
+        </p>
+        <div class="story-links">
+          <a href="https://www.biobiochile.cl/especial/bbcl-investiga/noticias/reportajes/2026/06/15/ninos-haitianos-sin-rastro-en-chile-informe-revela-fallas-graves-y-vuelos-sospechosos-autorizados.shtml" target="_blank">Read more → BioBioChile</a>
+          <a href="https://www.t13.cl/noticia/nacional/fue-octubre-las-imagenes-uno-vuelos-ninos-haitianos-encendio-las-alarmas-18-6-2026" target="_blank">Read more → T13</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-COLUMN GRID -->
+    <div class="stories-grid">
+
+      <!-- Story 2: Zaliasnik Investigation -->
+      <div class="story-card">
+        <div class="card-body">
+          <div class="story-kicker">Politics · The Corruption Spillover</div>
+          <h3 class="card-headline">Kast's Ambassador Nominee to Israel Is Under Criminal Investigation — Linked to Chile's Biggest Corruption Scandal</h3>
+          <p class="story-body">
+            Gabriel Zaliasnik — Kast's pick for ambassador to Israel and a prominent Santiago attorney — is under criminal investigation by the Valparaíso prosecutor's office. The probe centers on alleged WhatsApp chats with Luis Hermosilla, the attorney at the center of Chile's sprawling "Caso Audio" corruption case, in which Zaliasnik is said to have sought favors around judicial appointments. The government is standing by Zaliasnik for now but publicly left the door open to pulling his nomination if he is formally charged. The socialist and Frente Amplio opposition is demanding his immediate removal. For a hard-right administration that ran on clean-governance messaging, having a key early appointee linked to Chile's premier bribery scandal is a politically costly headache.
+          </p>
+          <div class="story-links">
+            <a href="context_260618_caso-audio.html">→ Background: What is the "Caso Audio"?</a>
+            <a href="https://www.latercera.com/politica/noticia/la-moneda-monitorea-situacion-de-zaliasnik-tras-apertura-de-investigacion-por-chats-con-hermosilla/" target="_blank">Read more → La Tercera</a>
+            <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/06/17/gobierno-deja-abierta-la-posibilidad-de-retirar-nombramiento-de-zaliasnik-en-caso-de-ser-formalizado.shtml" target="_blank">Read more → BioBioChile</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 3: IPoM Growth Downgrade -->
+      <div class="story-card">
+        <div class="card-body">
+          <div class="story-kicker">Economy · Alarm Bell</div>
+          <h3 class="card-headline">Central Bank Slashes Chile's 2026 Growth Forecast to Near-Stall Speed — and Raises the Inflation Outlook</h3>
+          <p class="story-body">
+            In its June Monetary Policy Report — the quarterly equivalent of the Fed's semi-annual Humphrey–Hawkins testimony — Chile's independent Central Bank cut its 2026 GDP growth projection from 1.5%–2.5% all the way down to just 1%–1.75%. The bank blamed a terrible first quarter: copper mining underperformed, tourist arrivals fell, and investment simply did not materialize. The investment growth estimate was slashed from 4% to 2.2%, and inflation was nudged up to 4.2% for the year. The plain-language takeaway: 2026 is shaping up as a write-off, any real recovery is pushed to 2027, and Kast's stated goals of 4% annual growth and 6% unemployment look very far away.
+          </p>
+          <div class="story-links">
+            <a href="https://www.emol.com/noticias/Economia/2026/06/17/1203063/ipom-junio-banco-central-chile.html" target="_blank">Read more → Emol</a>
+            <a href="https://www.df.cl/economia-y-politica/macro/que-cambios-trajo-el-ipom-de-junio-siete-claves-de-la-nueva-foto-del" target="_blank">Read more → DF</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 4: Minimum Wage -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://static.theclinic.cl/media/2026/06/16-231144_ye7m_senado-600x324.jpg"
+          alt="Chile's Senate chamber, which passed an increase in the national minimum wage to 553,553 pesos">
+        <div class="card-body">
+          <div class="story-kicker">Policy · Wages</div>
+          <h3 class="card-headline">Congress Signs Off on a Minimum-Wage Bump to 553,553 Pesos</h3>
+          <p class="story-body">
+            Congress finalized an increase that lifts Chile's monthly minimum wage to 553,553 pesos (roughly US$600), up about 14,000 pesos, applied retroactively to May 1. Labor Minister Rau pledged the raise would fully offset this year's inflation. Chile sets its floor wage nationally through an annual government-labor negotiation rather than the state-by-state patchwork of the US — so when it moves, it moves for the entire country simultaneously, and the number becomes an instant political scorecard.
+          </p>
+          <div class="story-links">
+            <a href="https://www.theclinic.cl/2026/06/16/seran-14-000-de-alza-congreso-despacha-reajuste-al-salario-minimo-y-ministro-rau-asegura-que-va-a-compensar-todo-el-aumento-del-ipc/" target="_blank">Read more → The Clinic</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 5: Kast 100 Days / CEP Poll -->
+      <div class="story-card">
+        <img class="card-img"
+          src="https://static.theclinic.cl/media/2026/06/16-205754_tisb_Diseno-sin-titulo-94-600x324.jpg"
+          alt="President Kast; at his 100-day mark, polls show 52% disapproval and just 34% approval, while coalition partner Renovación Nacional shows irritation">
+        <div class="card-body">
+          <div class="story-kicker">Politics · The 100-Day Verdict</div>
+          <h3 class="card-headline">At 100 Days, Kast Has 52% Disapproval — and His Own Coalition Is Already Showing Cracks</h3>
+          <p class="story-body">
+            Chile's premier CEP polling firm surveyed the country in April and May: 52% disapprove of Kast's government, just 34% approve, and 67% say they have little or no confidence he'll deliver on his campaign promises. That's a bruising number at the 100-day mark. Adding to the friction, Kast this week quietly removed a cabinet official tied to Renovación Nacional (RN) — the more establishment-conservative party in his coalition — triggering what one outlet called "contained irritation" from RN. A governing bloc spanning the hard-right Republicans and the old-guard center-right was always going to show strains; they're showing now.
+          </p>
+          <div class="story-links">
+            <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/06/10/desaprobacion-al-presidente-kast-llega-a-52-y-aprobacion-al-34-segun-encuesta-cep.shtml" target="_blank">Read more → BioBioChile</a>
+            <a href="https://www.emol.com/noticias/Nacional/2026/06/14/1202779/encuesta-criteria-aprobacion-gobierno-kast.html" target="_blank">Read more → Emol</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /stories-grid -->
+
+    <!-- INTERESTING / OFFBEAT -->
+    <div class="section-label" style="margin-top:30px;">Interesting &amp; Offbeat</div>
+    <div class="opinion-grid">
+
+      <div class="offbeat-card">
+        <img src="https://static.emol.cl/emol50/Fotos/Pandora/2026/06/16/file_20260616184232.jpg"
+          alt="A dog; lawmakers are advancing the so-called Ley Balto to impose real jail time on people convicted of animal cruelty"
+          style="width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:14px;display:block;">
+        <div class="story-kicker" style="margin-bottom:8px;">Society · Animal Welfare</div>
+        <h3 class="offbeat-headline">After "Ley Cholito," Here Comes "Ley Balto": Jail Time for Animal Abusers</h3>
+        <p class="offbeat-body">Building on the earlier "Ley Cholito" animal-protection law, a group of deputies wants a new "Ley Balto" that would put serious animal abusers behind bars for real and ban them from working with animals. Chile has a deep affection for its street dogs (the <em>quiltros</em>), and naming laws after specific animals is a very Chilean way of turning public sentiment into legislation — a reminder that not every bill in Congress involves the budget.</p>
+        <div class="story-links">
+          <a href="https://www.emol.com/noticias/Nacional/2026/06/16/1202974/diputados-carcel-efectivas-agresores-animales.html" target="_blank">Read more → Emol</a>
+        </div>
+      </div>
+
+      <div class="offbeat-card">
+        <div class="story-kicker" style="margin-bottom:8px;">Culture · History on Film</div>
+        <h3 class="offbeat-headline">Lost Footage From Chile's 1960s News Program Is Back on TV — and It Hits Different in 2026</h3>
+        <p class="offbeat-body">UChile TV's new series <em>Chile en marcha: noticias de un futuro imaginado</em> (Chile on the Move: News of an Imagined Future) resurrects the original "Chile en marcha" newsreel from 1965–1969 — footage of land reform, expanding schools, and urban growth during the optimistic Frei Montalva years. Think PBS recovering lost CBS News footage from the Kennedy and Johnson eras and airing it now. The juxtaposition of that era's ambitions against today's economic stagnation and political polarization seems to be very much the point. Premiered June 11.</p>
+        <div class="story-links">
+          <a href="https://www.patrimoniocultural.gob.cl/noticias/chile-en-marcha-noticiario-resguardado-por-la-cineteca-nacional-llega-uchile-tv" target="_blank">Read more → Patrimonio Cultural</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- OPINION / EDITORIAL -->
+    <div class="section-label" style="margin-top:30px;">Opinion &amp; Editorial</div>
+    <div class="opinion-grid">
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">The Clinic · Column · Left-Leaning</div>
+        <h3 class="opinion-headline">"La CEP y el agotamiento del crédito político de Kast"</h3>
+        <p class="opinion-body">Political scientist Marco Moreno argues in The Clinic that the CEP poll showing 52% disapproval reveals Kast has burned through his political capital faster than anyone expected — partly because he oversold his capabilities during the campaign, partly because governing is always harder than condemning your predecessor. It's a pointed piece of left-leaning analysis, but the diagnosis — a president who raised expectations he couldn't meet — maps onto patterns any US political observer will recognize.</p>
+        <div class="opinion-meta">Marco Moreno · The Clinic · June 14, 2026</div>
+        <div class="story-links">
+          <a href="https://www.theclinic.cl/2026/06/14/la-cep-y-el-agotamiento-del-credito-politico-de-kast/" target="_blank">Read more → The Clinic</a>
+        </div>
+      </div>
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">Diario Financiero · Editorial · Center-Right</div>
+        <h3 class="opinion-headline">"El ajuste del IPoM"</h3>
+        <p class="opinion-body">DF's editorial board reads the Central Bank's steep growth downgrade as a direct verdict on the slow pace of Kast's economic reform agenda. The paper argues that genuine regulatory certainty and disciplined fiscal management — not headline-grabbing legislative gestures — are what will actually move the investment needle. It's the kind of center-right "you need to do more, faster" editorial pressure a Wall Street Journal reader would recognize aimed at a Republican administration that's talking tougher than it's governing.</p>
+        <div class="opinion-meta">Diario Financiero · Editorial · June 17, 2026</div>
+        <div class="story-links">
+          <a href="https://www.df.cl/opinion/editorial/el-ajuste-del-ipom" target="_blank">Read more → DF</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /wrapper -->
+
+  <footer>
+    Chile Morning Digest · Thursday, June 18, 2026 · Sources: The Clinic, Emol, La Tercera, BioBioChile, Diario Financiero, T13 · Weather via public forecasts
+  </footer>
+
 </body>
 </html>

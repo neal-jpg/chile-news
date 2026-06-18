@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""Build index.html for the Chile Morning Digest GitHub Pages site.
+"""Build index.html and archive.html for the Chile Morning Digest GitHub Pages site.
 
-Scans every digest_YYMMDD.html in this folder, pulls the human-readable date
-and the lead headline from each, and writes a styled landing page that links
-to the latest digest plus an archive of all earlier ones. Run this after
-creating each morning's digest (the daily workflow does this automatically).
+The site is served via GitHub Pages, which loads index.html at the bare root URL.
+So that a single bookmarked link (https://neal-jpg.github.io/chile-news/) always
+opens straight onto the newest briefing, this script copies the latest
+digest_YYMMDD.html verbatim into index.html, injecting a small "Browse the
+archive" link near the top. The full back-catalogue lives on archive.html, which
+lists every edition newest-first. The dated digest_*.html files are never
+modified — they remain the permanent, canonical archive.
+
+Run this after creating each morning's digest (the daily workflow does this
+automatically).
 """
 
 import glob
@@ -34,27 +40,42 @@ def extract(path):
     return date, headline
 
 
-def main():
-    files = sorted(glob.glob(os.path.join(HERE, "digest_*.html")), reverse=True)
-    entries = []
-    for f in files:
-        date, headline = extract(f)
-        entries.append((os.path.basename(f), date, headline))
+# Small understated link injected into index.html so readers can reach the
+# archive from the always-latest root page. Uses inline styles so it does not
+# depend on whatever CSS classes a given digest happens to define.
+ARCHIVE_BAR = (
+    '\n  <div style="max-width:980px;margin:0 auto;padding:14px 18px 0;'
+    'text-align:right;font-family:\'Inter\',sans-serif;font-size:12px;'
+    'font-weight:600;letter-spacing:0.03em;">'
+    '<a href="archive.html" style="color:#b5802a;text-decoration:none;">'
+    '↗ Browse the archive</a></div>'
+)
 
-    if not entries:
-        print("No digests found.")
-        return
 
-    latest_file, latest_date, latest_headline = entries[0]
+def build_index(latest_file):
+    """index.html = a verbatim copy of the latest digest + an archive link."""
+    with open(os.path.join(HERE, latest_file), encoding="utf-8") as fh:
+        content = fh.read()
+    if "</header>" in content:
+        content = content.replace("</header>", "</header>" + ARCHIVE_BAR, 1)
+    else:  # no masthead to anchor to — drop the link in after <body>
+        content = content.replace("<body>", "<body>" + ARCHIVE_BAR, 1)
+    out = os.path.join(HERE, "index.html")
+    with open(out, "w", encoding="utf-8") as fh:
+        fh.write(content)
+    return out
 
-    archive_rows = "\n".join(
+
+def build_archive(entries):
+    """archive.html = newest-first list of every edition."""
+    rows = "\n".join(
         f'''        <li>
           <a href="{fn}">
             <span class="arc-date">{html.escape(date)}</span>
             <span class="arc-head">{html.escape(headline)}</span>
           </a>
         </li>'''
-        for fn, date, headline in entries[1:]
+        for fn, date, headline in entries
     )
 
     page = f"""<!DOCTYPE html>
@@ -62,7 +83,7 @@ def main():
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chile Morning Digest</title>
+  <title>Chile Morning Digest — Archive</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -88,27 +109,16 @@ def main():
     }}
     .masthead-rule {{ width: 40px; height: 2px; background: #b5802a; margin: 12px auto 0; }}
     .wrapper {{ max-width: 980px; margin: 0 auto; padding: 32px 24px 56px; }}
+    .backlink {{
+      display: inline-block; margin-bottom: 26px;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      color: #b5802a; text-decoration: none; letter-spacing: 0.03em;
+    }}
+    .backlink:hover {{ text-decoration: underline; }}
     .section-label {{
       font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
       letter-spacing: 0.15em; text-transform: uppercase; color: #b5802a;
       margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #111;
-    }}
-    .latest {{
-      display: block; background: #fffefb; border: 1px solid #c9c4ba;
-      border-radius: 3px; padding: 26px 28px; text-decoration: none; color: inherit;
-      transition: box-shadow .15s ease, transform .15s ease; margin-bottom: 40px;
-    }}
-    .latest:hover {{ box-shadow: 0 6px 20px rgba(0,0,0,.12); transform: translateY(-2px); }}
-    .latest .l-date {{
-      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
-      color: #6b6b6b; letter-spacing: 0.03em;
-    }}
-    .latest .l-head {{
-      font-family: 'Playfair Display', Georgia, serif; font-size: clamp(22px, 3.4vw, 30px);
-      font-weight: 700; line-height: 1.25; margin: 10px 0 12px;
-    }}
-    .latest .l-cta {{
-      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #b5802a;
     }}
     ul.archive {{ list-style: none; }}
     ul.archive li {{ border-bottom: 1px solid #c9c4ba; }}
@@ -129,22 +139,16 @@ def main():
 <body>
   <header>
     <div class="eyebrow">Chile Morning Digest</div>
-    <div class="masthead-title">The Morning Briefing</div>
+    <div class="masthead-title">Archive</div>
     <div class="masthead-sub">Santiago, Chile</div>
     <div class="masthead-rule"></div>
   </header>
 
   <div class="wrapper">
-    <div class="section-label">Latest Edition</div>
-    <a class="latest" href="{latest_file}">
-      <div class="l-date">{html.escape(latest_date)}</div>
-      <div class="l-head">{html.escape(latest_headline)}</div>
-      <div class="l-cta">Read today's briefing &rarr;</div>
-    </a>
-
-    <div class="section-label">Archive</div>
+    <a class="backlink" href="index.html">&larr; Today's edition</a>
+    <div class="section-label">All Editions</div>
     <ul class="archive">
-{archive_rows}
+{rows}
     </ul>
   </div>
 
@@ -152,11 +156,28 @@ def main():
 </body>
 </html>
 """
-
-    out = os.path.join(HERE, "index.html")
+    out = os.path.join(HERE, "archive.html")
     with open(out, "w", encoding="utf-8") as fh:
         fh.write(page)
-    print(f"Wrote {out} — latest: {latest_file} ({len(entries)} editions)")
+    return out
+
+
+def main():
+    files = sorted(glob.glob(os.path.join(HERE, "digest_*.html")), reverse=True)
+    entries = []
+    for f in files:
+        date, headline = extract(f)
+        entries.append((os.path.basename(f), date, headline))
+
+    if not entries:
+        print("No digests found.")
+        return
+
+    latest_file = entries[0][0]
+    build_index(latest_file)
+    build_archive(entries)
+    print(f"Wrote index.html (mirrors {latest_file}) and archive.html "
+          f"({len(entries)} editions).")
 
 
 if __name__ == "__main__":

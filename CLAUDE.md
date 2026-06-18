@@ -12,9 +12,14 @@ Every morning, crawl a set of Chilean news websites and produce a single-page HT
 - **Filename:** `digest_YYMMDD.html` (e.g. `digest_260527.html`)
 - **Save to:** this project folder
 
-## Landing page (index.html)
+## Landing page (index.html) and archive
 
-The site is served via GitHub Pages, which loads `index.html` at the root URL — without it the bare site URL 404s. After creating each morning's digest, regenerate the landing page by running `python3 generate_index.py` in this folder. It scans all `digest_*.html` files, links the newest as the featured edition, and lists the rest as an archive. Do not hand-edit `index.html`; the script overwrites it.
+The site is served via GitHub Pages, which loads `index.html` at the root URL — without it the bare site URL 404s. After creating each morning's digest, run `python3 generate_index.py` in this folder. It produces two files:
+
+- **`index.html`** — a verbatim copy of the newest `digest_YYMMDD.html`, with a small "↗ Browse the archive" link injected near the top. This is the stable bookmark URL (`https://neal-jpg.github.io/chile-news/`): it always opens straight onto today's full briefing, no click-through.
+- **`archive.html`** — a newest-first list of every edition, linked from the digest's archive link.
+
+The dated `digest_*.html` files are the permanent, canonical archive and are never modified by the script. Do not hand-edit `index.html` or `archive.html`; the script overwrites both.
 
 ## Design requirements
 
