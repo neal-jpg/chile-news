@@ -285,6 +285,23 @@
     }
     .offbeat-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 10px; }
 
+    /* ── EXPAND TOGGLE ── */
+    .expand-btn {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #b5802a;
+      background: none;
+      border: none;
+      padding: 4px 0 0;
+      cursor: pointer;
+      margin-bottom: 6px;
+    }
+    .expand-btn:hover { text-decoration: underline; }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -479,5 +496,42 @@
     Chile Morning Digest · Thursday, June 18, 2026 · Sources: The Clinic, Emol, La Tercera, BioBioChile, Diario Financiero, T13 · Weather via public forecasts
   </footer>
 
+
+<script>
+(function(){
+  [
+    ['.lead-body', '.story-body'],
+    ['.card-body', '.story-body'],
+    ['.offbeat-card', '.offbeat-body'],
+    ['.opinion-card', '.opinion-body']
+  ].forEach(function(pair){
+    document.querySelectorAll(pair[0]).forEach(function(container){
+      var paras = Array.from(container.querySelectorAll(pair[1]));
+      if (!paras.length) return;
+      var first = paras[0];
+      var m = first.innerHTML.match(/^([\s\S]*?[.!?])(\s+)(?=[A-ZÀ-Ü<])/);
+      if (!m && paras.length < 2) return;
+      if (m) {
+        first.innerHTML = m[1] +
+          '<span class="xmore" hidden>' + first.innerHTML.slice(m[1].length) + '</span>';
+      }
+      paras.slice(1).forEach(function(p){ p.hidden = true; });
+      var btn = document.createElement('button');
+      btn.className = 'expand-btn';
+      btn.textContent = 'More…';
+      btn.setAttribute('data-open', '0');
+      btn.addEventListener('click', function(){
+        var open = btn.getAttribute('data-open') === '1';
+        var xmore = first.querySelector('.xmore');
+        if (xmore) xmore.hidden = open;
+        paras.slice(1).forEach(function(p){ p.hidden = open; });
+        btn.textContent = open ? 'More…' : 'Less';
+        btn.setAttribute('data-open', open ? '0' : '1');
+      });
+      first.after(btn);
+    });
+  });
+})();
+</script>
 </body>
 </html>
