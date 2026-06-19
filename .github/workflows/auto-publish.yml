@@ -1,0 +1,70 @@
+name: Auto-publish digest
+
+# Why this exists:
+# The morning routine runs in Anthropic's cloud and pushes each day's digest to a
+# branch named claude/* — it does NOT push straight to main. GitHub Pages only
+# serves main, so without this workflow the new digest sits on the branch and the
+# live site never updates (exactly what happened on 2026-06-19).
+#
+# This workflow watches for the routine's branch pushes and, when the branch adds
+# a daily digest, merges it into main so Pages republishes automatically.
+
+on:
+  push:
+    branches:
+      - 'claude/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main (full history)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Merge the routine's branch into main and publish
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin "$BRANCH"
+
+          # Safety guard: only auto-publish branches that actually add/change a
+          # daily digest (digest_YYMMDD.html). Template-only or experimental
+          # claude/* branches are left for manual review.
+          if git diff --name-only "main...origin/$BRANCH" | grep -qE '(^|/)digest_[0-9]{6}\.html$'; then
+            echo "Branch $BRANCH changes a digest — publishing."
+          else
+            echo "Branch $BRANCH has no digest changes — skipping."
+            exit 0
+          fi
+
+          # Prefer a clean fast-forward; fall back to a merge commit if main moved.
+          if git merge --ff-only "origin/$BRANCH"; then
+            echo "Fast-forwarded main."
+          else
+            echo "main diverged — creating a merge commit."
+            git merge --no-edit -m "Auto-publish $BRANCH into main" "origin/$BRANCH"
+          fi
+
+          # Push only if main actually advanced.
+          if [ "$(git rev-parse main)" != "$(git rev-parse origin/main)" ]; then
+            git push origin main
+            echo "Published to main — GitHub Pages will redeploy."
+            # Tidy up the merged branch; don't fail the run if deletion is blocked.
+            git push origin --delete "$BRANCH" || echo "Could not delete $BRANCH (left in place)."
+          else
+            echo "main already up to date — nothing to publish."
+          fi
