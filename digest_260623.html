@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chile Morning Digest — Tuesday, June 23, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: #ddd9d1;
+      color: #1a1a1a;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ── MASTHEAD ── */
+    header {
+      background: #111;
+      padding: 22px 24px 18px;
+      text-align: center;
+    }
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 6px;
+    }
+    .masthead-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      color: #fffefb;
+      letter-spacing: 0.01em;
+    }
+    .masthead-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #888;
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+    .masthead-rule {
+      width: 40px;
+      height: 2px;
+      background: #b5802a;
+      margin: 12px auto 0;
+    }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 18px 60px;
+    }
+
+    /* ── WEATHER CARD ── */
+    .weather-card {
+      background: linear-gradient(135deg, #1c3a5e 0%, #2a5080 60%, #1e6fa0 100%);
+      color: #fff;
+      border-radius: 8px;
+      padding: 22px 28px;
+      margin: 24px 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .weather-icon {
+      font-size: 48px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .weather-body { flex: 1; min-width: 200px; }
+    .weather-location {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 4px;
+    }
+    .weather-temps {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .weather-condition {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 4px;
+    }
+    .weather-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+      margin-top: 6px;
+    }
+    .weather-detail {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      align-self: flex-end;
+      text-align: right;
+      min-width: 160px;
+    }
+    .weather-detail div { margin-bottom: 4px; }
+    .weather-detail strong { color: rgba(255,255,255,0.9); }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b5802a;
+      padding: 6px 0 6px;
+      border-top: 2px solid #111;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    /* ── LEAD STORY ── */
+    .lead-story {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .lead-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+    }
+    .lead-img-placeholder {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, #1c2e42 0%, #2a3f58 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lead-img-placeholder span {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+      letter-spacing: 0.05em;
+    }
+    .lead-body { padding: 24px 28px 20px; }
+    .story-kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b5802a;
+      margin-bottom: 8px;
+    }
+    .lead-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #111;
+      margin-bottom: 12px;
+    }
+    .story-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #2a2a2a;
+      margin-bottom: 14px;
+    }
+    .story-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .story-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #b5802a;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .story-links a:hover { text-decoration: underline; }
+
+    /* ── 2-COLUMN GRID ── */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 6px;
+    }
+    @media (max-width: 640px) {
+      .stories-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── STORY CARD ── */
+    .story-card {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-color-band {
+      width: 100%;
+      height: 6px;
+    }
+    .card-body {
+      padding: 18px 20px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .card-body .story-body { font-size: 15px; flex: 1; }
+    .card-body .story-links { margin-top: auto; padding-top: 10px; }
+
+    /* ── OPINION / OFFBEAT ── */
+    .opinion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 640px) {
+      .opinion-grid { grid-template-columns: 1fr; }
+    }
+    .opinion-card {
+      background: #f0ece4;
+      border-radius: 6px;
+      padding: 20px 22px;
+      border-left: 3px solid #b5802a;
+    }
+    .opinion-outlet {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .opinion-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .opinion-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 12px; }
+
+    /* Offbeat cards */
+    .offbeat-card {
+      background: #e8e4dc;
+      border-radius: 6px;
+      padding: 20px 22px;
+    }
+    .offbeat-headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .offbeat-body { font-size: 15px; color: #333; line-height: 1.65; margin-bottom: 10px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #999;
+      border-top: 1px solid #c8c4bc;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="eyebrow">Chile Morning Digest</div>
+    <div class="masthead-title">The Morning Briefing</div>
+    <div class="masthead-date">Tuesday, June 23, 2026 &nbsp;·&nbsp; Santiago, Chile</div>
+    <div class="masthead-rule"></div>
+  </header>
+
+  <div class="wrapper">
+
+    <!-- WEATHER -->
+    <div class="weather-card">
+      <div class="weather-icon">☀️</div>
+      <div class="weather-body">
+        <div class="weather-location">Santiago · Winter</div>
+        <div class="weather-temps">17° / 4°C &nbsp; (63° / 39°F)</div>
+        <div class="weather-condition">Clear skies and cold overnight, warming to a mild, dry winter afternoon</div>
+        <div class="weather-note">Classic Santiago winter day: start the morning with a real jacket (4°C at dawn bites), but by early afternoon the sun comes out and 17°C is actually pleasant in a light coat. No rain expected. If you drive, check today's smog restriction — stagnant winter air has been triggering <em>restricción vehicular</em> alerts across the metro area this week.</div>
+      </div>
+      <div class="weather-detail">
+        <div><strong>Rain:</strong> Near 0%</div>
+        <div><strong>Humidity:</strong> Moderate</div>
+        <div><strong>Wind:</strong> Light, calm</div>
+      </div>
+    </div>
+
+    <!-- TOP HEADLINES -->
+    <div class="section-label">Top Headlines</div>
+
+    <!-- LEAD STORY: Coalition Fracture + Grau AC -->
+    <div class="lead-story">
+      <div class="lead-img-placeholder">
+        <span>Chilean Chamber of Deputies · June 23, 2026</span>
+      </div>
+      <div class="lead-body">
+        <div class="story-kicker">Politics · Coalition Fracture</div>
+        <h2 class="lead-headline">The Right Cracks: Republicans Call Matthei "Irrelevant," UDI Erupts — and the Grau Impeachment Hangs in the Balance</h2>
+        <p class="story-body">
+          Today the Chamber of Deputies votes on whether to formally censure former Finance Minister Nicolás Grau — Boric's longtime finance chief — over alleged manipulation of fiscal deficit figures. Think of it as a congressional impeachment: if it passes, Grau is barred from public office for five years. The odds look bad for the accusation's backers: the review commission voted 3-to-1 to reject it, the centrist Christian Democrats (DC) announced they'll vote no, and former Finance Minister Andrés Velasco called the whole proceeding "irresponsible theater." Even so, the vote isn't settled — the PDG populist bloc and UDI are both leaning yes, and the math is tight.
+        </p>
+        <p class="story-body">
+          But the bigger story of the week is what the fight exposed inside the ruling right-wing coalition. Republican Party deputy Agustín Romero — from President Kast's own party — publicly dismissed former UDI presidential candidate Evelyn Matthei as "not a relevant figure" for the Republicans. UDI erupted, demanding a public apology and warning that if none came, relations between the two parties would be "significantly affected." La Tercera called it the right at "boiling point." The rift is a familiar one in US terms: Kast's hard-line Republican Party is the Freedom Caucus; Chile Vamos (UDI and Renovación Nacional) is the House establishment. They won together, but they do not agree on much beyond that.
+        </p>
+        <div class="story-links">
+          <a href="context_260527_acusacion-constitucional.html">→ Background: What is a constitutional accusation?</a>
+          <a href="https://www.emol.com/noticias/Nacional/2026/06/22/1203540/tension-oficialista-udi-romero-matthei.html" target="_blank">Read more → Emol</a>
+          <a href="https://www.latercera.com/politica/noticia/derecha-en-punto-de-ebullicion-rn-y-udi-reclaman-a-la-moneda-y-piden-respeto-por-emplazamientos-del-p-republicano/" target="_blank">Read more → La Tercera</a>
+          <a href="https://www.theclinic.cl/2026/06/22/maxima-tension-en-la-derecha-diferencias-por-ac-contra-grau-elevan-reclamo-de-chile-vamos-mientras-republicanos-ponen-en-duda-futuras-alianzas-electorales/" target="_blank">Read more → The Clinic</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-COLUMN GRID -->
+    <div class="stories-grid">
+
+      <!-- Story 2: Border Offensive -->
+      <div class="story-card">
+        <div class="card-color-band" style="background: linear-gradient(90deg, #1c3a5e, #2a5080);"></div>
+        <div class="card-body">
+          <div class="story-kicker">Immigration · Security</div>
+          <h3 class="card-headline">Interior Minister Announces Wave of New Crackdown Measures — Including 6-Month Migrant Detention</h3>
+          <p class="story-body">
+            Interior Minister Martín Arrau announced the Kast government is rushing six new security and immigration bills to Congress by the end of June. The headline measure: extending the maximum detention of irregular migrants from 5 days to up to 6 months — a 36-fold increase — to make deportations actually enforceable. The government also confirmed it is digging roughly 50 kilometers of anti-crossing trenches along the northern border and has deployed drones and thermal surveillance. A first deportation flight has already taken off since March. Officials say irregular border crossings are down 90% since Kast took office. Critics, including human rights groups, warn that multi-month detention of migrants without conviction has serious legal risks.
+          </p>
+          <div class="story-links">
+            <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/06/22/ministro-arrau-anuncia-nueva-ofensiva-fronteras-y-promete-propuestas-bastante-duras-en-un-mes.shtml" target="_blank">Read more → BioBioChile</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 3: Central Bank Growth Forecast -->
+      <div class="story-card">
+        <div class="card-color-band" style="background: linear-gradient(90deg, #6b3a1f, #a05a2a);"></div>
+        <div class="card-body">
+          <div class="story-kicker">Economy · Monetary Policy</div>
+          <h3 class="card-headline">Central Bank Slashes Growth Forecast — and the Fiscal Council Warns of a Debt Crunch</h3>
+          <p class="story-body">
+            Chile's Central Bank — the local equivalent of the Federal Reserve — cut its 2026 GDP growth forecast to just 1.0%–1.75% in its June monetary policy report, down from 1.5%–2.5% three months ago. The bank kept its benchmark rate at 4.5%. The gloomier picture reflects weaker private investment, reduced government spending, and slower global demand. Separately, Chile's Autonomous Fiscal Council — the independent watchdog equivalent of the Congressional Budget Office — delivered a pointed warning this week: if current trends hold, government debt could hit 48% of GDP by the early 2030s. Investment banks are already penciling in a fiscal deficit of roughly 2.2% of GDP for this year, well above official targets.
+          </p>
+          <div class="story-links">
+            <a href="https://www.emol.com/noticias/Economia/2026/06/17/1203063/ipom-junio-banco-central-chile.html" target="_blank">Read more → Emol</a>
+            <a href="https://www.df.cl/economia-y-politica/macro/el-consejo-fiscal-refuerza-su-llamado-de-atencion-y-calcula-que-la-deuda" target="_blank">Read more → DF.cl</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 4: Seized crime money -->
+      <div class="story-card">
+        <div class="card-color-band" style="background: linear-gradient(90deg, #2a3820, #3d5230);"></div>
+        <div class="card-body">
+          <div class="story-kicker">Crime · Security</div>
+          <h3 class="card-headline">Nearly 4 Billion Pesos Seized from Organized Crime in Two Years — Where Does It All Go?</h3>
+          <p class="story-body">
+            Chile's PDI (the equivalent of the FBI) has seized close to 4 billion Chilean pesos (roughly US$4.3 million) from organized crime over the past two years, with 2024 marking the highest total yet. An investigation by Emol traces the bureaucratic journey of that money: it's frozen, assigned to legal proceedings, and — if conviction follows — can be redirected toward policing and social programs. The reporting offers a rare inside look at how a mid-sized Latin American country is trying to systematically dismantle the finances of transnational criminal organizations like the Tren de Aragua, rather than just making arrests.
+          </p>
+          <div class="story-links">
+            <a href="https://www.emol.com/noticias/Nacional/2026/06/21/1203349/dinero-incautado-que-pasa-pdi.html" target="_blank">Read more → Emol</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 5: Colombia presidential election reaction -->
+      <div class="story-card">
+        <div class="card-color-band" style="background: linear-gradient(90deg, #3a1c4a, #5a2a70);"></div>
+        <div class="card-body">
+          <div class="story-kicker">Regional · Latin America</div>
+          <h3 class="card-headline">Colombia's New Right-Wing President Elected — Markets React Cautiously</h3>
+          <p class="story-body">
+            Abelardo de la Espriella won Colombia's presidential election, continuing the regional trend toward center-right and right governments following Chile, Argentina, and Ecuador. Colombian markets reacted with cautious relief rather than jubilation: the dollar fell 2% against the peso and the stock exchange opened up 2.6%, but investors remain watchful about the new government's economic program. BioBioChile also reported the curious story of Peru's presidential runoff, where overseas votes — including from Chile's large Peruvian community — proved decisive in overcoming Keiko Fujimori's slim lead in domestic results.
+          </p>
+          <div class="story-links">
+            <a href="https://www.biobiochile.cl/noticias/economia/actualidad-economica/2026/06/22/los-mercados-y-sectores-economicas-se-toman-con-cautela-el-resultado-de-las-presidenciales-en-colombia.shtml" target="_blank">Read more → BioBioChile</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /stories-grid -->
+
+    <!-- INTERESTING / OFFBEAT -->
+    <div class="section-label" style="margin-top:30px;">Interesting &amp; Offbeat</div>
+    <div class="opinion-grid">
+
+      <div class="offbeat-card">
+        <div class="story-kicker" style="margin-bottom:8px;">Culture · Architecture</div>
+        <h3 class="offbeat-headline">A Santiaguino Just Won the Nobel Prize of Architecture</h3>
+        <p class="offbeat-body">
+          In March, Chilean architect Smiljan Radić Clarke was named the 2026 Pritzker Prize laureate — architecture's most prestigious honor, roughly its Nobel Prize. He's only the second Chilean to win the prize, after Alejandro Aravena took it home in 2016. Radić Clarke, 61, is better known in architectural circles than to the general public, which is somewhat the point: his best-known work internationally is the 2014 Serpentine Gallery Pavilion in London, an impossibly delicate translucent fiberglass shell perched on rough, massive stones. The Pritzker jury praised him for "reminding us that architecture is an art, in that it touches the very core of the human condition." Not a bad week to be Santiago.
+        </p>
+        <div class="story-links">
+          <a href="https://www.emol.com/noticias/Espectaculos/2026/03/12/1194096/smiljan-radic-pritzker-2026-perfil.html" target="_blank">Read more → Emol</a>
+          <a href="https://www.archdaily.com/1039553/smiljan-radic-clarke-receives-the-2026-pritzker-prize-the-artist-of-unspoken-architecture" target="_blank">Read more → ArchDaily</a>
+        </div>
+      </div>
+
+      <div class="offbeat-card">
+        <div class="story-kicker" style="margin-bottom:8px;">Tech · Business</div>
+        <h3 class="offbeat-headline">A Nobel Laureate Quit Google DeepMind and Triggered Its Biggest Stock Drop in 13 Months</h3>
+        <p class="offbeat-body">
+          When John Jumper — vice president of Google DeepMind and 2024 Nobel Prize winner in chemistry for AlphaFold — announced he was leaving to join a competitor, Google's stock suffered its sharpest single-day drop in over a year. The story, reported by BioBioChile, is a window into how intensely the AI talent wars have heated up: a single departure by a star researcher now moves markets. For anyone in Santiago working in tech or watching AI closely, it's a useful reminder that this competition has no obvious ceiling.
+        </p>
+        <div class="story-links">
+          <a href="https://www.biobiochile.cl/noticias/economia/actualidad-economica/2026/06/22/como-la-salida-de-un-ganador-del-nobel-hizo-que-google-sufriera-su-mayor-caida-bursatil-en-13-meses.shtml" target="_blank">Read more → BioBioChile</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- OPINION / EDITORIAL -->
+    <div class="section-label" style="margin-top:30px;">Opinion &amp; Editorial</div>
+    <div class="opinion-grid">
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">El Mostrador · Column · Center-Left</div>
+        <h3 class="opinion-headline">"The Constitutional Politics of Chile's National Reconstruction"</h3>
+        <p class="opinion-body">
+          A June 22 column in El Mostrador dissects Kast's flagship "Proyecto de Reconstrucción Nacional" — the omnibus bill that bundles taxes, immigration enforcement, housing, employment law, and higher-education financing into a single legislative package. The author argues that by framing Chile as economically and institutionally "broken," the government creates artificial urgency to justify bypassing the normal deliberative process each major reform deserves on its own. It's the Chilean equivalent of attaching every controversial rider to a single must-pass reconciliation bill and daring Congress to reject the whole thing. Critics from both left and right are uncomfortable with the all-or-nothing approach, even if they agree with parts of the agenda.
+        </p>
+        <div class="story-links">
+          <a href="context_260623_reconstruccion-nacional.html">→ Background: What is the Reconstrucción Nacional bill?</a>
+          <a href="https://www.elmostrador.cl/noticias/opinion/columnas/2026/06/22/la-politica-constitucional-de-la-reconstruccion-nacional-de-chile/" target="_blank">Read more → El Mostrador</a>
+        </div>
+      </div>
+
+      <div class="opinion-card">
+        <div class="opinion-outlet">Diario Financiero · Editorial · Center-Right / Business</div>
+        <h3 class="opinion-headline">"The IPoM Adjustment" — Reading the Central Bank's Pessimism</h3>
+        <p class="opinion-body">
+          DF.cl's editorial board takes stock of the Central Bank's June downgrade and calls it a "reality shock." The piece argues that the bank is right to revise down but that the government cannot hide behind global headwinds — weak domestic investment and fiscal uncertainty are homegrown problems that policy can actually address. It calls on the Kast administration to accelerate the structural reforms in the Reconstrucción Nacional rather than letting the legislative fight drag on: a 1% growth economy does not give the government the luxury of time.
+        </p>
+        <div class="story-links">
+          <a href="https://www.df.cl/opinion/editorial/el-ajuste-del-ipom" target="_blank">Read more → DF.cl</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /wrapper -->
+
+  <footer>
+    Chile Morning Digest · Tuesday, June 23, 2026 · Sources: Emol, La Tercera, BioBioChile, The Clinic, DF.cl, El Mostrador · Weather via public forecasts
+  </footer>
+
+</body>
+</html>
