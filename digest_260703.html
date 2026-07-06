@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chile Morning Digest — July 3, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #ddd9d1;
+  font-family: 'Source Serif 4', Georgia, serif;
+  color: #111;
+  line-height: 1.65;
+  font-size: 16px;
+}
+a { color: #b5802a; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+/* Masthead */
+.masthead {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 28px 20px 22px;
+}
+.masthead h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.masthead .tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #b5802a;
+  margin-top: 6px;
+}
+.masthead .date-line {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-top: 8px;
+}
+
+/* Weather Card */
+.weather-card {
+  background: #1a3a5c;
+  color: #fff;
+  border-radius: 10px;
+  padding: 22px 26px 20px;
+  margin: 20px 0 18px;
+}
+.weather-header {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7fb3d3;
+  margin-bottom: 8px;
+}
+.weather-temps {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.weather-temps .lo { color: #9ec7e2; }
+.weather-temps .sep { color: #4a7a9b; margin: 0 8px; }
+.weather-condition {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  color: #c4dff0;
+  margin-top: 5px;
+}
+.weather-note {
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.85rem;
+  color: #c8e0f0;
+  margin-top: 10px;
+  line-height: 1.55;
+}
+.expand-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  background: none;
+  border: none;
+  color: #7fb3d3;
+  cursor: pointer;
+  padding: 2px 0;
+  margin-top: 3px;
+  display: block;
+}
+.expand-btn:hover { text-decoration: underline; }
+
+/* Section label */
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #b5802a;
+  border-bottom: 2px solid #b5802a;
+  padding-bottom: 4px;
+  margin: 26px 0 14px;
+}
+
+/* Lead story */
+.lead-story {
+  background: #fff;
+  border-radius: 10px;
+  padding: 26px 28px;
+  margin-bottom: 16px;
+}
+.lead-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.lead-body .story-body {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+/* Story grid */
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 640px) {
+  .story-grid { grid-template-columns: 1fr; }
+  .masthead h1 { font-size: 1.8rem; }
+}
+
+.story-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+}
+.card-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+.card-body .story-body {
+  font-size: 0.875rem;
+  margin-bottom: 7px;
+  color: #222;
+}
+
+/* Story links */
+.story-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  align-items: center;
+  margin-top: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+}
+.story-links a { color: #b5802a; }
+.story-links a:hover { text-decoration: underline; }
+
+/* Offbeat */
+.offbeat-card {
+  background: #eeeae3;
+  border-radius: 10px;
+  padding: 20px;
+}
+.offbeat-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.offbeat-body {
+  font-size: 0.875rem;
+  margin-bottom: 7px;
+  color: #333;
+}
+
+/* Opinion */
+.opinion-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  border-left: 3px solid #b5802a;
+}
+.opinion-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.opinion-outlet {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  color: #888;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 9px;
+}
+.opinion-body {
+  font-size: 0.875rem;
+  margin-bottom: 7px;
+  color: #222;
+}
+.opinion-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: #aaa;
+  font-style: italic;
+  margin-top: 12px;
+  padding: 0 4px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  color: #999;
+  padding: 24px 0 12px;
+}
+footer a { color: #b5802a; }
+
+/* AIR QUALITY CHIP */
+.aqi-chip { display:inline-flex; align-items:center; gap:6px; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.02em; padding:5px 11px; border-radius:6px; margin-top:8px; }
+.aqi-good           { background:#e6f4ea; color:#1e6b3a; }
+.aqi-moderate       { background:#fbeecb; color:#856518; }
+.aqi-sensitive      { background:#fbe3cf; color:#9a541b; }
+.aqi-unhealthy      { background:#f8dada; color:#9a2b2b; }
+.aqi-very-unhealthy { background:#ece0f3; color:#5d2c7c; }
+.aqi-hazardous      { background:#ecd9d9; color:#6d1f1f; }
+/* PAYWALL TAG */
+.paywall-tag { font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.04em; color:#8a7a52; }
+/* SHARE BUTTON + TOAST */
+.share-btn { font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.02em; color:#b5802a; background:none; border:none; padding:0; cursor:pointer; }
+.share-btn:hover { text-decoration:underline; }
+.toast { position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#111; color:#fff; font-family:'Inter',sans-serif; font-size:13px; padding:10px 16px; border-radius:6px; opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:1000; }
+.toast.show { opacity:0.96; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <h1>Chile Morning Digest</h1>
+  <div class="tagline">Santiago &middot; English &middot; For Americans in Chile</div>
+  <div class="date-line">Friday, July 3, 2026</div>
+</header>
+
+<div class="wrapper">
+
+  <!-- WEATHER -->
+  <div class="weather-card">
+    <div class="weather-body">
+      <div class="weather-header">Santiago, Chile &mdash; Winter 2026</div>
+      <div class="weather-temps">
+        High 14°C / 57°F <span class="sep">&middot;</span> <span class="lo">Low 4°C / 39°F</span>
+      </div>
+      <div class="weather-condition">🌤 Partly sunny &mdash; cold nights, clear afternoons</div>
+      <div class="aqi-chip aqi-moderate">Las Condes air &middot; 60 &middot; moderate</div>
+      <p class="weather-note">A classic mid-winter day in Santiago. Cold mornings warm to a pleasant afternoon when the sun breaks through, but temperatures plunge sharply after sunset — layers are non-negotiable. Ventilate indoors when you can; wood-burning heaters in the surrounding valleys push particulates into the city basin each evening, which is keeping air quality in the moderate range. A light jacket is fine by midday; a proper coat is essential once the sun goes down.</p>
+    </div>
+  </div>
+
+  <!-- TOP HEADLINES -->
+  <div class="section-label">Top Headlines</div>
+
+  <!-- Lead story -->
+  <article class="lead-story">
+    <h2 class="lead-headline">Chile's Economy Flirts With Technical Recession After Fifth Straight Monthly Drop</h2>
+    <div class="lead-body">
+      <p class="story-body">Chile's central bank reported Wednesday that the country's economic activity index (IMACEC — think a monthly GDP snapshot) fell 0.9% in May, the fifth consecutive monthly decline. That puts Chile on the doorstep of a technical recession for the first time since the 2008 financial crisis. Unemployment hit 9.4% in the March–May period, a five-year high.</p>
+      <p class="story-body">Chile's main business federation (the CPC — roughly the Business Roundtable) called on President Kast, Congress, and the private sector to work in unison: "All the chips need to be on the table." Economists have slashed their full-year GDP growth projections to just 1–1.5%, down from earlier expectations. One investment bank cut its forecast to 1.3%.</p>
+      <p class="story-body">The Kast government — which took office March 11 after a landslide win on a platform of economic revival — says it inherited a "stalled country" and is pushing investment-friendly reforms: cutting permit timelines, reducing regulatory friction, and improving hiring conditions. The next two IMACEC readings will determine whether Chile can pull back from the edge.</p>
+    </div>
+    <div class="story-links">
+      <a href="https://www.biobiochile.cl/noticias/economia/actualidad-economica/2026/07/01/chile-entro-en-ralentizacion-expertos-advierten-que-el-pais-no-esta-lejos-de-una-recesion-tecnica.shtml" target="_blank">Read more &rarr; BioBioChile</a>
+      <a href="https://www.latercera.com/pulso/noticia/imacec-negativo-mayo-2026-recesion-tecnica/" target="_blank">Read more &rarr; La Tercera <span class="paywall-tag">🔒 paywall</span></a>
+      <a href="https://www.df.cl/economia-y-politica/macro/la-economia-chilena-cae-por-quinto-mes-se-acerca-a-una-recesion-tecnica-y" target="_blank">Read more &rarr; Diario Financiero <span class="paywall-tag">🔒 paywall</span></a>
+    </div>
+  </article>
+
+  <!-- Story grid -->
+  <div class="story-grid">
+
+    <!-- Story 2: Steinert / acusación constitucional -->
+    <article class="story-card">
+      <h3 class="card-headline">Ex-Security Minister Faces Impeachment Threat Over Police Snooping</h3>
+      <div class="card-body">
+        <p class="story-body">Chile's comptroller — a government watchdog with binding legal authority, think a GAO with teeth — ruled that former Security Minister Trinidad Steinert exceeded her powers by ordering national police to hand over intelligence files on detectives who were actively investigating a criminal network. The ruling found she violated the "duty of abstention," a legal requirement to stay out of cases where she had a conflict of interest.</p>
+        <p class="story-body">Left-wing opposition deputies are now openly discussing a constitutional accusation against Steinert — Chile's version of a congressional impeachment. The Communist Party says it has enough votes to advance one. The Senate president (a Kast ally) urged opponents to focus on "real problems." President Kast appealed Thursday for dialogue, calling security and jobs the country's true emergencies — not political warfare.</p>
+      </div>
+      <div class="story-links">
+        <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/07/02/hay-margen-politico-para-una-ac-oposicion-abre-debate-tras-dictamen-de-contraloria-contra-steinert.shtml" target="_blank">Read more &rarr; BioBioChile</a>
+        <a href="https://www.emol.com/noticias/Nacional/2026/07/02/1204517/nunez-y-posible-ac-steinert.html" target="_blank">Read more &rarr; Emol</a>
+        <a href="context_260527_acusacion-constitucional.html">&rarr; Background: Constitutional Accusation</a>
+        <a href="context_260621_contraloria.html">&rarr; Background: Chile's Contraloría</a>
+      </div>
+    </article>
+
+    <!-- Story 3: Tren de Aragua extradition -->
+    <article class="story-card">
+      <h3 class="card-headline">Top Venezuela Gang Boss Extradited from Colombia, Arrives in Santiago</h3>
+      <div class="card-body">
+        <p class="story-body">Dayonis Junior Orozco — alias "Botija" — landed in Chile Thursday after being extradited from Colombia, where he was captured in 2024. He is one of the highest-ranking leaders of the Tren de Aragua, the Venezuelan criminal organization that has spread across Latin America and carried out some of Chile's most high-profile recent murders.</p>
+        <p class="story-body">Orozco is accused of ordering the murders of Ronald Ojeda (a Venezuelan military defector who sought asylum in Chile and was abducted and killed in 2024) and a Chilean Carabineros captain. Justice Minister Martín Arrau called the extradition "a blow to the Tren de Aragua" and confirmed Orozco will be held in Chile's maximum-security prison (REPAS). Chile is actively building new high-security capacity to house transnational gang leaders.</p>
+      </div>
+      <div class="story-links">
+        <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/07/02/arrau-afirma-que-arribo-de-orozco-es-un-golpe-al-tren-de-aragua-y-anuncia-regimen-de-alta-seguridad.shtml" target="_blank">Read more &rarr; BioBioChile</a>
+        <a href="https://www.latercera.com/nacional/noticia/arrau-valora-extradicion-de-dayanis-orozco-y-afirma-que-carceles-chilenas-estan-preparadas-para-albergar-a-lideres-del-tren-de-aragua/" target="_blank">Read more &rarr; La Tercera</a>
+        <a href="context_260603_tren-de-aragua.html">&rarr; Background: The Tren de Aragua</a>
+      </div>
+    </article>
+
+    <!-- Story 4: Shadow economy -->
+    <article class="story-card">
+      <h3 class="card-headline">Chile's Shadow Economy Hits $5.7 Billion a Year — Business Groups Push 45-Point Plan</h3>
+      <div class="card-body">
+        <p class="story-body">A new report from Chile's main business federation (the CPC) estimates that illegal markets — contraband cigarettes, illicit online gambling, counterfeit goods, and criminal lending — generate $5.7 billion per year, roughly 1.5% of GDP. That's comparable to the entire economic output of one of Chile's midsize regions, and it costs the government $1.5 billion in lost tax revenue annually.</p>
+        <p class="story-body">The federation published 45 policy proposals to dismantle illicit markets, organized around three pillars: illicit trade, illicit finance, and illegal extraction of natural resources. Surveys attached to the report found that one in three Chileans has bought from informal markets, and 68% associate illegal commerce directly with organized crime.</p>
+      </div>
+      <div class="story-links">
+        <a href="https://www.emol.com/noticias/Economia/2026/07/02/1204484/mercados-ilicitos-chile-amenaza-estructural.html" target="_blank">Read more &rarr; Emol</a>
+        <a href="https://www.biobiochile.cl/noticias/economia/actualidad-economica/2026/07/02/la-economia-ilicita-mueve-mas-de-us5-700-millones-al-ano-y-es-una-amenaza-estructural-segun-la-cpc.shtml" target="_blank">Read more &rarr; BioBioChile</a>
+        <a href="https://www.df.cl/economia-y-politica/macro/grandes-empresarios-calculan-que-actividades-economicas-ilicitas-alcanzan" target="_blank">Read more &rarr; Diario Financiero <span class="paywall-tag">🔒 paywall</span></a>
+      </div>
+    </article>
+
+    <!-- Story 5: Ley Mordaza -->
+    <article class="story-card">
+      <h3 class="card-headline">"Gag Law 2.0" Keeps Moving in Senate Over Press Freedom Objections</h3>
+      <div class="card-body">
+        <p class="story-body">A Senate bill that would toughen criminal penalties for leaking materials from active criminal investigations is still advancing — despite a delay secured by left-leaning senators — and press freedom groups are alarmed. Chile's Federation of Media has called the bill a "democratic regression," warning that one contested clause could expose journalists to criminal prosecution simply for publishing leaked documents, even if they had no role in obtaining them.</p>
+        <p class="story-body">Backers insist the bill targets prosecutors, defense lawyers, and defendants with formal access to case files — not reporters. Critics say the language is broad enough to chill investigative journalism. Think of it as Chile's version of the US debate over reporter shield laws: who gets protected when publishing leaked government material, and who doesn't.</p>
+      </div>
+      <div class="story-links">
+        <a href="https://www.elmostrador.cl/noticias/pais/2026/07/03/no-obstante-los-cuestionamientos-ley-mordaza-2-0-sigue-avanzando/" target="_blank">Read more &rarr; El Mostrador</a>
+        <a href="https://www.latercera.com/nacional/noticia/pone-en-riesgo-la-libertad-de-prensa-federacion-de-medios-de-chile-rechaza-el-proyecto-ley-mordaza-20/" target="_blank">Read more &rarr; La Tercera</a>
+      </div>
+    </article>
+
+  </div><!-- /story-grid -->
+
+  <!-- INTERESTING & OFFBEAT -->
+  <div class="section-label">Interesting &amp; Offbeat</div>
+  <div class="story-grid">
+
+    <article class="offbeat-card">
+      <h3 class="offbeat-headline">Comic Con Chile Turns 15 — Opens Today in Santiago</h3>
+      <p class="offbeat-body">The 15th anniversary edition of Comic Con Chile opens today (July 3–5) at Espacio Riesco, drawing fans of film, TV, comics, gaming, and cosplay. This year's guests include Frankie Muniz — best known in the US as Malcolm from <em>Malcolm in the Middle</em> — and Carlos Villagrán, beloved across Latin America as "Quico" from the classic Mexican sitcom <em>El Chavo del 8</em>. The event is billed as the largest pop-culture gathering in Chile's history.</p>
+      <div class="story-links">
+        <a href="https://www.latercera.com/finde/noticia/comic-con-chile-2026-lo-que-debes-saber-de-la-nueva-edicion-del-evento-de-cultura-pop-y-entretenimiento/" target="_blank">Read more &rarr; La Tercera</a>
+        <a href="https://www.biobiochile.cl/noticias/artes-y-cultura/actualidad-cultural/2026/05/30/comic-con-chile-2026-confirma-a-frankie-muniz-y-carlos-villagran-como-sus-primeros-invitados.shtml" target="_blank">Read more &rarr; BioBioChile</a>
+      </div>
+    </article>
+
+    <article class="offbeat-card">
+      <h3 class="offbeat-headline">Cristiano Ronaldo's Mineral Water Hits Chilean Shelves</h3>
+      <p class="offbeat-body">Ursu 9 — the premium mineral water brand co-owned by soccer superstar Cristiano Ronaldo — has arrived in Chile, making it the first South American country to carry the product. The launch is timed to ride the World Cup's global spotlight. No word yet on whether drinking it will help you bend a free kick into the top corner.</p>
+      <div class="story-links">
+        <a href="https://www.biobiochile.cl/noticias/sociedad/curiosidades/2026/07/02/llega-ursu-9-agua-mineral-de-cristiano-ronaldo-chile-es-el-primer-pais-sudamericano-en-recibirla.shtml" target="_blank">Read more &rarr; BioBioChile</a>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- OPINION & EDITORIAL -->
+  <div class="section-label">Opinion &amp; Editorial</div>
+  <div class="story-grid">
+
+    <article class="opinion-card">
+      <h3 class="opinion-headline">"Twelve Years of Sermons, 100 Days of Reality"</h3>
+      <div class="opinion-outlet">El Mostrador &middot; Left-Leaning</div>
+      <p class="opinion-body">A columnist at El Mostrador takes stock of Kast's first 100 days, arguing that Chile's Republican Party "entered La Moneda as the backbone of a government without its own congressional majorities" — a situation familiar to any American who's watched a new president try to govern without controlling the House and Senate. After twelve years in opposition, preaching about what the left was doing wrong on crime, the economy, and governance, Kast's coalition is discovering that governing is harder than campaigning. The column is sharp but substantive — less a victory lap from the left than a genuine challenge to the right to show what it can actually deliver.</p>
+      <div class="story-links">
+        <a href="https://www.elmostrador.cl/noticias/opinion/columnas/2026/07/03/doce-anos-de-sermon-100-dias-de-realidad/" target="_blank">Read more &rarr; El Mostrador</a>
+      </div>
+    </article>
+
+  </div>
+  <p class="opinion-note">No standout right-leaning free column found today.</p>
+
+</div><!-- /wrapper -->
+
+<footer>
+  <p>Chile Morning Digest &mdash; <a href="archive.html">Browse the archive &nearr;</a></p>
+</footer>
+
+<script>
+(function(){
+  [
+    ['.weather-body', '.weather-note'],
+    ['.lead-body', '.story-body'],
+    ['.card-body', '.story-body'],
+    ['.offbeat-card', '.offbeat-body'],
+    ['.opinion-card', '.opinion-body']
+  ].forEach(function(pair){
+    document.querySelectorAll(pair[0]).forEach(function(container){
+      var paras = Array.from(container.querySelectorAll(pair[1]));
+      if (!paras.length) return;
+      var first = paras[0];
+      var m = first.innerHTML.match(/^([\s\S]*?[.!?])(\s+)(?=[A-ZÀ-Ü<])/);
+      if (!m && paras.length < 2) return;
+      if (m) {
+        first.innerHTML = m[1] +
+          '<span class="xmore" hidden>' + first.innerHTML.slice(m[1].length) + '</span>';
+      }
+      paras.slice(1).forEach(function(p){ p.hidden = true; });
+      var btn = document.createElement('button');
+      btn.className = 'expand-btn';
+      btn.textContent = 'More…';
+      btn.setAttribute('data-open', '0');
+      btn.addEventListener('click', function(){
+        var open = btn.getAttribute('data-open') === '1';
+        var xmore = first.querySelector('.xmore');
+        if (xmore) xmore.hidden = open;
+        paras.slice(1).forEach(function(p){ p.hidden = open; });
+        btn.textContent = open ? 'More…' : 'Less';
+        btn.setAttribute('data-open', open ? '0' : '1');
+      });
+      first.after(btn);
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  function storyOf(el){
+    return el.closest('.lead-story, .story-card, .offbeat-card, .opinion-card');
+  }
+  function textOf(story, sel){
+    var n = story.querySelector(sel);
+    return n ? n.textContent.replace(/\s+/g,' ').trim() : '';
+  }
+  function buildShareText(story, links){
+    var headline = textOf(story, '.lead-headline, .card-headline, .offbeat-headline, .opinion-headline');
+    var summary  = textOf(story, '.story-body, .offbeat-body, .opinion-body');
+    var anchors  = Array.from(links.querySelectorAll('a'));
+    var sources  = anchors.filter(function(a){ return a.getAttribute('target') === '_blank'; });
+    var context  = anchors.filter(function(a){ return a.getAttribute('target') !== '_blank'; });
+    var lines = [headline, '', summary];
+    if (sources.length){
+      lines.push('', 'Read more:');
+      sources.forEach(function(a){
+        var name = a.textContent.replace(/^\s*Read more\s*→\s*/i,'').replace(/\s+/g,' ').trim();
+        lines.push('• ' + name + ': ' + a.href);
+      });
+    }
+    if (context.length){
+      var c = context[0];
+      var title = c.textContent.replace(/^\s*→\s*Background:\s*/i,'').replace(/^\s*→\s*/,'').replace(/\s+/g,' ').trim();
+      lines.push('', 'Background: ' + title + ' ' + c.href);
+    }
+    lines.push('', '— via Chile Morning Digest · https://neal-jpg.github.io/chile-news/');
+    return lines.join('\n');
+  }
+  var toast;
+  function showToast(msg){
+    if (!toast){ toast = document.createElement('div'); toast.className = 'toast'; document.body.appendChild(toast); }
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+  }
+  document.querySelectorAll('.story-links').forEach(function(links){
+    var story = storyOf(links);
+    if (!story) return;
+    var btn = document.createElement('button');
+    btn.className = 'share-btn';
+    btn.type = 'button';
+    btn.textContent = 'Share';
+    btn.addEventListener('click', function(){
+      var text = buildShareText(story, links);
+      if (navigator.share){
+        navigator.share({ text: text }).catch(function(){});
+      } else if (navigator.clipboard){
+        navigator.clipboard.writeText(text).then(function(){ showToast('Copied to clipboard'); })
+          .catch(function(){ showToast('Copy failed'); });
+      } else {
+        showToast('Sharing not supported');
+      }
+    });
+    links.appendChild(btn);
+  });
+})();
+</script>
+
+</body>
+</html>
