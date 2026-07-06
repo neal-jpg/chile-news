@@ -34,7 +34,7 @@ html, body { margin: 0; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: var(--surface-0); color: var(--text-primary);
-  max-width: 520px; margin: 0 auto; padding-bottom: 40px;
+  max-width: 520px; margin: 0 auto; padding-bottom: 72px;
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
 }
@@ -136,6 +136,30 @@ main { padding: 4px 16px 8px; }
   pointer-events: none; transition: opacity .25s ease; z-index: 1000; }
 .toast.show { opacity: 0.97; }
 
+/* SAVE TOGGLE (per card, injected into .story-links) */
+.save-btn { font-family: inherit; font-size: 12px; font-weight: 600; color: var(--text-muted);
+  background: none; border: none; padding: 0; cursor: pointer; }
+.save-btn--on { color: var(--accent-text); }
+.save-btn:hover { text-decoration: underline; }
+
+/* TOP-LEVEL VIEWS (Articles / Saved) */
+.view { display: none; }
+.view--on { display: block; }
+.saved-empty { text-align: center; color: var(--text-muted); font-size: 13px; padding: 44px 24px; line-height: 1.6; }
+
+/* BOTTOM NAV */
+.nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 520px;
+  display: flex; border-top: 0.5px solid var(--border); background: var(--surface-2); z-index: 900; }
+.nav__item { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 8px 0 9px; font-family: inherit; font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
+  border: none; background: none; color: var(--text-muted); cursor: pointer; }
+.nav__item--on { color: var(--accent-text); }
+.nav__ico { font-size: 17px; line-height: 1; }
+.nav__badge { position: absolute; top: 3px; left: calc(50% + 7px); min-width: 16px; height: 16px; padding: 0 4px;
+  border-radius: 999px; background: var(--accent-text); color: var(--surface-2); font-size: 9px; font-weight: 700;
+  display: none; align-items: center; justify-content: center; }
+.nav__badge--show { display: inline-flex; }
+
 .note { font-size: 12px; color: var(--text-muted); font-style: italic; margin: 4px 0 2px; }
 
 footer { text-align: center; font-size: 11px; color: var(--text-muted); padding: 24px 16px 8px; }
@@ -150,13 +174,15 @@ footer a { color: var(--accent-text); text-decoration: none; }
   <span class="head__date">Monday<br>July 6, 2026 · Santiago</span>
 </header>
 
+<main>
+
+<div class="view view--on" data-view="articles">
+
 <nav class="tabs">
   <button class="tab tab--on" data-tab="news">News</button>
   <button class="tab" data-tab="events">Events</button>
   <button class="tab" data-tab="music">Music</button>
 </nav>
-
-<main>
 
 <!-- ======================= NEWS ======================= -->
 <section class="panel panel--on" data-panel="news">
@@ -282,6 +308,7 @@ footer a { color: var(--accent-text); text-decoration: none; }
   <div class="banner">🗓️&nbsp;<span><b>Around Santiago.</b> Winter school break (Jun 22–Jul 3) has just wrapped, so the marquee holiday programming is winding down — but the winter attractions below are still running. Tagged by your interests; <b>Kids</b> flagged first.</span></div>
 
   <article class="event-card">
+    <img class="card-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Parque%20Araucano.jpg?width=800" alt="Parque Araucano, Las Condes" loading="lazy" onerror="this.remove()">
     <div class="event-body-wrap">
       <div class="tags"><span class="tag tag--kids">Kids</span><span class="tag tag--int">❄️ Outdoors</span></div>
       <h3 class="event-headline">Coolslide: a 700 m² open-air ice rink in Parque Araucano</h3>
@@ -293,6 +320,7 @@ footer a { color: var(--accent-text); text-decoration: none; }
   </article>
 
   <article class="event-card">
+    <img class="card-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Museo%20Interactivo%20Mirador.jpg?width=800" alt="Museo Interactivo Mirador (MIM), La Granja" loading="lazy" onerror="this.remove()">
     <div class="event-body-wrap">
       <div class="tags"><span class="tag tag--kids">Kids</span></div>
       <h3 class="event-headline">MIM — the hands-on science museum, back to regular hours</h3>
@@ -304,6 +332,7 @@ footer a { color: var(--accent-text); text-decoration: none; }
   </article>
 
   <article class="event-card">
+    <img class="card-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Cerro%20San%20Crist%C3%B3bal.jpg?width=800" alt="Cerro San Cristóbal over Santiago" loading="lazy" onerror="this.remove()">
     <div class="event-body-wrap">
       <div class="tags"><span class="tag tag--int">❄️ Outdoors</span><span class="tag tag--kids">Kids</span></div>
       <h3 class="event-headline">Teleférico &amp; the new Pío Nono line on Cerro San Cristóbal</h3>
@@ -315,6 +344,7 @@ footer a { color: var(--accent-text); text-decoration: none; }
   </article>
 
   <article class="event-card">
+    <img class="card-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Centro%20Cultural%20Palacio%20de%20La%20Moneda.jpg?width=800" alt="Centro Cultural La Moneda, home of the Cineteca Nacional" loading="lazy" onerror="this.remove()">
     <div class="event-body-wrap">
       <div class="tags"><span class="tag tag--int">🎬 Cinema</span></div>
       <h3 class="event-headline">Arthouse anchors: Centro Arte Alameda &amp; Cineteca Nacional</h3>
@@ -404,7 +434,19 @@ footer a { color: var(--accent-text); text-decoration: none; }
 
 </section>
 
+</div><!-- /view articles -->
+
+<div class="view" data-view="saved">
+  <div class="sec" style="margin-top:8px;">Saved</div>
+  <div id="saved-list"></div>
+</div>
+
 </main>
+
+<nav class="nav">
+  <button class="nav__item nav__item--on" data-nav="articles"><span class="nav__ico">📰</span>Articles</button>
+  <button class="nav__item" data-nav="saved"><span class="nav__ico">🔖</span>Saved<span class="nav__badge" id="saved-badge"></span></button>
+</nav>
 
 <footer>
   Chile Morning · News · Events · Music · For Neal in Santiago · <a href="archive.html">Archive</a>
@@ -529,6 +571,135 @@ footer a { color: var(--accent-text); text-decoration: none; }
     });
     links.appendChild(btn);
   });
+})();
+</script>
+
+<script>
+/* Saved — bookmark any card from any tab; persisted in localStorage (survives across days) */
+(function(){
+  var KEY = 'chileMorningSaved';
+  var CARD_SEL = '.lead-story, .story-card, .offbeat-card, .opinion-card, .event-card, .music-card';
+  var HEAD_SEL = '.lead-headline, .card-headline, .offbeat-headline, .opinion-headline, .event-headline, .music-headline';
+  var BODY_SEL = '.story-body, .offbeat-body, .opinion-body, .event-body, .music-body';
+
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch(e){ return []; } }
+  function persist(){ try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e){} }
+  function hash(s){ var h=5381,i=s.length; while(i){ h=(h*33)^s.charCodeAt(--i); } return (h>>>0).toString(36); }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function textOf(card, sel){ var n = card.querySelector(sel); return n ? n.textContent.replace(/\s+/g,' ').trim() : ''; }
+  function sectionOf(card){
+    var p = card.closest('[data-panel]'); var n = p ? p.getAttribute('data-panel') : 'news';
+    return n.charAt(0).toUpperCase() + n.slice(1);
+  }
+  function linksHTMLOf(links){
+    var clone = links.cloneNode(true);
+    clone.querySelectorAll('.share-btn, .save-btn').forEach(function(b){ b.remove(); });
+    return clone.innerHTML.trim();
+  }
+  function dataOf(card){
+    var links = card.querySelector('.story-links');
+    var title = textOf(card, HEAD_SEL);
+    var section = sectionOf(card);
+    var img = card.querySelector('img.card-img');
+    var bodies = Array.prototype.map.call(card.querySelectorAll(BODY_SEL), function(b){
+      return b.textContent.replace(/\s+/g,' ').trim();
+    }).filter(Boolean);
+    return { id: hash(section + '|' + title), section: section, title: title,
+             summary: bodies.join(' '), img: img ? img.getAttribute('src') : '',
+             links: links ? linksHTMLOf(links) : '' };
+  }
+
+  var saved = load();
+  function isSaved(id){ return saved.some(function(s){ return s.id === id; }); }
+
+  var badge = document.getElementById('saved-badge');
+  function updateBadge(){
+    if (!badge) return;
+    badge.textContent = saved.length;
+    badge.classList.toggle('nav__badge--show', saved.length > 0);
+  }
+
+  var savedList = document.getElementById('saved-list');
+  function renderSaved(){
+    if (!savedList) return;
+    if (!saved.length){
+      savedList.innerHTML = '<div class="saved-empty">Nothing saved yet.<br>Tap <b>Save</b> on any story, event, or release to keep it here.</div>';
+      return;
+    }
+    savedList.innerHTML = saved.map(function(s){
+      var img = s.img ? '<img class="card-img" src="' + esc(s.img) + '" alt="" loading="lazy" onerror="this.remove()">' : '';
+      return '<article class="story-card">' + img +
+        '<div class="card-body">' +
+          '<div class="label">' + esc(s.section) + ' · Saved</div>' +
+          '<h3 class="card-headline">' + esc(s.title) + '</h3>' +
+          (s.summary ? '<p class="story-body">' + esc(s.summary) + '</p>' : '') +
+          '<div class="story-links">' + s.links +
+            '<button class="save-btn save-btn--on" type="button" data-remove="' + s.id + '">Remove</button>' +
+          '</div>' +
+        '</div></article>';
+    }).join('');
+  }
+
+  function reflectButton(id, on){
+    document.querySelectorAll('[data-view="articles"] .story-links .save-btn').forEach(function(b){
+      var card = b.closest(CARD_SEL);
+      if (card && dataOf(card).id === id){
+        b.textContent = on ? '✓ Saved' : 'Save';
+        b.classList.toggle('save-btn--on', on);
+      }
+    });
+  }
+
+  function toggle(card, btn){
+    var d = dataOf(card);
+    if (isSaved(d.id)){
+      saved = saved.filter(function(s){ return s.id !== d.id; });
+      btn.textContent = 'Save'; btn.classList.remove('save-btn--on');
+    } else {
+      saved.push(d);
+      btn.textContent = '✓ Saved'; btn.classList.add('save-btn--on');
+    }
+    persist(); updateBadge(); renderSaved();
+  }
+
+  // Inject a Save toggle into every article card
+  document.querySelectorAll('[data-view="articles"] .story-links').forEach(function(links){
+    var card = links.closest(CARD_SEL);
+    if (!card) return;
+    var d = dataOf(card);
+    var btn = document.createElement('button');
+    btn.className = 'save-btn' + (isSaved(d.id) ? ' save-btn--on' : '');
+    btn.type = 'button';
+    btn.textContent = isSaved(d.id) ? '✓ Saved' : 'Save';
+    btn.addEventListener('click', function(){ toggle(card, btn); });
+    links.appendChild(btn);
+  });
+
+  // Remove from within the Saved view
+  if (savedList){
+    savedList.addEventListener('click', function(e){
+      var rm = e.target.closest('[data-remove]');
+      if (!rm) return;
+      var id = rm.getAttribute('data-remove');
+      saved = saved.filter(function(s){ return s.id !== id; });
+      persist(); updateBadge(); renderSaved(); reflectButton(id, false);
+    });
+  }
+
+  // Bottom nav switching
+  var navItems = Array.prototype.slice.call(document.querySelectorAll('.nav__item'));
+  var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+  navItems.forEach(function(item){
+    item.addEventListener('click', function(){
+      var name = item.getAttribute('data-nav');
+      navItems.forEach(function(n){ n.classList.toggle('nav__item--on', n === item); });
+      views.forEach(function(v){ v.classList.toggle('view--on', v.getAttribute('data-view') === name); });
+      window.scrollTo(0, 0);
+    });
+  });
+
+  updateBadge();
+  renderSaved();
 })();
 </script>
 
