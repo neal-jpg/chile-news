@@ -3,70 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chile Morning Digest — Archive</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Chile Morning — Archive</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --surface-0: #f7f6f2; --surface-1: #efeee8; --surface-2: #ffffff;
+      --text-primary: #20201e; --text-secondary: #5f5e5a; --text-muted: #8a8880;
+      --border: #e2e0d8;
+      --accent-bg: #e6f1fb; --accent-text: #185fa5; --accent-border: #85b7eb;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --surface-0: #1a1a19; --surface-1: #242422; --surface-2: #2f2f2c;
+        --text-primary: #f2f1ec; --text-secondary: #b4b2a9; --text-muted: #888780;
+        --border: #3a3a37;
+        --accent-bg: #0c2f4d; --accent-text: #85b7eb; --accent-border: #185fa5;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
     body {
-      font-family: 'Source Serif 4', Georgia, serif;
-      background: #ddd9d1; color: #1a1a1a;
-      font-size: 17px; line-height: 1.7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--surface-0); color: var(--text-primary);
+      max-width: 520px; margin: 0 auto; padding-bottom: 40px;
+      -webkit-font-smoothing: antialiased; line-height: 1.5;
     }
-    header { background: #111; padding: 22px 24px 18px; text-align: center; }
-    .eyebrow {
-      font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase; color: #b5802a; margin-bottom: 6px;
-    }
-    .masthead-title {
-      font-family: 'Playfair Display', Georgia, serif; font-size: clamp(28px, 5vw, 44px);
-      font-weight: 700; color: #fffefb; letter-spacing: 0.01em;
-    }
-    .masthead-sub {
-      font-family: 'Inter', sans-serif; font-size: 12px; color: #888;
-      margin-top: 6px; letter-spacing: 0.05em;
-    }
-    .masthead-rule { width: 40px; height: 2px; background: #b5802a; margin: 12px auto 0; }
-    .wrapper { max-width: 980px; margin: 0 auto; padding: 32px 24px 56px; }
-    .backlink {
-      display: inline-block; margin-bottom: 26px;
-      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
-      color: #b5802a; text-decoration: none; letter-spacing: 0.03em;
-    }
+    .head { display: flex; align-items: center; gap: 8px; padding: 16px 16px 10px; }
+    .head__logo { color: var(--accent-text); font-size: 18px; }
+    .head__name { font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+    .head__sub { margin-left: auto; font-size: 12px; color: var(--text-muted); }
+    main { padding: 4px 16px 8px; }
+    .backlink { display: inline-block; margin: 4px 0 18px; font-size: 13px; font-weight: 600;
+      color: var(--accent-text); text-decoration: none; }
     .backlink:hover { text-decoration: underline; }
-    .section-label {
-      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
-      letter-spacing: 0.15em; text-transform: uppercase; color: #b5802a;
-      margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #111;
-    }
-    ul.archive { list-style: none; }
-    ul.archive li { border-bottom: 1px solid #c9c4ba; }
-    ul.archive a {
-      display: flex; flex-direction: column; gap: 3px; padding: 14px 4px;
-      text-decoration: none; color: inherit; transition: padding-left .15s ease, color .15s ease;
-    }
-    ul.archive a:hover { padding-left: 10px; }
-    ul.archive a:hover .arc-head { color: #b5802a; }
-    .arc-date { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #6b6b6b; }
-    .arc-head { font-size: 17px; line-height: 1.4; }
-    footer {
-      text-align: center; font-family: 'Inter', sans-serif; font-size: 11px;
-      color: #8a8579; padding: 24px; letter-spacing: 0.04em;
-    }
+    .sec { font-size: 11px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--accent-text); margin: 8px 0 12px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
+    ul.archive { list-style: none; padding: 0; margin: 0; }
+    ul.archive li { margin-bottom: 10px; }
+    ul.archive a { display: flex; flex-direction: column; gap: 4px;
+      background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px;
+      padding: 12px 14px; text-decoration: none; color: inherit; transition: border-color .15s ease; }
+    ul.archive a:hover { border-color: var(--accent-border); }
+    ul.archive a:hover .arc-head { color: var(--accent-text); }
+    .arc-date { font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-muted); }
+    .arc-head { font-size: 14.5px; font-weight: 600; line-height: 1.35; }
+    footer { text-align: center; font-size: 11px; color: var(--text-muted); padding: 24px 16px 8px; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="eyebrow">Chile Morning Digest</div>
-    <div class="masthead-title">Archive</div>
-    <div class="masthead-sub">Santiago, Chile</div>
-    <div class="masthead-rule"></div>
+  <header class="head">
+    <span class="head__logo">◈</span>
+    <span class="head__name">Chile Morning</span>
+    <span class="head__sub">Archive · Santiago</span>
   </header>
 
-  <div class="wrapper">
+  <main>
     <a class="backlink" href="index.html">&larr; Today's edition</a>
-    <div class="section-label">All Editions</div>
+    <div class="sec">All Editions</div>
     <ul class="archive">
         <li>
           <a href="digest_260706.html">
@@ -225,8 +217,8 @@
           </a>
         </li>
     </ul>
-  </div>
+  </main>
 
-  <footer>Chile Morning Digest &middot; Updated daily</footer>
+  <footer>Chile Morning &middot; Updated daily</footer>
 </body>
 </html>

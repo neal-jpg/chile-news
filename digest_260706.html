@@ -3,394 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chile Morning Digest — July 6, 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Chile Morning — July 6, 2026</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-size: 16px; }
-  body {
-    background: #ddd9d1;
-    font-family: 'Source Serif 4', Georgia, serif;
-    color: #222;
-    line-height: 1.65;
+:root {
+  --surface-0: #f7f6f2; --surface-1: #efeee8; --surface-2: #ffffff;
+  --text-primary: #20201e; --text-secondary: #5f5e5a; --text-muted: #8a8880;
+  --border: #e2e0d8;
+  --accent-bg: #e6f1fb; --accent-text: #185fa5; --accent-border: #85b7eb;
+  --success-bg: #eaf3de; --success-text: #3b6d11;
+  --warning-bg: #faeeda; --warning-text: #854f0b;
+  --danger-bg: #f8dada; --danger-text: #9a2b2b;
+  --gray-bg: #f1efe8;
+  --line: #378add;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-0: #1a1a19; --surface-1: #242422; --surface-2: #2f2f2c;
+    --text-primary: #f2f1ec; --text-secondary: #b4b2a9; --text-muted: #888780;
+    --border: #3a3a37;
+    --accent-bg: #0c2f4d; --accent-text: #85b7eb; --accent-border: #185fa5;
+    --success-bg: #1b3007; --success-text: #97c459;
+    --warning-bg: #3a2905; --warning-text: #ef9f27;
+    --danger-bg: #3a1414; --danger-text: #e58a8a;
+    --gray-bg: #2c2c29;
+    --line: #5aa0e6;
   }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--surface-0); color: var(--text-primary);
+  max-width: 520px; margin: 0 auto; padding-bottom: 40px;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+a { color: var(--accent-text); }
 
-  /* MASTHEAD */
-  .masthead {
-    background: #111;
-    color: #fff;
-    padding: 18px 20px 14px;
-    text-align: center;
-    border-bottom: 3px solid #b5802a;
-  }
-  .masthead-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 2rem;
-    font-weight: 900;
-    letter-spacing: -0.01em;
-    color: #fff;
-  }
-  .masthead-meta {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #b5802a;
-    margin-top: 5px;
-  }
-  .masthead-nav {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    margin-top: 7px;
-    color: #888;
-  }
-  .masthead-nav a { color: #b5802a; text-decoration: none; }
-  .masthead-nav a:hover { text-decoration: underline; }
+/* HEAD */
+.head { display: flex; align-items: center; gap: 8px; padding: 16px 16px 10px; }
+.head__logo { color: var(--accent-text); font-size: 18px; }
+.head__name { font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+.head__date { margin-left: auto; font-size: 12px; color: var(--text-muted); text-align: right; }
 
-  /* CONTAINER */
-  .container {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 0 18px 52px;
-  }
+/* TABS (sections) */
+.tabs { display: flex; gap: 6px; padding: 0 16px 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { flex: 0 0 auto; font-family: inherit; font-size: 13px; padding: 7px 15px; border-radius: 999px; white-space: nowrap;
+  border: 0.5px solid var(--border); color: var(--text-secondary); background: transparent; cursor: pointer; }
+.tab--on { background: var(--accent-bg); color: var(--accent-text); border-color: var(--accent-border); font-weight: 600; }
 
-  /* WEATHER CARD */
-  .weather-card {
-    background: linear-gradient(135deg, #1a3a5c 0%, #2b567a 100%);
-    color: #fff;
-    padding: 20px 24px 18px;
-    border-radius: 8px;
-    margin: 22px 0 28px;
-  }
-  .weather-glance {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px 18px;
-  }
-  .weather-place {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #93bde0;
-  }
-  .weather-temps {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: #fff;
-  }
-  .weather-condition {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    color: #c8e0f4;
-  }
-  .weather-note {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    color: #b0d0ea;
-    margin-top: 10px;
-    line-height: 1.55;
-  }
+main { padding: 4px 16px 8px; }
+.panel { display: none; }
+.panel--on { display: block; }
 
-  /* AIR QUALITY CHIP */
-  .aqi-chip { display:inline-flex; align-items:center; gap:6px; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.02em; padding:5px 11px; border-radius:6px; margin-top:8px; }
-  .aqi-good           { background:#e6f4ea; color:#1e6b3a; }
-  .aqi-moderate       { background:#fbeecb; color:#856518; }
-  .aqi-sensitive      { background:#fbe3cf; color:#9a541b; }
-  .aqi-unhealthy      { background:#f8dada; color:#9a2b2b; }
-  .aqi-very-unhealthy { background:#ece0f3; color:#5d2c7c; }
-  .aqi-hazardous      { background:#ecd9d9; color:#6d1f1f; }
+/* BANNER (per-tab intro) */
+.banner { display: flex; align-items: flex-start; gap: 7px; font-size: 12.5px; color: var(--text-secondary);
+  background: var(--gray-bg); border-radius: 8px; padding: 9px 11px; margin: 6px 0 14px; line-height: 1.45; }
+.banner b { color: var(--text-primary); font-weight: 600; }
 
-  /* PAYWALL TAG */
-  .paywall-tag { font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.04em; color:#8a7a52; }
+/* SECTION LABEL */
+.sec { font-size: 11px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--accent-text); margin: 26px 0 12px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
+.sec:first-of-type { margin-top: 8px; }
 
-  /* SHARE BUTTON + TOAST */
-  .share-btn { font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.02em; color:#b5802a; background:none; border:none; padding:0; cursor:pointer; }
-  .share-btn:hover { text-decoration:underline; }
-  .toast { position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#111; color:#fff; font-family:'Inter',sans-serif; font-size:13px; padding:10px 16px; border-radius:6px; opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:1000; }
-  .toast.show { opacity:0.96; }
+/* WEATHER */
+.weather { background: var(--accent-bg); border: 0.5px solid var(--accent-border); border-radius: 12px;
+  padding: 13px 15px; margin: 4px 0 16px; }
+.weather__place { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-text); }
+.weather__temps { font-size: 19px; font-weight: 600; margin: 5px 0 3px; color: var(--text-primary); }
+.weather__cond { font-size: 13px; color: var(--text-secondary); }
+.weather__note { font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; margin: 9px 0 0; }
 
-  /* EXPAND BUTTON */
-  .expand-btn {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: #b5802a;
-    background: none;
-    border: none;
-    padding: 3px 0 0;
-    cursor: pointer;
-    display: inline-block;
-  }
-  .expand-btn:hover { text-decoration: underline; }
-  .weather-card .expand-btn { color: #93bde0; }
+/* AQI CHIP */
+.aqi-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.02em; padding: 4px 10px; border-radius: 6px; margin-top: 9px; }
+.aqi-good           { background: var(--success-bg); color: var(--success-text); }
+.aqi-moderate       { background: var(--warning-bg); color: var(--warning-text); }
+.aqi-sensitive      { background: var(--warning-bg); color: var(--warning-text); }
+.aqi-unhealthy      { background: var(--danger-bg); color: var(--danger-text); }
+.aqi-very-unhealthy { background: var(--danger-bg); color: var(--danger-text); }
+.aqi-hazardous      { background: var(--danger-bg); color: var(--danger-text); }
 
-  /* SECTION HEADER */
-  .section-header {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #111;
-    border-left: 3px solid #b5802a;
-    padding-left: 10px;
-    margin: 34px 0 16px;
-  }
+/* CARDS (shared editorial card) */
+.lead-story, .story-card, .offbeat-card, .opinion-card, .event-card, .music-card {
+  background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px;
+  overflow: hidden; margin-bottom: 12px; }
+.opinion-card { border-left: 3px solid var(--accent-border); }
+.card-img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-1); }
+.lead-body, .card-body, .offbeat-body-wrap, .opinion-body-wrap, .event-body-wrap, .music-body-wrap {
+  padding: 13px 15px 12px; }
 
-  /* LEAD STORY */
-  .lead-story {
-    background: #fff;
-    border-radius: 6px;
-    overflow: hidden;
-    margin-bottom: 18px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.08);
-  }
-  .lead-body {
-    padding: 24px 26px 18px;
-  }
-  .lead-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #b5802a;
-    margin-bottom: 7px;
-  }
-  .lead-headline {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    line-height: 1.22;
-    color: #111;
-    margin-bottom: 14px;
-  }
+.label { font-size: 10px; font-weight: 700; letter-spacing: 0.11em; text-transform: uppercase;
+  color: var(--accent-text); margin-bottom: 6px; }
+.lead-headline { font-size: 20px; font-weight: 600; line-height: 1.28; margin: 0 0 9px; color: var(--text-primary); }
+.card-headline, .offbeat-headline, .event-headline, .music-headline {
+  font-size: 15.5px; font-weight: 600; line-height: 1.32; margin: 0 0 8px; color: var(--text-primary); }
+.opinion-headline { font-size: 15px; font-weight: 600; font-style: italic; line-height: 1.32; margin: 0 0 5px; color: var(--text-primary); }
 
-  /* STORY BODY (shared) */
-  .story-body {
-    font-size: 0.95rem;
-    color: #333;
-    line-height: 1.68;
-    margin-bottom: 10px;
-  }
+.story-body, .offbeat-body, .opinion-body, .event-body, .music-body {
+  font-size: 13.5px; line-height: 1.62; color: var(--text-secondary); margin: 0 0 9px; }
+.story-body:last-of-type, .offbeat-body:last-of-type, .opinion-body:last-of-type,
+.event-body:last-of-type, .music-body:last-of-type { margin-bottom: 0; }
 
-  /* STORY LINKS (shared) */
-  .story-links {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 14px;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    margin-top: 12px;
-    padding-top: 10px;
-    border-top: 1px solid #eee;
-  }
-  .story-links a {
-    color: #666;
-    text-decoration: none;
-  }
-  .story-links a:hover { color: #b5802a; text-decoration: underline; }
-  .context-link {
-    color: #b5802a !important;
-    font-weight: 600;
-  }
+.opinion-outlet { font-size: 10.5px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 9px; }
 
-  /* STORIES GRID */
-  .stories-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .stories-grid > .story-card:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-  }
-  @media (max-width: 640px) {
-    .stories-grid { grid-template-columns: 1fr; }
-    .stories-grid > .story-card:last-child:nth-child(odd) { grid-column: auto; }
-  }
+/* TAGS */
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 9px; }
+.tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 3px; }
+.tag--kids   { background: var(--success-bg); color: var(--success-text); }
+.tag--genre  { background: var(--accent-bg); color: var(--accent-text); }
+.tag--int    { background: var(--gray-bg); color: var(--text-secondary); }
 
-  /* STORY CARD */
-  .story-card {
-    background: #fff;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.08);
-    display: flex;
-    flex-direction: column;
-  }
-  .card-body {
-    padding: 18px 20px 14px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .card-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #b5802a;
-    margin-bottom: 5px;
-  }
-  .card-headline {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.08rem;
-    font-weight: 700;
-    line-height: 1.3;
-    color: #111;
-    margin-bottom: 10px;
-  }
-  .card-body .story-links { margin-top: auto; }
+/* STORY LINKS */
+.story-links { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 13px;
+  margin-top: 11px; padding-top: 10px; border-top: 0.5px solid var(--border); font-size: 12px; }
+.story-links a { color: var(--text-muted); text-decoration: none; }
+.story-links a:hover { color: var(--accent-text); text-decoration: underline; }
+.context-link { color: var(--accent-text) !important; font-weight: 600; }
+.paywall-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; color: var(--text-muted); }
 
-  /* OFFBEAT */
-  .offbeat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  @media (max-width: 640px) {
-    .offbeat-grid { grid-template-columns: 1fr; }
-  }
-  .offbeat-card {
-    background: #fff;
-    border-radius: 6px;
-    padding: 18px 20px 14px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.08);
-  }
-  .offbeat-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #b5802a;
-    margin-bottom: 5px;
-  }
-  .offbeat-headline {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.08rem;
-    font-weight: 700;
-    line-height: 1.3;
-    color: #111;
-    margin-bottom: 10px;
-  }
-  .offbeat-body {
-    font-size: 0.95rem;
-    color: #333;
-    line-height: 1.68;
-    margin-bottom: 10px;
-  }
+/* EXPAND + SHARE */
+.expand-btn { font-family: inherit; font-size: 12px; font-weight: 600; color: var(--accent-text);
+  background: none; border: none; padding: 4px 0 0; cursor: pointer; display: inline-block; }
+.expand-btn:hover { text-decoration: underline; }
+.share-btn { font-family: inherit; font-size: 12px; font-weight: 600; color: var(--accent-text);
+  background: none; border: none; padding: 0; cursor: pointer; }
+.share-btn:hover { text-decoration: underline; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--text-primary);
+  color: var(--surface-0); font-size: 13px; padding: 10px 16px; border-radius: 8px; opacity: 0;
+  pointer-events: none; transition: opacity .25s ease; z-index: 1000; }
+.toast.show { opacity: 0.97; }
 
-  /* OPINION */
-  .opinion-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  @media (max-width: 640px) {
-    .opinion-grid { grid-template-columns: 1fr; }
-  }
-  .opinion-card {
-    background: #fff;
-    border-radius: 6px;
-    padding: 18px 20px 14px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.08);
-    border-left: 3px solid #b5802a;
-  }
-  .opinion-headline {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    font-style: italic;
-    line-height: 1.3;
-    color: #111;
-    margin-bottom: 6px;
-  }
-  .opinion-outlet {
-    font-family: 'Inter', sans-serif;
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: #999;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .opinion-body {
-    font-size: 0.9rem;
-    color: #444;
-    line-height: 1.65;
-    margin-bottom: 10px;
-  }
+.note { font-size: 12px; color: var(--text-muted); font-style: italic; margin: 4px 0 2px; }
 
-  /* OPINION NOTE */
-  .opinion-note {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    color: #999;
-    font-style: italic;
-    margin-top: 12px;
-  }
-
-  /* FOOTER */
-  .page-footer {
-    text-align: center;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: #aaa;
-    padding: 20px 16px 16px;
-    border-top: 1px solid #ccc;
-    margin-top: 36px;
-  }
-  .page-footer a { color: #b5802a; text-decoration: none; }
-  .page-footer a:hover { text-decoration: underline; }
-
-  @media (max-width: 600px) {
-    .masthead-title { font-size: 1.45rem; }
-    .lead-headline { font-size: 1.25rem; }
-    .container { padding: 0 12px 36px; }
-    .lead-body { padding: 18px 16px 14px; }
-  }
+footer { text-align: center; font-size: 11px; color: var(--text-muted); padding: 24px 16px 8px; }
+footer a { color: var(--accent-text); text-decoration: none; }
 </style>
 </head>
 <body>
 
-<header class="masthead">
-  <div class="masthead-title">Chile Morning Digest</div>
-  <div class="masthead-meta">Monday, July 6, 2026 &nbsp;·&nbsp; Santiago</div>
-  <div class="masthead-nav"><a href="archive.html">↗ Browse the archive</a></div>
+<header class="head">
+  <span class="head__logo">◈</span>
+  <span class="head__name">Chile Morning</span>
+  <span class="head__date">Monday<br>July 6, 2026 · Santiago</span>
 </header>
 
-<div class="container">
+<nav class="tabs">
+  <button class="tab tab--on" data-tab="news">News</button>
+  <button class="tab" data-tab="events">Events</button>
+  <button class="tab" data-tab="music">Music</button>
+</nav>
+
+<main>
+
+<!-- ======================= NEWS ======================= -->
+<section class="panel panel--on" data-panel="news">
 
   <!-- WEATHER -->
-  <div class="weather-card weather-body">
-    <div class="weather-glance">
-      <span class="weather-place">Santiago, Chile &nbsp;·&nbsp; Winter</span>
-      <span class="weather-temps">5° → 18°C &nbsp;/&nbsp; 41° → 64°F</span>
-      <span class="weather-condition">Clear and cold. Frost risk overnight.</span>
-    </div>
-    <div class="aqi-chip aqi-moderate">Las Condes air · 60 &nbsp;moderate</div>
-    <p class="weather-note">A textbook Santiago winter day: near-freezing mornings that ease into comfortable, sunny afternoons. Frost is possible overnight and into early morning — dress in layers and have a heavier coat ready for the commute. The moderate AQI of 60 reflects typical winter wood-burning stove smoke and cold-air inversions trapping particles in the valley; sensitive groups should limit prolonged outdoor exertion in the morning. No significant precipitation expected today.</p>
+  <div class="weather weather-body">
+    <div class="weather__place">Santiago · Winter</div>
+    <div class="weather__temps">5° → 18°C &nbsp;/&nbsp; 41° → 64°F</div>
+    <div class="weather__cond">Clear and cold. Frost risk overnight.</div>
+    <div class="aqi-chip aqi-moderate">Las Condes air · 60 moderate</div>
+    <p class="weather__note">A textbook Santiago winter day: near-freezing mornings that ease into comfortable, sunny afternoons. Frost is possible overnight and into early morning — dress in layers and keep a heavier coat ready for the commute. The moderate AQI of 60 reflects typical winter wood-smoke and cold-air inversions trapping particles in the valley; sensitive groups should limit prolonged morning exertion. No significant precipitation expected.</p>
   </div>
 
-  <!-- TOP HEADLINES -->
-  <h2 class="section-header">Top Headlines</h2>
+  <div class="sec">Top Headlines</div>
 
-  <!-- Lead Story -->
+  <!-- Lead -->
   <article class="lead-story">
     <div class="lead-body">
-      <div class="lead-label">Politics &amp; Legislature</div>
+      <div class="label">Politics &amp; Legislature</div>
       <h2 class="lead-headline">Kast's flagship megarreforma hits its critical Senate amendment deadline today</h2>
-      <p class="story-body">Today is a pivotal day for the biggest legislative bet of President José Antonio Kast's young government. By 8 PM tonight, the Senate's Environment Committee must finalize its proposed amendments to the so-called megarreforma — the National Reconstruction and Economic Development bill that bundles tax cuts, investment incentives, fire-damage reconstruction aid, and deregulatory changes into a single sweeping package. The Labor Committee has until Wednesday; the Finance Committee closes July 10. After that, the full Senate votes the bill article by article.</p>
-      <p class="story-body">The stakes are high. The bill passed its first Senate vote on June 24 by a razor-thin 26–23 margin — essentially a party-line vote where every defection matters. Negotiations have been contentious: Finance Minister Jorge Quiroz initially resisted a cross-party working table for weeks before Senate President Paulina Núñez (RN) brokered one last week, extending the amendment deadline to allow more time for deals on the tax provisions. The government's central ask — a gradual reduction in corporate tax rates and a new form of tax stability for investors — remains contested even among center-right senators. Think of this as the Chile equivalent of a US budget reconciliation process: it only takes one or two defections to collapse the whole thing.</p>
+      <p class="story-body">Today is pivotal for the biggest legislative bet of President José Antonio Kast's young government. By 8 PM tonight, the Senate's Environment Committee must finalize amendments to the so-called megarreforma — the National Reconstruction and Economic Development bill bundling tax cuts, investment incentives, fire-reconstruction aid, and deregulation into one sweeping package. The Labor Committee has until Wednesday; Finance closes July 10. Then the full Senate votes article by article.</p>
+      <p class="story-body">The stakes are high. The bill cleared its first Senate vote June 24 by a razor-thin 26–23 — essentially party-line, so every defection matters. Negotiations have been rough: Finance Minister Jorge Quiroz resisted a cross-party table for weeks before Senate President Paulina Núñez (RN) brokered one, extending the deadline for deals on the tax provisions. Think of this as Chile's version of US budget reconciliation: one or two defections can sink the whole thing.</p>
       <div class="story-links">
         <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/07/03/mesa-politica-por-megarreforma-alcanza-acuerdo-y-extiende-plazo-para-indicaciones.shtml" target="_blank">Read more → BioBioChile</a>
         <a href="https://radio.uchile.cl/2026/07/05/oficialismo-presiona-por-aprobacion-de-megarreforma-y-fragmenta-a-la-oposicion-en-el-senado/" target="_blank">Read more → Radio U. de Chile</a>
@@ -399,111 +187,256 @@
     </div>
   </article>
 
-  <!-- Stories Grid -->
-  <div class="stories-grid">
-
-    <!-- Story 2: Coalition tensions -->
-    <article class="story-card">
-      <div class="card-body">
-        <div class="card-label">Politics</div>
-        <h3 class="card-headline">Libertarian leader fires warning shot at Kast's coalition partners</h3>
-        <p class="story-body">Johannes Kaiser, head of the small but vocal Libertarian National Party (PNL), declared Sunday that President Kast "cannot do without Chile Vamos but shouldn't let them set the pace." The comment landed like a grenade inside an already tense governing alliance. Chile Vamos — the traditional center-right bloc that is the largest wing of the coalition — fired back: "You can't have it both ways. Either join the government or stop trying to steer it from outside."</p>
-        <p class="story-body">The spat was ignited days earlier when Chile Vamos senators voted to sink a constitutional accusation against former Boric-era finance minister Nicolás Grau — a move that infuriated the libertarian and Partido Republicano wings, who had pushed the accusation to punish Grau over disputed fiscal figures. Think of it as libertarian-aligned Republicans telling a more establishment GOP president that his party's moderates are too slow — while refusing to formally join the caucus. Kast, who met coalition leaders last week to try to smooth things over, floated the idea of creating a formal coalition structure, but no deal has been reached.</p>
-        <div class="story-links">
-          <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/07/05/johannes-kaiser-kast-no-puede-prescindir-de-chile-vamos-pese-a-que-siguen-peleando-batallas-de-los-90.shtml" target="_blank">Read more → BioBioChile</a>
-          <a href="https://www.latercera.com/politica/noticia/johannes-kaiser-kast-no-puede-prescindir-de-chile-vamos-pero-otra-cosa-es-dejar-que-ellos-establezcan-el-ritmo/" target="_blank">Read more → La Tercera <span class="paywall-tag">🔒 paywall</span></a>
-          <a href="context_260527_acusacion-constitucional.html" class="context-link">→ Background: What is a constitutional accusation?</a>
-        </div>
+  <!-- Story 2 -->
+  <article class="story-card">
+    <div class="card-body">
+      <div class="label">Politics</div>
+      <h3 class="card-headline">Libertarian leader fires warning shot at Kast's coalition partners</h3>
+      <p class="story-body">Johannes Kaiser, head of the small but vocal Libertarian National Party (PNL), declared Sunday that President Kast "cannot do without Chile Vamos but shouldn't let them set the pace." Inside an already tense governing alliance, the comment landed like a grenade. Chile Vamos — the traditional center-right bloc, the largest wing of the coalition — fired back: "Either join the government or stop trying to steer it from outside."</p>
+      <p class="story-body">The spat was ignited days earlier when Chile Vamos senators voted to sink a constitutional accusation against former Boric-era finance minister Nicolás Grau — infuriating the libertarian and Republican wings who had pushed it. Think of it as libertarian-aligned Republicans telling an establishment GOP president his moderates are too slow, while refusing to formally join the caucus.</p>
+      <div class="story-links">
+        <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/07/05/johannes-kaiser-kast-no-puede-prescindir-de-chile-vamos-pese-a-que-siguen-peleando-batallas-de-los-90.shtml" target="_blank">Read more → BioBioChile</a>
+        <a href="https://www.latercera.com/politica/noticia/johannes-kaiser-kast-no-puede-prescindir-de-chile-vamos-pero-otra-cosa-es-dejar-que-ellos-establezcan-el-ritmo/" target="_blank">Read more → La Tercera <span class="paywall-tag">🔒 paywall</span></a>
+        <a href="context_260527_acusacion-constitucional.html" class="context-link">→ Background: Constitutional accusation</a>
       </div>
-    </article>
+    </div>
+  </article>
 
-    <!-- Story 3: Economy -->
-    <article class="story-card">
-      <div class="card-body">
-        <div class="card-label">Economy</div>
-        <h3 class="card-headline">Finance minister: Chile dodges technical recession as activity finally turns positive</h3>
-        <p class="story-body">Finance Minister Jorge Quiroz said Sunday that Chile will avoid a "technical recession" — two consecutive quarters of negative GDP growth — because June's monthly activity index (Imacec) should come in positive, ending a five-month losing streak. The news is a relief for a government under pressure: Kast won the presidency partly on a promise to revive growth, and a near-recession in his first months has been a political liability.</p>
-        <p class="story-body">The caveats are substantial. The government has already cut its full-year growth forecast from 4% down to 1.8%, and Quiroz acknowledged unemployment could reach 10%. Quiroz did point to some positives: $16 billion in investment projects have been approved through the permitting system (SEIA), a record, and the capital-goods investment pipeline is up 27% over five years. But those numbers won't show up in jobs or consumer spending quickly. The megarreforma's tax cuts and investment guarantees are intended to be the growth catalyst — making today's Senate deadline especially consequential.</p>
-        <div class="story-links">
-          <a href="https://www.cooperativa.cl/noticias/economia/crecimiento/chile/quiroz-asegura-que-chile-se-salvara-de-la-recesion-tecnica/2026-07-05/095549.html" target="_blank">Read more → Cooperativa</a>
-          <a href="https://www.df.cl/economia-y-politica/actualidad/kast-aspira-a-que-proyecto-miscelaneo-se-apruebe-en-julio-y-le-resta" target="_blank">Read more → Diario Financiero <span class="paywall-tag">🔒 paywall</span></a>
-        </div>
+  <!-- Story 3 -->
+  <article class="story-card">
+    <div class="card-body">
+      <div class="label">Economy</div>
+      <h3 class="card-headline">Finance minister: Chile dodges technical recession as activity turns positive</h3>
+      <p class="story-body">Finance Minister Jorge Quiroz said Sunday that Chile will avoid a "technical recession" — two straight quarters of negative GDP — because June's monthly activity index (Imacec) should come in positive, ending a five-month losing streak. It's a relief for a government that won partly on a promise to revive growth, only to face a near-recession in its first months.</p>
+      <p class="story-body">The caveats are big. The government already cut its full-year growth forecast from 4% to 1.8%, and Quiroz conceded unemployment could hit 10%. He pointed to positives — a record $16 billion in investment projects approved through permitting, a capital-goods pipeline up 27% over five years — but those won't reach jobs or spending fast. The megarreforma's tax cuts are meant to be the catalyst, making today's Senate deadline especially consequential.</p>
+      <div class="story-links">
+        <a href="https://www.cooperativa.cl/noticias/economia/crecimiento/chile/quiroz-asegura-que-chile-se-salvara-de-la-recesion-tecnica/2026-07-05/095549.html" target="_blank">Read more → Cooperativa</a>
+        <a href="https://www.df.cl/economia-y-politica/actualidad/kast-aspira-a-que-proyecto-miscelaneo-se-apruebe-en-julio-y-le-resta" target="_blank">Read more → Diario Financiero <span class="paywall-tag">🔒 paywall</span></a>
       </div>
-    </article>
+    </div>
+  </article>
 
-    <!-- Story 4: USAR / Venezuela -->
-    <article class="story-card">
-      <div class="card-body">
-        <div class="card-label">International · Humanitarian</div>
-        <h3 class="card-headline">45 Chilean rescue workers return after pulling a man alive from Venezuela rubble — 8 days in</h3>
-        <p class="story-body">Chile's USAR (Urban Search and Rescue) firefighter team returned home July 4 to a hero's welcome after one of the unit's most dramatic missions. They found Hernán Gil Flores alive in the underground parking level of a collapsed shopping mall in La Guaira, Venezuela — eight days after devastating double earthquakes struck on June 24. The rescue required more than 70 consecutive hours of work. Chile also dispatched three humanitarian air missions carrying 35,000 vaccines, medicine, food, and emergency supplies.</p>
-        <p class="story-body">The mission is diplomatically notable. Chile–Venezuela relations have been frigid for years — Kast is openly and loudly anti-Maduro. Yet the government quickly authorized the rescue operation, and Kast personally called the brigadiers from Montevideo to express support. Worth knowing: Chile's bomberos (firefighters) are entirely volunteer-run — one of the distinctive features of Chilean civil society. These 45 people have day jobs and gave 10 days of their lives to save a stranger in a country their president routinely condemns.</p>
-        <div class="story-links">
-          <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/07/04/reciben-a-los-45-bomberos-del-equipo-usar-que-participaron-en-mision-humanitaria-en-venezuela.shtml" target="_blank">Read more → BioBioChile</a>
-          <a href="https://www.theclinic.cl/2026/07/04/el-tercer-vuelo-de-ayuda-humanitaria-de-chile-a-venezuela-35-mil-vacunas-medicamentos-alimentos-kits-de-higiene-y-carpas/" target="_blank">Read more → The Clinic</a>
-        </div>
+  <!-- Story 4 -->
+  <article class="story-card">
+    <div class="card-body">
+      <div class="label">International · Humanitarian</div>
+      <h3 class="card-headline">45 Chilean rescuers return after pulling a man alive from Venezuela rubble — 8 days in</h3>
+      <p class="story-body">Chile's USAR (Urban Search and Rescue) firefighter team returned home July 4 to a hero's welcome after one of its most dramatic missions: finding Hernán Gil Flores alive in the underground parking of a collapsed mall in La Guaira, Venezuela — eight days after the June 24 double earthquakes. The rescue took more than 70 consecutive hours. Chile also sent three humanitarian flights with 35,000 vaccines, medicine, food and supplies.</p>
+      <p class="story-body">It's diplomatically notable: Chile–Venezuela relations have been frigid, and Kast is loudly anti-Maduro — yet the government fast-tracked the mission, and Kast phoned the brigadiers from Montevideo. Worth knowing: Chile's bomberos are entirely volunteer-run. These 45 people have day jobs and gave 10 days to save a stranger in a country their president routinely condemns.</p>
+      <div class="story-links">
+        <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/07/04/reciben-a-los-45-bomberos-del-equipo-usar-que-participaron-en-mision-humanitaria-en-venezuela.shtml" target="_blank">Read more → BioBioChile</a>
+        <a href="https://www.theclinic.cl/2026/07/04/el-tercer-vuelo-de-ayuda-humanitaria-de-chile-a-venezuela-35-mil-vacunas-medicamentos-alimentos-kits-de-higiene-y-carpas/" target="_blank">Read more → The Clinic</a>
       </div>
-    </article>
+    </div>
+  </article>
 
-  </div><!-- /.stories-grid -->
+  <div class="sec">Interesting / Offbeat</div>
 
-  <!-- INTERESTING / OFFBEAT -->
-  <h2 class="section-header">Interesting / Offbeat</h2>
-  <div class="offbeat-grid">
-
-    <article class="offbeat-card">
-      <div class="offbeat-label">Culture · K-Pop</div>
-      <h3 class="offbeat-headline">BTS fans march in 11 cities, demand government let band play at Estadio Nacional</h3>
-      <p class="offbeat-body">On Sunday, thousands of BTS fans ("ARMY") took to the streets in 11 Chilean cities — Santiago, Valparaíso, Concepción, Temuco, La Serena, and more — demanding the sports authorities allow the Korean pop group to perform at the Estadio Nacional. The Institute of Sport (IND) had rejected the permit, citing concerns about protecting the stadium turf ahead of scheduled athletic events. Protesters marched bearing purple balloons (the BTS fan color) all the way to La Moneda, the presidential palace, in what felt very much like a political rally — complete with chants and handmade signs.</p>
-      <p class="offbeat-body">By evening, the Sports Ministry signaled it would reconsider if the promoter (DG Medios) met specific technical requirements — leaving the concerts in a hopeful limbo. The episode is a nice snapshot of Chilean culture: the organizational capacity to mount a nationwide, politically-styled demonstration in 48 hours, over the logistics of a K-pop show. Chile's ARMY is not messing around.</p>
+  <article class="offbeat-card">
+    <div class="offbeat-body-wrap">
+      <div class="label">Culture · K-Pop</div>
+      <h3 class="offbeat-headline">BTS fans march in 11 cities, demand government let the band play Estadio Nacional</h3>
+      <p class="offbeat-body">On Sunday, thousands of BTS fans ("ARMY") marched in 11 Chilean cities — Santiago, Valparaíso, Concepción, Temuco, La Serena and more — demanding sports authorities allow the Korean group to perform at Estadio Nacional. The Sports Institute (IND) had rejected the permit, citing turf protection ahead of athletic events. Protesters carried purple balloons all the way to La Moneda, in what looked very much like a political rally.</p>
+      <p class="offbeat-body">By evening, the Sports Ministry signaled it would reconsider if the promoter met technical requirements — leaving the shows in hopeful limbo. A neat snapshot of Chilean culture: the capacity to mount a nationwide, politically-styled demonstration in 48 hours, over the logistics of a K-pop concert. Chile's ARMY is not messing around.</p>
       <div class="story-links">
         <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/07/03/fotos-y-videos-army-se-moviliza-en-chile-para-exigir-bts-al-nacional.shtml" target="_blank">Read more → BioBioChile</a>
         <a href="https://www.cooperativa.cl/noticias/magazine/musica/shows-en-vivo/army-de-todo-chile-marcharon-para-exigir-los-shows-de-bts-en-el-estadio/2026-07-05/164234.html" target="_blank">Read more → Cooperativa</a>
       </div>
-    </article>
+    </div>
+  </article>
 
-  </div><!-- /.offbeat-grid -->
+  <div class="sec">Opinion / Editorial</div>
 
-  <!-- OPINION / EDITORIAL -->
-  <h2 class="section-header">Opinion / Editorial</h2>
-  <div class="opinion-grid">
-
-    <article class="opinion-card">
+  <article class="opinion-card">
+    <div class="opinion-body-wrap">
       <h3 class="opinion-headline">"Los verdaderos republicanos"</h3>
-      <div class="opinion-outlet">Danilo Herrera &nbsp;·&nbsp; The Clinic &nbsp;·&nbsp; Left-Leaning &nbsp;·&nbsp; July 4</div>
-      <p class="opinion-body">Herrera argues the unsung heroes of the megarreforma negotiations are the politicians who put Chile ahead of partisan scoring — pointing specifically to Senate President Paulina Núñez (RN), a right-wing senator who brokered the cross-party working table when Kast's own finance minister had been stonewalling compromise for weeks. "True republicans are those who think of Chile before the next headline," Herrera writes, taking an implicit swipe at the libertarian and Partido Republicano hard-liners who stoked the coalition crisis with the doomed Grau constitutional accusation. It's a left-leaning outlet praising a right-wing senator — which is itself worth noticing.</p>
+      <div class="opinion-outlet">Danilo Herrera · The Clinic · Left-Leaning · Jul 4</div>
+      <p class="opinion-body">Herrera argues the unsung heroes of the megarreforma talks are politicians who put Chile ahead of partisan scoring — singling out Senate President Paulina Núñez (RN), a right-wing senator who brokered the cross-party table when Kast's own finance minister stonewalled compromise for weeks. "True republicans think of Chile before the next headline," he writes — an implicit swipe at the hard-liners who stoked the coalition crisis with the doomed Grau accusation. A left-leaning outlet praising a right-wing senator, which is itself worth noticing.</p>
       <div class="story-links">
         <a href="https://www.theclinic.cl/2026/07/04/columna-de-danilo-herrera-los-verdaderos-republicanos/" target="_blank">Read more → The Clinic</a>
       </div>
-    </article>
+    </div>
+  </article>
 
-    <article class="opinion-card">
+  <article class="opinion-card">
+    <div class="opinion-body-wrap">
       <h3 class="opinion-headline">"Un Chile que no giró hacia la derecha"</h3>
-      <div class="opinion-outlet">BioBioChile &nbsp;·&nbsp; Center-Left &nbsp;·&nbsp; July 2</div>
-      <p class="opinion-body">Despite Kast's decisive election win, survey data shows Chileans across the political spectrum still want a robust, interventionist state — not a market-led retreat. Strong majorities support more state infrastructure investment (66%), restoring fuel price stabilization mechanisms (56%), and universal employer-funded childcare (61%) — positions that hold even among center-right voters. "Chileans voted against the previous government's failures, not for a libertarian economic overhaul," the column argues. The piece lands as a challenge to the premise of the megarreforma: roughly half of respondents are unconvinced that cutting corporate taxes creates jobs.</p>
+      <div class="opinion-outlet">BioBioChile · Center-Left · Jul 2</div>
+      <p class="opinion-body">Despite Kast's decisive win, survey data shows Chileans across the spectrum still want a robust, interventionist state — not a market-led retreat. Strong majorities back more state infrastructure investment (66%), restoring fuel-price stabilization (56%), and universal employer-funded childcare (61%), even among center-right voters. "Chileans voted against the previous government's failures, not for a libertarian overhaul," it argues — a direct challenge to the premise of the megarreforma.</p>
       <div class="story-links">
         <a href="https://www.biobiochile.cl/noticias/opinion/tu-voz/2026/07/02/un-chile-que-no-giro-hacia-la-derecha.shtml" target="_blank">Read more → BioBioChile</a>
       </div>
-    </article>
+    </div>
+  </article>
 
-  </div><!-- /.opinion-grid -->
+  <p class="note">No standout right-leaning column found today.</p>
 
-  <p class="opinion-note">No standout right-leaning column found today.</p>
+</section>
 
-</div><!-- /.container -->
+<!-- ======================= EVENTS ======================= -->
+<section class="panel" data-panel="events">
 
-<footer class="page-footer">
-  Chile Morning Digest &nbsp;·&nbsp; For Neal in Santiago &nbsp;·&nbsp; <a href="archive.html">Archive</a>
+  <div class="banner">🗓️&nbsp;<span><b>Around Santiago.</b> Winter school break (Jun 22–Jul 3) has just wrapped, so the marquee holiday programming is winding down — but the winter attractions below are still running. Tagged by your interests; <b>Kids</b> flagged first.</span></div>
+
+  <article class="event-card">
+    <div class="event-body-wrap">
+      <div class="tags"><span class="tag tag--kids">Kids</span><span class="tag tag--int">❄️ Outdoors</span></div>
+      <h3 class="event-headline">Coolslide: a 700 m² open-air ice rink in Parque Araucano</h3>
+      <p class="event-body">For the first time, a 700-square-meter outdoor ice-skating rink has been set up in Parque Araucano (Las Condes) for the winter season — skating for kids, teens and adults in the middle of the park. An easy, high-energy afternoon that pairs well with the surrounding green space and nearby cafés. Bundle up; it's genuinely cold out there.</p>
+      <div class="story-links">
+        <a href="https://eldesconcierto.cl/tendencias/vacaciones-invierno-los-panoramas-santiago-escolares-este-primer-fin-semana-julio-n5460105" target="_blank">Read more → El Desconcierto</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="event-card">
+    <div class="event-body-wrap">
+      <div class="tags"><span class="tag tag--kids">Kids</span></div>
+      <h3 class="event-headline">MIM — the hands-on science museum, back to regular hours</h3>
+      <p class="event-body">The Museo Interactivo Mirador (MIM) in La Granja ran extended winter programming through July 5 — a "curiosity"-themed edition with a new astronomy hall, workshops and an entrepreneurs' fair. That special run is ending, but the MIM remains Santiago's best rainy-cold-day play for kids: dozens of interactive exhibits across science and tech. Tickets ~CLP 7,500 (kids/students) / 8,500 (adults); free for seniors, teachers and visitors with disabilities.</p>
+      <div class="story-links">
+        <a href="https://www.latercera.com/culto/noticia/vacaciones-de-invierno-2026-agenda-de-panoramas-con-museos-y-espacios-culturales/" target="_blank">Read more → La Tercera</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="event-card">
+    <div class="event-body-wrap">
+      <div class="tags"><span class="tag tag--int">❄️ Outdoors</span><span class="tag tag--kids">Kids</span></div>
+      <h3 class="event-headline">Teleférico &amp; the new Pío Nono line on Cerro San Cristóbal</h3>
+      <p class="event-body">Santiago's cable car and funicular over Parque Metropolitano are running winter schedules, and the newer Teleférico Pío Nono link makes the hilltop easy to reach from Bellavista. On the clear, cold days forecast this week, the Andes views from the top are as good as they get all year — a low-effort outing that works for all ages.</p>
+      <div class="story-links">
+        <a href="https://telefericosantiago.cl/sin-categoria/vacaciones-de-invierno-full-panoramas/" target="_blank">Read more → Teleférico Santiago</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="event-card">
+    <div class="event-body-wrap">
+      <div class="tags"><span class="tag tag--int">🎬 Cinema</span></div>
+      <h3 class="event-headline">Arthouse anchors: Centro Arte Alameda &amp; Cineteca Nacional</h3>
+      <p class="event-body">For special screenings and repertory cycles rather than the multiplex, the two reliable stops are Centro Arte Alameda (now in its Estación Mapocho home) and the Cineteca Nacional inside Centro Cultural La Moneda — restored classics, festival holdovers and director retrospectives. Worth checking their weekly calendars for one-off screenings; both program independent and Latin American film you won't find elsewhere in the city.</p>
+      <div class="story-links">
+        <a href="https://centroartealameda.cl/" target="_blank">Read more → Centro Arte Alameda</a>
+        <a href="https://www.cclm.cl/cineteca-nacional-de-chile/" target="_blank">Read more → Cineteca Nacional</a>
+      </div>
+    </div>
+  </article>
+
+  <p class="note">Quiet week for food, coffee and beer/wine festivals — Bierfest and the autumn Vendimia wine fests have already passed for 2026. Barrio Italia and Lastarria remain the everyday go-tos for specialty coffee and food. Will flag the next marquee food/beer event as soon as dates firm up.</p>
+
+</section>
+
+<!-- ======================= MUSIC ======================= -->
+<section class="panel" data-panel="music">
+
+  <div class="banner">🎧&nbsp;<span><b>Chilean music, this fortnight.</b> Album/EP releases, charts and interviews across your genres — <b>no live-show listings</b>. Tagged by genre.</span></div>
+
+  <article class="music-card">
+    <div class="music-body-wrap">
+      <div class="tags"><span class="tag tag--genre">Rock</span></div>
+      <h3 class="music-headline">Los Dos Jefes — <em>La Sed</em> (4th album)</h3>
+      <p class="music-body">The veteran rock'n'roll outfit is out with its fourth LP, <em>La Sed</em>. The band frames it not as a reaction or a complaint about the industry but as "a calm affirmation: to keep making rock'n'roll is a statement of principles." Straight-ahead, unfussy guitar rock for anyone who wants riffs over trends.</p>
+      <div class="story-links">
+        <a href="https://www.rockaxis.com/chile/" target="_blank">Read more → Rockaxis</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="music-card">
+    <div class="music-body-wrap">
+      <div class="tags"><span class="tag tag--genre">Electronic</span></div>
+      <h3 class="music-headline">Rafael Cheuquelaf — <em>Huellas Atávicas</em> (solo debut)</h3>
+      <p class="music-body">Cheuquelaf — half of the long-running Magallanes electronic duo Lluvia Ácida — steps out solo with <em>Huellas Atávicas</em>, fusing synthesis with unusual sound sources: percussed stones, human voices, field textures. This is electronic music as composition, not the DJ booth — closer to Chile's experimental/ambient lineage than the club.</p>
+      <div class="story-links">
+        <a href="https://www.musicapopular.cl/generos/electronica/" target="_blank">Read more → MusicaPopular.cl</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="music-card">
+    <div class="music-body-wrap">
+      <div class="tags"><span class="tag tag--genre">Jazz</span><span class="tag tag--genre">Indie</span></div>
+      <h3 class="music-headline">Carmina — atmospheric jazz-pop with a dramatic streak</h3>
+      <p class="music-body">One to watch on the MusicaPopular.cl radar: Carmina works a seam of jazz, pop and rock built on mood, drama and a delicate sensibility — think torch-song phrasing over indie arrangements. A good entry point if you like your jazz song-based and emotionally direct rather than purely instrumental.</p>
+      <div class="story-links">
+        <a href="https://www.musicapopular.cl/jazz/" target="_blank">Read more → MusicaPopular.cl</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="music-card">
+    <div class="music-body-wrap">
+      <div class="tags"><span class="tag tag--genre">Folk</span><span class="tag tag--genre">Rock</span></div>
+      <h3 class="music-headline">Los Muertos prep <em>Manuel</em>, a concept album on an independence hero</h3>
+      <p class="music-body">Los Muertos are readying a conceptual record, <em>Manuel</em>, built around the figure of Manuel Rodríguez — the guerrilla horseman of Chile's independence struggle. Roughly the local equivalent of an American band devoting a whole album to Paul Revere: national mythology set to folk-rock. A project to keep an eye on as singles roll out.</p>
+      <div class="story-links">
+        <a href="https://www.rockaxis.com/chile/" target="_blank">Read more → Rockaxis</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="music-card">
+    <div class="music-body-wrap">
+      <div class="tags"><span class="tag tag--genre">Indie</span><span class="tag tag--genre">Digging</span></div>
+      <h3 class="music-headline">"Compilado Chile 2026" — 15 underground bands, one noisy sampler</h3>
+      <p class="music-body">Hotel Records (newly merged with the 20-year-old underground label Algorecords) put out an open call that drew 100+ bands and distilled it to a 15-track compilation — an energetic, noisy cross-section of the current Chilean indie/rock underground, opening with Maldito Freak's fast-and-solid '90s rock. On all platforms; a perfect Bandcamp afternoon if you want to hear where the scene is right now.</p>
+      <div class="story-links">
+        <a href="https://noesfm.com/hotel-records-compilado-de-bandas-chilenas/" target="_blank">Read more → No es FM</a>
+        <a href="https://bandcamp.com/discover/chilean" target="_blank">Read more → Bandcamp (Chile)</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="music-card">
+    <div class="music-body-wrap">
+      <div class="tags"><span class="tag tag--int">📊 Charts</span></div>
+      <h3 class="music-headline">Chart snapshot: what Chile is actually streaming</h3>
+      <p class="music-body">For context (mostly not your vibe, but useful to know): the Spotify Top 50 Chile on July 5 was led by K-pop — Jimin's "Who" at #1 — with the rest dominated by reggaeton and Latin urban, including Chilean urbano artist Jere Klein charting high on "Q Hubo Amor (Medellín)" alongside Blessd and Ovy On The Drums. The releases above sit well outside this list — which is rather the point.</p>
+      <div class="story-links">
+        <a href="https://kworb.net/spotify/country/cl_daily.html" target="_blank">Read more → kworb (Spotify Chile)</a>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+</main>
+
+<footer>
+  Chile Morning · News · Events · Music · For Neal in Santiago · <a href="archive.html">Archive</a>
 </footer>
 
 <script>
+/* Tab switcher */
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+  function show(name){
+    tabs.forEach(function(t){ t.classList.toggle('tab--on', t.getAttribute('data-tab') === name); });
+    panels.forEach(function(p){ p.classList.toggle('panel--on', p.getAttribute('data-panel') === name); });
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var name = t.getAttribute('data-tab');
+      show(name);
+      if (history.replaceState) history.replaceState(null, '', '#' + name);
+    });
+  });
+  var hash = (location.hash || '').replace('#','');
+  if (hash && document.querySelector('[data-panel="' + hash + '"]')) show(hash);
+})();
+</script>
+
+<script>
+/* Expand toggle — first sentence visible, rest behind "More…" */
 (function(){
   [
-    ['.weather-body', '.weather-note'],
+    ['.weather-body', '.weather__note'],
     ['.lead-body', '.story-body'],
     ['.card-body', '.story-body'],
-    ['.offbeat-card', '.offbeat-body'],
-    ['.opinion-card', '.opinion-body']
+    ['.offbeat-body-wrap', '.offbeat-body'],
+    ['.opinion-body-wrap', '.opinion-body']
   ].forEach(function(pair){
     document.querySelectorAll(pair[0]).forEach(function(container){
       var paras = Array.from(container.querySelectorAll(pair[1]));
@@ -535,17 +468,18 @@
 </script>
 
 <script>
+/* Share — native share sheet with clipboard fallback */
 (function(){
   function storyOf(el){
-    return el.closest('.lead-story, .story-card, .offbeat-card, .opinion-card');
+    return el.closest('.lead-story, .story-card, .offbeat-card, .opinion-card, .event-card, .music-card');
   }
   function textOf(story, sel){
     var n = story.querySelector(sel);
     return n ? n.textContent.replace(/\s+/g,' ').trim() : '';
   }
   function buildShareText(story, links){
-    var headline = textOf(story, '.lead-headline, .card-headline, .offbeat-headline, .opinion-headline');
-    var summary  = textOf(story, '.story-body, .offbeat-body, .opinion-body');
+    var headline = textOf(story, '.lead-headline, .card-headline, .offbeat-headline, .opinion-headline, .event-headline, .music-headline');
+    var summary  = textOf(story, '.story-body, .offbeat-body, .opinion-body, .event-body, .music-body');
     var anchors  = Array.from(links.querySelectorAll('a'));
     var sources  = anchors.filter(function(a){ return a.getAttribute('target') === '_blank'; });
     var context  = anchors.filter(function(a){ return a.getAttribute('target') !== '_blank'; });
@@ -562,7 +496,7 @@
       var title = c.textContent.replace(/^\s*→\s*Background:\s*/i,'').replace(/^\s*→\s*/,'').replace(/\s+/g,' ').trim();
       lines.push('', 'Background: ' + title + ' ' + c.href);
     }
-    lines.push('', '— via Chile Morning Digest · https://neal-jpg.github.io/chile-news/');
+    lines.push('', '— via Chile Morning · https://neal-jpg.github.io/chile-news/');
     return lines.join('\n');
   }
   var toast;
