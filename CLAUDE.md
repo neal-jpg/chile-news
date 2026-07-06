@@ -157,6 +157,30 @@ When a News story needs background longer than two sentences, create a separate 
 - The `.context-link` in the digest points to this local file, never to Wikipedia directly.
 - **Reuse:** if a context page for the same concept already exists (check `context_*.html`), link to it instead of creating a duplicate.
 
+## Images (all tabs)
+
+Give the **lead News story** an image, plus the 1–3 most visual cards; Events/Music cover art is optional. Emit the image as the **first child of the card** (before the `-body`/`-body-wrap`):
+
+```html
+<img class="card-img" src="…" alt="…" loading="lazy" onerror="this.remove()">
+```
+
+Always include `onerror="this.remove()"` so a dead URL collapses cleanly instead of showing a broken box.
+
+**Sourcing:** direct article fetches are usually 403-blocked, so fresh `og:image` URLs are rarely obtainable. When you *can* get an article's og:image, prefer it. Otherwise reuse a stable, hotlink-friendly **file photo** from a news CDN (`static.theclinic.cl`, `media.biobiochile.cl`, `static.emol.cl`) that matches the subject — the curated set below hotlinks reliably. Match by subject and write **accurate alt text** (treat them as file photos; don't imply they were shot today). Never hotlink paywalled or hotlink-protected hosts.
+
+### Curated file-photo URLs (proven to hotlink)
+- **Senate chamber** — `https://static.theclinic.cl/media/2026/06/16-231144_ye7m_senado-600x324.jpg`
+- **Congress / accusation** — `https://static.emol.cl/emol50/Fotos/2026/06/08/file_20260608180840.jpg`
+- **La Moneda palace** — `https://static.theclinic.cl/media/2026/06/14-191812_5k9h_the-clinic-tamano-17-600x324.jpg`
+- **President Kast** — `https://static.theclinic.cl/media/2026/06/16-205754_tisb_Diseno-sin-titulo-94-600x324.jpg`
+- **President Kast (alt)** — `https://media.biobiochile.cl/wp-content/uploads/2026/06/expectativas-kast-750x400.jpg`
+- **Finance Minister Quiroz** — `https://static.emol.cl/emol50/Fotos/2026/06/08/file_20260608152128.jpg`
+- **Nicolás Grau** — `https://static.theclinic.cl/media/2026/06/12-203003_is74_Nicolas-Grau-600x324.jpeg`
+- **Santiago winter smog** — `https://www.latercera.com/resizer/v2/NQ2TBZT2HZDQ5MG66XZZUXPEZE.jpg?auth=2fe70916bff5b6c1619ff3ccdc71661101108af6f63209a148a146820b016258&smart=true&width=600&height=338&quality=70`
+
+Add new proven URLs here as you find fresh ones that hotlink; prefer a subject match over a perfect-recency match.
+
 ## Source links (all tabs)
 
 Every item — News, Events, Music — gets a "Read more →" link to the original URL inside `.story-links`, styled small/understated. Link text is the outlet name (e.g. "Read more → La Tercera"). `target="_blank"` marks it as an external source (the share script relies on this).
