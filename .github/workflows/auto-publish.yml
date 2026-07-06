@@ -6,8 +6,11 @@ name: Auto-publish digest
 # serves main, so without this workflow the new digest sits on the branch and the
 # live site never updates (exactly what happened on 2026-06-19).
 #
-# This workflow watches for the routine's branch pushes and, when the branch adds
-# a daily digest, merges it into main so Pages republishes automatically.
+# Design: instead of merging the branch (which causes conflicts on the generated
+# index.html / archive.html when main has moved on), we copy only the new files
+# from the branch onto main, regenerate the index fresh, then commit. This makes
+# merge conflicts on generated files impossible, and lets workflow fixes propagate
+# automatically (any changed file except the two generated ones is copied over).
 
 on:
   push:
@@ -31,7 +34,12 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Merge the routine's branch into main and publish
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Publish digest to main
         env:
           BRANCH: ${{ github.ref_name }}
         run: |
@@ -44,27 +52,38 @@ jobs:
           # Safety guard: only auto-publish branches that actually add/change a
           # daily digest (digest_YYMMDD.html). Template-only or experimental
           # claude/* branches are left for manual review.
-          if git diff --name-only "main...origin/$BRANCH" | grep -qE '(^|/)digest_[0-9]{6}\.html$'; then
-            echo "Branch $BRANCH changes a digest — publishing."
-          else
+          CHANGED=$(git diff --name-only "main...origin/$BRANCH")
+          if ! echo "$CHANGED" | grep -qE '(^|/)digest_[0-9]{6}\.html$'; then
             echo "Branch $BRANCH has no digest changes — skipping."
             exit 0
           fi
+          echo "Branch $BRANCH changes a digest — publishing."
 
-          # Prefer a clean fast-forward; fall back to a merge commit if main moved.
-          if git merge --ff-only "origin/$BRANCH"; then
-            echo "Fast-forwarded main."
-          else
-            echo "main diverged — creating a merge commit."
-            git merge --no-edit -m "Auto-publish $BRANCH into main" "origin/$BRANCH"
+          # Copy all changed files from the branch onto main, EXCEPT the two
+          # generated files (index.html, archive.html) which we rebuild fresh below.
+          # Copying everything (not just *.html) means workflow fixes, CLAUDE.md
+          # edits, script changes, etc. also propagate to main automatically.
+          while IFS= read -r f; do
+            case "$f" in
+              index.html|archive.html) echo "  Skipping generated file: $f" ;;
+              *) git checkout "origin/$BRANCH" -- "$f" && echo "  Copied: $f" ;;
+            esac
+          done <<< "$CHANGED"
+
+          # Regenerate index.html and archive.html from the current state of main.
+          python3 generate_index.py
+
+          # Commit only if something actually changed.
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit — already up to date."
+            git push origin --delete "$BRANCH" || true
+            exit 0
           fi
 
-          # Push only if main actually advanced.
-          if [ "$(git rev-parse main)" != "$(git rev-parse origin/main)" ]; then
-            git push origin main
-            echo "Published to main — GitHub Pages will redeploy."
-            # Tidy up the merged branch; don't fail the run if deletion is blocked.
-            git push origin --delete "$BRANCH" || echo "Could not delete $BRANCH (left in place)."
-          else
-            echo "main already up to date — nothing to publish."
-          fi
+          git commit -m "Auto-publish $BRANCH"
+          git push origin main
+          echo "Published to main — GitHub Pages will redeploy."
+
+          # Tidy up the source branch.
+          git push origin --delete "$BRANCH" || echo "Could not delete $BRANCH (left in place)."
